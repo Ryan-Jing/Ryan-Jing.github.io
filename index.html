@@ -1,0 +1,174 @@
+<!-- FONTS CAUDEX FOR BIG STUFF , AVENIR FOR TITLES, AVENIR LIGHT FOR BODY -->
+<!-- Multi Select: Option + Command + Up/Down -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Caudex">
+    <style>
+      body {
+        font-family: 'Caudex', serif;
+      }
+    </style>
+    <title >
+        Ryan Jing: home
+    </title>
+
+</head>
+
+
+<body>
+
+    <img src="background2.jpg" class="back_image">
+
+
+    <!-- how do i get these buttons to have a clear background, and not light grey -->
+    <nav class = "navbar">
+
+        
+
+        <div class="navbar_container">
+
+            
+            <a href="index.html" id="navbar_logo" style="font-family: 'Caudex', serif;">
+
+               <!-- <img src="wesbitelogo.png" alt="Home" width="30" height="auto"> -->
+                Portfolio
+            </a>
+
+            <div class="navbar_toggle" id="mobile-menu">
+                <span class="bar">
+                </span>
+                <span class="bar">
+
+                </span>
+                <span class="bar">
+
+                </span>
+            </div>
+
+            <ul class="navbar_menu">
+
+                <li class="navbar_item">
+                    <a href="#Work" class="navbar_links">
+                        Work
+                    </a>
+                </li>
+
+                <li class="navbar_item">
+                    <a href="AboutMe.html" class="navbar_links">
+                        About Me
+                    </a>
+                </li>
+
+                <li class="navbar_btn">
+                    <a href="/" class="button">
+                        Contact Me
+                    </a>
+                </li>
+
+                
+
+            </ul>
+
+
+            <!--class="w3-button w3-bar-item"-->
+        
+
+        </div>
+
+
+
+            <!--
+            <a href="#band" class="w3-button w3-bar-item">Band</a>
+            <a href="#tour" class="w3-button w3-bar-item">Tour</a>
+            <a href="#contact" class="w3-button w3-bar-item">Contact</a>
+
+            -->
+    </nav>
+
+
+    
+    <!--<span class="line"></span>-->
+
+   
+
+    <header>
+
+
+        <h1 class="header" >
+            <p>
+                Ryan Jing
+            </p>
+        </h1>
+
+    </header>
+
+
+    <main>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+        <h2 class="h2">
+            <p>
+                Work
+            </p>
+            
+        </h2>
+
+        <article>
+
+            <h3>
+                Education
+            </h3>
+
+            <p>
+                I am a student at the University of Waterloo
+            </p>
+
+        </article>
+        
+
+
+    </main>
+
+
+
+    <footer>
+
+        
+        <small>
+            Website coded by Ryan Jing
+        </small>
+    </footer>
+
+<script src="app.js"> </script>
+
+<script>
+    window.addEventListener('scroll', function(){
+        let header = document.querySelector('nav');
+        let windowPosition = window.scrollY > 0;
+        header.classList.toggle('scrolling_active', windowPosition )
+
+    })
+</script>
+
+</body>
+
+</html> 
