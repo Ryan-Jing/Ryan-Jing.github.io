@@ -61,7 +61,7 @@ function App() {
 
             <h1 className="header">
                 <p>
-                    Ryan Jing!!
+                    Ryan Jing
                 </p>
             </h1>
 
