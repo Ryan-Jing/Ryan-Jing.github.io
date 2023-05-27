@@ -1,11 +1,17 @@
+@font-face {
+  font-family: 'Caudex';
+  src: url('assets/Fonts/Caudex/Caudex-Bold.ttf') format('ttf'),
+       url('assets/Fonts/Caudex/Caudex-Regular.ttf') format('ttf'),
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, 'Caudex', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,20 +24,21 @@ a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
+  transition: color 0.15s ease-in-out;
 }
 a:hover {
-  color: #535bf2;
+  color: #b0b0b0;
 }
 
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
 
 h1 {
+  font-family: 'Caudex', sans-serif;
   font-size: 3.2em;
   line-height: 1.1;
 }
