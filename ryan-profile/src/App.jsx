@@ -1,4 +1,4 @@
-import { useState } from 'react'
+//import { useState } from 'react'
 //import reactLogo from './assets/react.svg'
 //import viteLogo from '/vite.svg'
 import backgroundOne from './assets/background_images/background4.png'
@@ -61,7 +61,7 @@ function App() {
 
             <h1 className="header">
                 <p>
-                    Ryan Jing
+                    Ryan Jing!!
                 </p>
             </h1>
 
