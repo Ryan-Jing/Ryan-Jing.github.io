@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Caudex&display=swap');
+
 #root {
   max-width: 999999999px;
   text-align: center;
@@ -102,6 +104,7 @@ animation-direction: alternate;
     list-style: none;
     text-align: center;
     padding-right: 10%;
+    gap: 10px
 }
 
 .navbar_item {
@@ -115,12 +118,10 @@ animation-direction: alternate;
     justify-content: center;
     text-decoration: none;
     padding: 0 3rem;
-    transform: translate(-15%,0%);
     height: 100%;
-    width: 190px;
 }
 
-.button {
+.contact_button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -128,11 +129,10 @@ animation-direction: alternate;
     padding: 10px 20px;
     height: 100%;
     width: 100%;
-    border: none;
-    outline: none;
     border-radius: 4px ;
     background-color: rgb(110, 108, 107);
     color: #fff;
+    margin-left: 25%;
 }
 
 nav {
@@ -184,7 +184,7 @@ nav {
     font-family: 'Caudex', serif;
     font-weight: 100;
     position: absolute;
-    top: 200%;
+    top: 190%;
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 0;
@@ -218,4 +218,35 @@ nav {
   content: '\00A0'; /* Unicode character for non-breaking space */
   display: inline-block;
   width: 10px; /* Adjust the width to create the desired gap between words */
+}
+
+.scroll-button
+{
+    position: absolute;
+    border: none;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    top: 92%;
+    background-color: transparent;
+}
+
+.down-button
+{
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 40px;
+    height: auto;
+    background-color: transparent;
+
+}
+
+.header3 {
+    position: relative;  
+    margin-top: 54%;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 40px;
+    opacity: 0;
+    transition: 3s; 
 }

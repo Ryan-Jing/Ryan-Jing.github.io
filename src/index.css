@@ -1,8 +1,4 @@
-@font-face {
-  font-family: 'Caudex';
-  src: url('assets/Fonts/Caudex/Caudex-Bold.ttf') format('ttf'),
-       url('assets/Fonts/Caudex/Caudex-Regular.ttf') format('ttf'),
-}
+@import url('https://fonts.googleapis.com/css2?family=Caudex&display=swap');
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, 'Caudex', sans-serif;
@@ -21,6 +17,7 @@
 }
 
 a {
+  font-family: 'Caudex', serif;
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
@@ -38,7 +35,7 @@ body {
 }
 
 h1 {
-  font-family: 'Caudex', sans-serif;
+  font-family: 'Caudex', serif;
   font-size: 3.2em;
   line-height: 1.1;
 }
