@@ -2,9 +2,10 @@
 //import reactLogo from './assets/react.svg'
 //import viteLogo from '/vite.svg'
 import React, { useState, useRef } from 'react';
-import backgroundOne from './assets/background_images/background4.png'
-import backgroundTwo from './assets/background_images/background5.png'
+import backgroundOne from './assets/background_images/background8.png'
+import backgroundTwo from './assets/background_images/background7.png'
 import downButton from './assets/down-arrow.png'
+import profile from '/profile-head.ico'
 import './App.css'
 
 function App() {
@@ -42,9 +43,12 @@ function App() {
       </div>
       <nav className = "navbar">
         <div className = "navbar_container">
-          <a href="index.html" id="navbar_title" alt="Website logo">
+        <a href="index.html" id="navbar_title" alt="Website logo">
+            <img src= {profile}/>
+        </a>
+          {/* <a href="index.html" id="navbar_title" alt="Website logo">
             Portfolio
-          </a>
+          </a> */}
 
           <ul className ="navbar_menu">
             <li className="navbar_item">
