@@ -92,9 +92,9 @@ function App() {
             </li>
 
             <li className="navbar_btn">
-                <a className="contact_button" href="mailto:r5jing@uwaterloo.ca">
+                <Link to = "/Contact" className="contact_button">
                     Contact Me
-                </a>
+                </Link>
             </li>
 
           </ul>
