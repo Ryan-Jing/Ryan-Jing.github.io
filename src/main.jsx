@@ -1,31 +1,24 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-//import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import App from './App.jsx'
-//import About from './About.jsx';
-import './index.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import App from './pages/App.jsx'
+import About from './pages/About'
+import './index.css'
 
-/* Check this for future multiple page
-const Main = () => {
+export default function Main() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={App} />
-        <Route path="/About" component={About} />
-      </Switch>
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/About" element={<About />} />
+      </Routes>
+    </BrowserRouter>
   );
-};
+}
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Main />
-  </React.StrictMode>
-);
-*/
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
   </React.StrictMode>,
 )
