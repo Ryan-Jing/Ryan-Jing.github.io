@@ -242,7 +242,7 @@ nav {
 
 .header3 {
     position: relative;  
-    margin-top: 54%;
+    margin-top: 50%;
     margin-left: 10%;
     margin-right: 10%;
     height: 40px;
@@ -253,19 +253,18 @@ nav {
 .header4
 {
     position: relative;  
-    align-items: center;
-    text-align: center;
-
+    margin-top: 35%;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 40px;
 }
+
 .header4 p
 { 
-    display: flex;
-    text-align: center;
+    position: relative;  
     font-size: 3rem;
     font-family: 'Caudex', serif;
     font-weight: 200;
-    position: relative;
-    transform: translate( 43%, 700%)
 }
 
 .Descript_header

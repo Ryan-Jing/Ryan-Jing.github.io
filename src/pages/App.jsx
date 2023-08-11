@@ -47,6 +47,11 @@ function App() {
   //   header.style.opacity = 1;
   // });
 
+  function scrollToWork() {
+    const section = document.getElementById("scrollToWork");
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+
 
   window.onscroll = function(){
     document.getElementById("fadein2").style.opacity = 1;
@@ -86,7 +91,7 @@ function App() {
             </li>
 
             <li className="navbar_item">
-                <a href="#Work" className="navbar_links">
+                <a href="#Work" className="navbar_links" onClick={scrollToWork}>
                     Work
                 </a>
             </li>
@@ -130,13 +135,13 @@ function App() {
               </button> */}
           </h1>
 
-          <h2 class="header4" >
-              <p>
+          <h1 class="header4" >
+              <p id="scrollToWork">
                   My Work
               </p>
-          </h2>
+          </h1>
 
-          <h3 class="Descript_header">
+          {/* <h3 class="Descript_header">
               <p>
                   Software and Programming
               </p>
@@ -147,7 +152,7 @@ function App() {
                 With experience in various programming domains, I have developed a versatile skill set. Working on firmware using C during my time at Orbital honed my low-level programming abilities, allowing me to understand hardware interactions and optimize system performance. Collaborating with Ontario Health, I expanded my expertise to include JavaScript, Angular, and React, enabling me to create interactive and dynamic web applications. Additionally, delving into the realm of artificial intelligence and machine learning, I harnessed Python's power to leverage AI and ML tools to create unique solutions. 
                 &nbsp;
               </p>
-          </h3>
+          </h3> */}
           {/* <div class="box">
               <div class="crop ratio ratio-1:1 ">
                   <iframe width="100%" height="100%" src="https://docs.google.com/spreadsheets/d/1SZ7rFdmEeR2oQ1xWxmmTTTjW1d4HtQNttZLdltmZNI0/edit#gid=1754425699" frameborder="0" scrolling="no" class="covid_graph" ></iframe>
