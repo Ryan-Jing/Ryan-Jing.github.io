@@ -49,9 +49,8 @@ function App() {
 
   function scrollToWork() {
     const section = document.getElementById("scrollToWork");
-    section.scrollIntoView({ behavior: "smooth" });
+    section.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest"});
   }
-
 
   window.onscroll = function(){
     document.getElementById("fadein2").style.opacity = 1;
@@ -76,9 +75,9 @@ function App() {
       </div>
       <nav className = "navbar">
         <div className = "navbar_container">
-        <a href="index.html" id="navbar_title" alt="Website logo">
+        <Link to="/" id="navbar_title" alt="Website logo">
             <img src= {profile}/>
-        </a>
+        </Link>
           {/* <a href="index.html" id="navbar_title" alt="Website logo">
             Portfolio
           </a> */}
