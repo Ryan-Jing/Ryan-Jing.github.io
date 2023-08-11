@@ -36,7 +36,7 @@
 animation-name: cf3FadeInOut;
 animation-timing-function: ease-in-out;
 animation-iteration-count: infinite;
-animation-duration: 5s;
+animation-duration: 20s;
 animation-direction: alternate;
 }
 
@@ -248,4 +248,68 @@ nav {
     height: 40px;
     opacity: 0;
     transition: 3s; 
+}
+
+.header4
+{
+    position: relative;  
+    align-items: center;
+    text-align: center;
+
+}
+.header4 p
+{ 
+    display: flex;
+    text-align: center;
+    font-size: 3rem;
+    font-family: 'Caudex', serif;
+    font-weight: 200;
+    position: relative;
+    transform: translate( 43%, 700%)
+}
+
+.Descript_header
+{
+    position: relative;  
+    height: 120px;
+
+}
+
+.Descript_header p
+{ 
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    text-align: center;
+    font-family: "Avenir-Light", sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    font-weight: 0;
+    position: relative;
+    transform: translate(5%, 1800%);
+    margin: 0
+}
+
+.Descript_content
+{
+    position: relative;  
+    height: 65px;
+    z-index: 10;
+}
+
+.Descript_content p
+{ 
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    text-align: left;
+    font-family: "Avenir-Light", sans-serif;
+    font-weight: 200;
+    font-size: 1 rem;
+    font-weight: 0;
+    position: absolute;
+    top: 200%;
+    left: 40%;
+    transform: translate(-5%, 200%);
+    margin: 0
 }
