@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import App from './pages/App.jsx'
-import About from './pages/About'
-import Contact from './pages/Contact'
+import About from './pages/About.jsx'
+import Contact from './pages/Contact.jsx'
 import './index.css'
 
 export default function Main() {
