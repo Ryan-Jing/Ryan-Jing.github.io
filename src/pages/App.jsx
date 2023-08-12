@@ -155,7 +155,7 @@ function App() {
           </h3>
           <div class="box">
               <div class="crop ratio ratio-1:1 ">
-                  <iframe width="100%" height="100%" src="https://docs.google.com/spreadsheets/d/1SZ7rFdmEeR2oQ1xWxmmTTTjW1d4HtQNttZLdltmZNI0/edit#gid=1754425699" frameborder="0" scrolling="no" class="covid_graph" ></iframe>
+                  <iframe width="100%" height="100%" src="https://docs.google.com/spreadsheets/d/1SZ7rFdmEeR2oQ1xWxmmTTTjW1d4HtQNttZLdltmZNI0/edit#gid=1754425699" frameborder="0" scrolling="no" class="covid_graph"></iframe>
               </div>
           </div>
 
