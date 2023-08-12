@@ -1,9 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Link, NavLink } from "react-router-dom";
 import profile from '/profile-head.ico'
 import './App.css'
 
 function Contact(){
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   window.addEventListener('scroll', function(){
     let header = document.querySelector('nav');
@@ -24,9 +28,9 @@ function Contact(){
 
         <ul className ="navbar_menu">
           <li className="navbar_item">
-              <Link to = "/About" className="navbar_links">
+              <NavLink to = "/About" className="navbar_links" activeClassName="active">
                   About Me
-              </Link>
+              </NavLink>
           </li>
 
           <li className="navbar_item">
@@ -36,9 +40,9 @@ function Contact(){
           </li>
 
           <li className="navbar_btn">
-              <Link to = "/Contact" className="contact_button">
+              <NavLink to = "/Contact" className="contact_button" activeClassName="active">
                   Contact Me
-              </Link>
+              </NavLink>
           </li>
 
         </ul>

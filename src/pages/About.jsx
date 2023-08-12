@@ -5,6 +5,10 @@ import './App.css'
 
 function About(){
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   window.addEventListener('scroll', function(){
     let header = document.querySelector('nav');
     let windowPosition = window.scrollY > 0;

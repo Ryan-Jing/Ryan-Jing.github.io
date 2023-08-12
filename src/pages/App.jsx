@@ -7,6 +7,7 @@ import backgroundOne from '../assets/background_images/background8.png'
 import backgroundTwo from '../assets/background_images/background7.png'
 import downButton from '../assets/down-arrow.png'
 import profile from '/profile-head.ico'
+import whiteStrip from '/white_strip.jpg'
 import './App.css'
 
 function App() {
@@ -140,7 +141,7 @@ function App() {
               </p>
           </h1>
 
-          {/* <h3 class="Descript_header">
+          <h3 class="Descript_header">
               <p>
                   Software and Programming
               </p>
@@ -151,12 +152,16 @@ function App() {
                 With experience in various programming domains, I have developed a versatile skill set. Working on firmware using C during my time at Orbital honed my low-level programming abilities, allowing me to understand hardware interactions and optimize system performance. Collaborating with Ontario Health, I expanded my expertise to include JavaScript, Angular, and React, enabling me to create interactive and dynamic web applications. Additionally, delving into the realm of artificial intelligence and machine learning, I harnessed Python's power to leverage AI and ML tools to create unique solutions. 
                 &nbsp;
               </p>
-          </h3> */}
-          {/* <div class="box">
+          </h3>
+          <div class="box">
               <div class="crop ratio ratio-1:1 ">
                   <iframe width="100%" height="100%" src="https://docs.google.com/spreadsheets/d/1SZ7rFdmEeR2oQ1xWxmmTTTjW1d4HtQNttZLdltmZNI0/edit#gid=1754425699" frameborder="0" scrolling="no" class="covid_graph" ></iframe>
               </div>
-          </div> */}
+          </div>
+
+          <div class="whitestrip">
+            <img src={whiteStrip} class="white_strip" height="800px" />
+          </div>
 
         </main>
       </div>
