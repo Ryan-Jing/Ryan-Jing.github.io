@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Caudex&display=swap');
 
 #root {
@@ -229,6 +230,15 @@ nav {
     background-color: transparent;
 }
 
+.scroll-button1
+{
+    position: relative;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    margin-top: 25%;
+}
+
 .down-button
 {
     border: none;
@@ -253,7 +263,7 @@ nav {
 .header4
 {
     position: relative;  
-    margin-top: 40%;
+    margin-top: 15%;
     margin-left: 10%;
     margin-right: 10%;
     height: 40px;
@@ -271,7 +281,6 @@ nav {
 {
     position: relative;  
     height: 120px;
-
 }
 
 .Descript_header p
@@ -307,6 +316,34 @@ nav {
     margin-top: -10%;
     margin-left: 40%;
     margin-right: 5%;
+}
+
+.Descript_content p1
+{ 
+    display: flex;
+    text-align: left;
+    font-family: "Avenir-Light", sans-serif;
+    font-weight: 200;
+    font-size: 1 rem;
+    font-weight: 0;
+    position: relative;
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 20%;
+}
+
+.Arduino_video {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 10%;
+}
+
+.Arduino_video video {
+  max-width: 100%;
+  position: relative;
 }
 
 .whitestrip 
@@ -362,4 +399,49 @@ nav {
     transform: translateX(-62%) translateY(-50%);
     top: 32%;
     left: 57.5%;
+}
+
+/* ABOUT ME PAGE CSS */
+
+.Profile_Header {
+    position: relative;  
+}
+
+.Profile_Header p1 
+{
+    display: flex;
+    align-items: center;
+    font-size: 8rem;
+    font-family: 'Caudex', serif;
+    font-weight: 200;
+    margin-top: 7%;
+    margin-left: 10%;
+    position: relative;
+}
+
+.Profile_Image {
+    max-width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    justify-content: center;
+    position: relative;
+    margin-left: 45%;
+    margin-top: -18%;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+
+.Profile_Header p2 
+{
+    display: flex;
+    text-align: left;
+    font-size: 1rem;
+    font-family: 'Avenir-Light', serif;
+    font-weight: 200;
+    margin-top: -25%;
+    margin-right: 60%;
+    margin-left: 10.5%;
+    position: relative;
 }
