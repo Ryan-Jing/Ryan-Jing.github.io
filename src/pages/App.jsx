@@ -1,6 +1,3 @@
-//import { useState } from 'react'
-//import reactLogo from './assets/react.svg'
-//import viteLogo from '/vite.svg'
 import React, { useState, useRef, useEffect } from 'react';
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import backgroundOne from '../assets/background_images/background8.png'
@@ -8,6 +5,7 @@ import backgroundTwo from '../assets/background_images/background7.png'
 import downButton from '../assets/down-arrow.png'
 import profile from '/profile-head.ico'
 import whiteStrip from '/white_strip.jpg'
+import ArduinoVideo from '/ArduinoProjectDemoCompressed.mp4'
 import './App.css'
 
 function App() {
@@ -17,10 +15,6 @@ function App() {
     let windowPosition = window.scrollY > 0;
     header.classList.toggle('scrolling_active', windowPosition )
   })
-
-  // window.onload = function(){
-  //   document.getElementById("fadein1").style.opacity = 1;
-  // };
 
   useEffect(() => {
     const header = document.getElementById("fadein1");
@@ -43,30 +37,42 @@ function App() {
     fade();
   }, []);
 
-  // useEffect(() => {
-  //   const header = document.getElementById("fadein1");
-  //   header.style.opacity = 1;
-  // });
-
-  function scrollToWork() {
-    const section = document.getElementById("scrollToWork");
-    section.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest"});
-  }
-
-  window.onscroll = function(){
-    document.getElementById("fadein2").style.opacity = 1;
-  };
-
-  const scrollRef = useRef(null);
+    window.onscroll = function(){
+      document.getElementById("fadein2").style.opacity = 1;
+    };
   
-  const scrollToNextSection = () => {
-    const scrollOffset = 200; // Adjust this value as needed
-    const scrollPosition = scrollRef.current.offsetTop - scrollOffset;
-    window.scrollTo({
-      top: scrollPosition,
-      behavior: 'smooth'
-    });
-  };
+    // UPDATE THIS BUTTON SYSTEM TO MAKE MORE INTUITIVE AND NOT HARD CODING
+  
+    const scrollRef1 = useRef(null);
+    const scrollRef2 = useRef(null);
+  
+  
+    const scrollToWorkSection = () => {
+      const scrollOffset = 200; // Adjust this value as needed
+      const scrollPosition = scrollRef2.current.offsetTop - scrollOffset;
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: 'smooth'
+      });
+    };
+  
+    const scrollToNextSectionOne = () => {
+      const scrollOffset = 200; // Adjust this value as needed
+      const scrollPosition = scrollRef1.current.offsetTop - scrollOffset;
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: 'smooth'
+      });
+    };
+  
+    const scrollToNextSectionTwo = () => {
+      const scrollOffset = 150; // Adjust this value as needed
+      const scrollPosition = scrollRef2.current.offsetTop - scrollOffset;
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: 'smooth'
+      });
+    };
   
   return (
     <>
@@ -91,7 +97,7 @@ function App() {
             </li>
 
             <li className="navbar_item">
-                <a href="#Work" className="navbar_links" onClick={scrollToWork}>
+                <a href="#Work" className="navbar_links" onClick={scrollToWorkSection}>
                     Work
                 </a>
             </li>
@@ -118,24 +124,24 @@ function App() {
                 Programming &nbsp; &nbsp; &nbsp; Design &nbsp; &nbsp; &nbsp; CAD &nbsp; &nbsp; &nbsp; Arts           
             </p>
         </h2>
-        <button className="scroll-button" onClick={scrollToNextSection}>
+        <button className="scroll-button" onClick={scrollToNextSectionOne}>
           <img className = "down-button" src={downButton}/>
         </button>
       </header >
       
       <div>
         <main>
-          <h1 class="header3" id="fadein2" ref={scrollRef}>
+          <h1 class="header3" id="fadein2" ref={scrollRef1}>
               <p>
                   I'm a candidate for a BASc in Biomedical Engineering, and pursuing a specialization in Neural Engineering. I have a passion for 3D CAD Modelling, Coding, and Visual Design. I'm currently seeking new work opportunities and experiences to expand my skills and abilities.
               </p>
-
-              {/* <button className="scroll-button" onClick={scrollToNextSection}>
-                <img className = "down-button" src={downButton}/>
-              </button> */}
           </h1>
 
-          <h1 class="header4" >
+          <button className="scroll-button1" onClick={scrollToNextSectionTwo}>
+            <img className = "down-button" src={downButton}/>
+          </button>
+
+          <h1 class="header4" ref={scrollRef2}>
               <p id="scrollToWork">
                   My Work
               </p>
@@ -143,16 +149,29 @@ function App() {
 
           <h3 class="Descript_header">
               <p>
-                  Software and Programming
+                  Software and Firmware
               </p>
           </h3>
 
-          <h3 class="Descript_content" id="fadein2">
+          <h3 class="Descript_content">
               <p>
-                With experience in various programming domains, I have developed a versatile skill set. Working on firmware using C during my time at Orbital honed my low-level programming abilities, allowing me to understand hardware interactions and optimize system performance. Collaborating with Ontario Health, I expanded my expertise to include JavaScript, Angular, and React, enabling me to create interactive and dynamic web applications. Additionally, delving into the realm of artificial intelligence and machine learning, I harnessed Python's power to leverage AI and ML tools to create unique solutions. 
-                &nbsp;
+              The applications of software and firmware as a Biomedical Engineer are endless. I am continuously creating projects that develop my programming skills, with my objective being to create optimal solutions to improve the health of others. I'm exploring applications of AI, and below is a projects I worked on that live-translates speech and output the desired translation on an LCD screen.                &nbsp;
               </p>
           </h3>
+          
+          <div class = "Arduino_video" >
+            <video controls width="832" height="468">
+              <source src= {ArduinoVideo} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <h3 class="Descript_content" id="fadein2">
+              <p1>
+                I have also developed a prosthetic for hand amputees, that filters electrical signals from EMG electrodes and processes the output using an Arduino to control the claw gripper. I designed components in SolidWorks 3D printed them with the goal of creating a cost-effective solution
+              </p1>
+          </h3>
+
           <div class="box">
               <div class="crop ratio ratio-1:1 ">
                   <iframe width="100%" height="100%" src="https://docs.google.com/spreadsheets/d/1SZ7rFdmEeR2oQ1xWxmmTTTjW1d4HtQNttZLdltmZNI0/edit#gid=1754425699" frameborder="0" scrolling="no" class="covid_graph"></iframe>
@@ -198,3 +217,4 @@ function App() {
 }
 
 export default App
+
