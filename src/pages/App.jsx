@@ -6,6 +6,7 @@ import downButton from '../assets/down-arrow.png'
 import profile from '/profile-head.ico'
 import whiteStrip from '/white_strip.jpg'
 import ArduinoVideo from '/ArduinoProjectDemoCompressed.mp4'
+import EMGClawCad from '/EMGClawCad.png'
 import './App.css'
 
 function App() {
@@ -166,11 +167,23 @@ function App() {
             </video>
           </div>
 
-          <h3 class="Descript_content" id="fadein2">
+          <h3 class = "Descript_content" id = "fadein2">
               <p1>
                 I have also developed a prosthetic for hand amputees, that filters electrical signals from EMG electrodes and processes the output using an Arduino to control the claw gripper. I designed components in SolidWorks 3D printed them with the goal of creating a cost-effective solution
               </p1>
           </h3>
+
+          <div class = "EMG_media">
+            <p1>
+              <video controls muted>
+                <source src = '/EMGClawVideo.mp4' type = "video/mp4" height= "500px"/>
+                Your browser does not support the video tag.
+              </video>
+            </p1>
+            <p2>
+              <img src = {EMGClawCad} height= "500px"/>
+            </p2>
+          </div>
 
           <div class="box">
               <div class="crop ratio ratio-1:1 ">
@@ -185,33 +198,17 @@ function App() {
         </main>
       </div>
 
-      
-      
-      
-      {/*
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Ryan Jing</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-       */}
+       <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      <footer>
+        <footerContainer className = "footer">
+            <footerContent>
+                  <a href = "https://github.com/Ryan-Jing"> 
+                    Github
+                  </a>
+            </footerContent>
+        </footerContainer>
 
-       <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      </footer>
     </>
   )
 }
