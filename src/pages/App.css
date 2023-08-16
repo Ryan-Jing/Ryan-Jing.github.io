@@ -346,6 +346,35 @@ nav {
   position: relative;
 }
 
+.EMG_media {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 10%;
+}
+
+.EMG_media p1 {
+    position: relative;
+    margin-top: -5%;
+    margin-left: 10%;
+    margin-right: 65%;
+}
+
+
+.EMG_media video {
+    max-width: 100%;
+    position: relative;
+}
+
+.EMG_media p2 {
+    position: relative;
+    margin-top: -35%;
+    margin-left: 50%;
+    margin-right: 20%;
+}
+
 .whitestrip 
 {
     width: 100px;
@@ -399,6 +428,39 @@ nav {
     transform: translateX(-62%) translateY(-50%);
     top: 32%;
     left: 57.5%;
+}
+
+.footer {
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 -3px 1rem rgba( 0, 0, 0, .1 );
+}
+
+.footer footerContent{
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    z-index: 1;
+    width: 100%;
+    max-width: 4000px;
+    margin: 0 auto; /*first number is distance from top and bottom, second number is left and right. Can also specify every value with 0 0 0 0*/
+    padding: 0 50px;
+}
+
+.footer a {
+    position: relative;  
+    font-size: 3rem;
+    font-family: 'Caudex', serif;
+    font-weight: 200;
+    color: black;
+    align-items: center;
+    margin-left: 40%;
 }
 
 /* ABOUT ME PAGE CSS */
