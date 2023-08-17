@@ -37,7 +37,7 @@
 animation-name: cf3FadeInOut;
 animation-timing-function: ease-in-out;
 animation-iteration-count: infinite;
-animation-duration: 20s;
+animation-duration: 10s;
 animation-direction: alternate;
 }
 
@@ -55,7 +55,7 @@ animation-direction: alternate;
 .bottom {
     width: 100%;
     height: auto;
-    top: -3%;
+    top: -0%;
     z-index: -6;
     position: absolute;
     -webkit-mask-image: -webkit-linear-gradient(bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%);
@@ -288,7 +288,7 @@ nav {
     display: flex;
     font-family: "Avenir-Light", sans-serif;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: 0;
     position: relative;
     margin-top: 10%;
@@ -313,7 +313,7 @@ nav {
     font-size: 1 rem;
     font-weight: 0;
     position: relative;
-    margin-top: -10%;
+    margin-top: -8.5%;
     margin-left: 40%;
     margin-right: 5%;
 }
@@ -393,6 +393,8 @@ nav {
     overflow: hidden;
     width: 1100px;
     height: 600px;
+    margin-top: 8%;
+    margin-bottom: -15%;
 }
 
 .ratio
@@ -506,4 +508,48 @@ nav {
     margin-right: 60%;
     margin-left: 10.5%;
     position: relative;
+}
+
+/* CONTACT PAGE CSS */
+
+.contact_background {
+    position: absolute;
+    width: 30%;
+    height: 70%;
+    margin-left: 0%;
+    margin-right: 50%;
+    z-index: -999;
+    margin-top: 4%;
+    top: 0;
+}
+
+input[type="text"],
+input[type="email"],
+
+.form_content {
+    width: 40%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    margin-left: 38%;
+    margin-right: 15%;
+    font-family: 'Caudex', serif;
+    font-weight: 200;
+
+}
+
+.form_submit[type="submit"] {
+    background-color: #393b3e;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 12%;
+    font-family: 'Caudex', serif;
+    font-weight: 200;
+}
+
+.form_submit[type="submit"]:hover {
+    background-color: #7c7e80;
 }

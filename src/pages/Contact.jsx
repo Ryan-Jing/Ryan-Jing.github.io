@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { BrowserRouter, Route, Link, NavLink } from "react-router-dom";
 import profile from '/profile-head.ico'
+import contactOne from '/ContactMe1.png'
+import contactTwo from '/ContactMe2.png'
 import './App.css'
 
 function Contact(){
@@ -14,6 +16,37 @@ function Contact(){
     let windowPosition = window.scrollY > 0;
     header.classList.toggle('scrolling_active', windowPosition )
   })
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Send data to backend for processing and saving (using APIs, server, etc.)
+    const formData = { name, email, message };
+    try {
+      const response = await fetch('http://localhost:5173/api/saveFormData', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+    
+      if (response.ok) {
+        // Handle successful response (e.g., show a success message to the user)
+        console.log('Data saved successfully');
+      } else {
+        // Handle error response (e.g., show an error message to the user)
+        console.error('Error saving data');
+      }
+    } catch (error) {
+      // Handle fetch error (e.g., show an error message to the user)
+      console.error('Fetch error:', error);
+    }
+  };
 
   return (
     <>
@@ -49,10 +82,19 @@ function Contact(){
       </div>
     </nav>
       
-    <h1>Contact Me Page</h1>
+    <h1>Contact Me</h1>
 
-    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <div id="cf3" className='contact_background'>
+        <img className="bottom" src= {contactOne} />
+        <img className="top"  src= {contactTwo}/>
+    </div>
 
+    <form onSubmit={handleSubmit}>
+      <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" className = "form_content"/>
+      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" className = "form_content" />
+      <textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Message" className = "form_content"></textarea>
+      <button type="submit" className = "form_submit">Submit</button>
+    </form>
   </>
   );
 };

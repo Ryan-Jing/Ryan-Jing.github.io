@@ -185,6 +185,14 @@ function App() {
             </p2>
           </div>
 
+          <h3 class = "Descript_content" id = "fadein2">
+              <p1>
+                Here is an example of a script that I wrote using Python, which pulls data from the database of the Government of Ontario, organizing the data, and pushing the data to be displayed here. This script is automated and ran daily, updating the graph when new data is uploaded onto the government database. (Ontario is no longer updating their COVID-19 database).
+                
+                (click and hover to view data)
+              </p1>
+          </h3>
+ 
           <div class="box">
               <div class="crop ratio ratio-1:1 ">
                   <iframe width="100%" height="100%" src="https://docs.google.com/spreadsheets/d/1SZ7rFdmEeR2oQ1xWxmmTTTjW1d4HtQNttZLdltmZNI0/edit#gid=1754425699" frameborder="0" scrolling="no" class="covid_graph"></iframe>
@@ -195,6 +203,20 @@ function App() {
             <img src={whiteStrip} class="white_strip" height="800px" />
           </div>
 
+          <h3 class="Descript_header">
+              <p>
+                  CAD Projects
+              </p>
+          </h3>
+
+          <h3 class="Descript_content">
+              <p>
+                  I have experience in both SolidWorks and Onshape. I strive to create projects that integrate skills from multiple fields, and I especially love getting hands on with CAD and 3D printing. Showcased below is a LEGO minifigure I planned and modelled from scratch in SolidWorks, and it was designed for functionality. Each part is posable as if it is a real LEGO minifigure.
+              </p>
+          </h3>
+
+          
+
         </main>
       </div>
 
@@ -202,7 +224,7 @@ function App() {
       <footer>
         <footerContainer className = "footer">
             <footerContent>
-                  <a href = "https://github.com/Ryan-Jing"> 
+                  <a href = "https://github.com/Ryan-Jing" target="_blank"> 
                     Github
                   </a>
             </footerContent>
