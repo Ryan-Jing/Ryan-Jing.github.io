@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { BrowserRouter, Route, Link, NavLink } from "react-router-dom";
 import profile from '/profile-head.ico'
-import contactOne from '/ContactMe1.png'
-import contactTwo from '/ContactMe2.png'
+import contactOne from '/ContactMe3.png'
+import contactTwo from '/ContactMe4.png'
 import './App.css'
 
 function Contact(){
@@ -67,7 +67,7 @@ function Contact(){
           </li>
 
           <li className="navbar_item">
-              <Link to ="/" className="navbar_links" onClick={scrollToWork}>
+              <Link to ="/" className="navbar_links">
                   Work
               </Link>
           </li>
@@ -84,9 +84,9 @@ function Contact(){
       
     <h1>Contact Me</h1>
 
-    <div id="cf3" className='contact_background'>
-        <img className="bottom" src= {contactOne} />
-        <img className="top"  src= {contactTwo}/>
+    <div id="cf4" className='contact_background'>
+        <img className="bottomContact" src= {contactOne} />
+        <img className="topContact"  src= {contactTwo}/>
     </div>
 
     <form onSubmit={handleSubmit}>
@@ -95,6 +95,19 @@ function Contact(){
       <textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Message" className = "form_content"></textarea>
       <button type="submit" className = "form_submit">Submit</button>
     </form>
+
+    <br/><br/><br/>
+
+    <footerContact>
+        <footerContainer className = "footerContact">
+            <footerContent>
+                  <a href = "https://github.com/Ryan-Jing" target="_blank"> 
+                    Github
+                  </a>
+            </footerContent>
+        </footerContainer>
+    </footerContact>
+
   </>
   );
 };

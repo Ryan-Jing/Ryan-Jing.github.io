@@ -58,7 +58,7 @@ function About(){
           </li>
 
           <li className="navbar_item">
-            <Link to ="/" className="navbar_links" onClick={scrollToWork}>
+            <Link to ="/" className="navbar_links">
                   Work
               </Link>
           </li>

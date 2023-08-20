@@ -49,8 +49,8 @@ function App() {
   
     const scrollRef1 = useRef(null);
     const scrollRef2 = useRef(null);
-  
-  
+    const scrollRef3 = useRef(null);
+
     const scrollToWorkSection = () => {
       const scrollOffset = 200; // Adjust this value as needed
       const scrollPosition = scrollRef2.current.offsetTop - scrollOffset;
@@ -72,6 +72,15 @@ function App() {
     const scrollToNextSectionTwo = () => {
       const scrollOffset = 150; // Adjust this value as needed
       const scrollPosition = scrollRef2.current.offsetTop - scrollOffset;
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: 'smooth'
+      });
+    };
+
+    const scrollToNextSectionThree = () => {
+      const scrollOffset = 150; // Adjust this value as needed
+      const scrollPosition = scrollRef3.current.offsetTop - scrollOffset;
       window.scrollTo({
         top: scrollPosition,
         behavior: 'smooth'
@@ -205,8 +214,14 @@ function App() {
           <div class="whitestrip">
             <img src={whiteStrip} class="white_strip" height="800px" />
           </div>
+          
+          <div>
+            <button className="scroll-button2" onClick={scrollToNextSectionThree}>
+              <img className = "down-button" src={downButton}/>
+            </button>
+          </div>
 
-          <h3 class="Descript_header">
+          <h3 class="Descript_header" ref={scrollRef3}>
               <p>
                   CAD Projects
               </p>
