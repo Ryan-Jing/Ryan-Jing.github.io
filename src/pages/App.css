@@ -363,6 +363,8 @@ nav {
     margin-top: -5%;
     margin-left: 10%;
     margin-right: 65%;
+    max-width: 45%; /* Set the maximum width to 100% of the container */
+    height: auto; /* Maintain the aspect ratio */
 }
 
 
@@ -376,6 +378,8 @@ nav {
     margin-top: -35%;
     margin-left: 50%;
     margin-right: 20%;
+    max-width: 45%; /* Set the maximum width to 100% of the container */
+    height: auto; /* Maintain the aspect ratio */
 }
 
 .whitestrip 
@@ -438,6 +442,15 @@ nav {
     left: 57.5%;
 }
 
+.scroll-button2 {
+    position: relative;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    margin-top: -5%;
+    margin-bottom: -15%;
+}
+
   
 .Image_Display {
     display:flex;
@@ -450,7 +463,7 @@ nav {
 .Image_Display img {
     max-width: 45%; /* Set the maximum width to 100% of the container */
     height: auto; /* Maintain the aspect ratio */
-  }
+}
 
 
 .footer {
@@ -458,9 +471,8 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.2rem;
     position: sticky;
-    top: 0;
+    bottom: 0;
     z-index: 999;
     box-shadow: 0 -3px 1rem rgba( 0, 0, 0, .1 );
 }
@@ -573,5 +585,82 @@ input[type="email"],
 
 .form_submit[type="submit"]:hover {
     background-color: #7c7e80;
+}
+
+@keyframes cf4FadeInOut 
+{
+  0% {
+  opacity:1;
+  }
+  45% {
+  opacity:1;
+  }
+  55% {
+  opacity:0;
+  }
+  100% {
+  opacity:0;
+  }
+}
+
+#cf4 img.topContact
+{
+animation-name: cf4FadeInOut;
+animation-timing-function: ease-in-out;
+animation-iteration-count: infinite;
+animation-duration: 0.5s;
+animation-direction: alternate;
+}
+
+.topContact
+{
+    width: 99%;
+    z-index: -5;
+    left: 0;  
+    position: relative;
+    margin-bottom: -2%;
+    margin-top: -9.5%;
+
+}
+
+.bottomContact {
+    width: 99%;
+    height: auto;
+    top: -0%;
+    z-index: -6;
+    position: absolute;
+    margin-bottom: -2%;
+    margin-top: -9.5%;
+}
+
+.footerContact {
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    margin-top: 4%;
+    box-shadow: 0 -3px 1rem rgba( 0, 0, 0, .1 );
+}
+
+.footerContact footerContent{
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    z-index: 1;
+    width: 100%;
+    max-width: 4000px;
+    margin: 0 auto; /*first number is distance from top and bottom, second number is left and right. Can also specify every value with 0 0 0 0*/
+    padding: 0 50px;
+}
+
+.footerContact a {
+    position: relative;  
+    font-size: 3rem;
+    font-family: 'Caudex', serif;
+    font-weight: 200;
+    color: black;
+    align-items: center;
+    margin-left: 40%;
 }
 

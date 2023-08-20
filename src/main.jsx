@@ -10,9 +10,9 @@ export default function Main() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/About" element={<About />} />
-        <Route path="/Contact" element={<Contact />} />
+        <Route path="/" element={<App/>} />
+        <Route path="/About" element={<About/>} />
+        <Route path="/Contact" element={<Contact/>} />
       </Routes>
     </BrowserRouter>
   );
