@@ -7,6 +7,9 @@ import profile from '/profile-head.ico'
 import whiteStrip from '/white_strip.jpg'
 import ArduinoVideo from '/ArduinoProjectDemoCompressed.mp4'
 import EMGClawCad from '/EMGClawCad.png'
+import LegoPosed from '/LegoPosed.png'
+import LegoExplode from '/LegoExplode.png'
+
 import './App.css'
 
 function App() {
@@ -215,7 +218,34 @@ function App() {
               </p>
           </h3>
 
-          
+          <div class="Image_Display">
+              <img src={LegoPosed} alt="Lego Posed" height="40%"/>
+              <img src= {LegoExplode} alt="Lego Explode" height="40%"/>
+          </div>
+
+          <h3 class="Descript_content">
+              <p1>
+                Having learned Onshape, I've developed the fundamental skills of working with 3D models, and with Onshape's built-in version management and collaborative tools, I've developed expertise in CAD design.  
+              </p1>
+          </h3>
+
+          <div class="Image_Display">
+              <img src="/OrcaPosed.png" alt="Orca Posed" height="40%"/>
+              <img src="/OrcaExplode.png"  alt="Orca Explode" height="40%"/>
+          </div>
+
+          <div class="Image_Display">
+              <img src="/OrcaDrawing.png" alt="Orca Drawing" height="40%"/>
+          </div>
+
+          <div class="Image_Display">
+              <img src="/SkatePosed.png" alt="Skate Posed" height="40%"/>
+              <img src="/SkateExplode.png"  alt="Skate Explode" height="40%"/>
+          </div>
+
+          <div class="Image_Display">
+              <img src="/SkateDrawing.png" alt="Skate Drawing" height="40%"/>
+          </div>
 
         </main>
       </div>
