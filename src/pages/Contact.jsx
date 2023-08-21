@@ -96,17 +96,13 @@ function Contact(){
       <button type="submit" className = "form_submit">Submit</button>
     </form>
 
-    <br/><br/><br/>
-
-    <footerContact>
-        <footerContainer className = "footerContact">
-            <footerContent>
-                  <a href = "https://github.com/Ryan-Jing" target="_blank"> 
-                    Github
-                  </a>
-            </footerContent>
-        </footerContainer>
-    </footerContact>
+    <div class="footerContainer">
+        <div class = "footerContent">
+              <a href = "https://github.com/Ryan-Jing" target="_blank"> 
+                Github
+              </a>
+        </div>
+    </div>
 
   </>
   );

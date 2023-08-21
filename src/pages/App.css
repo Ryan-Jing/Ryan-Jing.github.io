@@ -633,34 +633,28 @@ animation-direction: alternate;
     margin-top: -9.5%;
 }
 
-.footerContact {
+.footerContainer {
     height: 180px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: sticky;
-    margin-top: 4%;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     box-shadow: 0 -3px 1rem rgba( 0, 0, 0, .1 );
 }
 
-.footerContact footerContent{
+.footerContent{
+    margin-top: 4%;
     display: flex;
-    justify-content: space-between;
-    height: 80px;
-    z-index: 1;
     width: 100%;
-    max-width: 4000px;
-    margin: 0 auto; /*first number is distance from top and bottom, second number is left and right. Can also specify every value with 0 0 0 0*/
-    padding: 0 50px;
-}
+    align-items: center;
+    justify-content: center;
+} 
 
-.footerContact a {
+.footerContainer a {
     position: relative;  
     font-size: 3rem;
     font-family: 'Caudex', serif;
     font-weight: 200;
     color: black;
     align-items: center;
-    margin-left: 40%;
 }
 
