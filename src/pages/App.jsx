@@ -41,9 +41,9 @@ function App() {
     fade();
   }, []);
 
-    window.onscroll = function(){
-      document.getElementById("fadein2").style.opacity = 1;
-    };
+    // window.onscroll = function(){
+    //   document.getElementById("fadein2").style.opacity = 1;
+    // };
   
     // UPDATE THIS BUTTON SYSTEM TO MAKE MORE INTUITIVE AND NOT HARD CODING
   
@@ -95,9 +95,9 @@ function App() {
       </div>
       <nav className = "navbar">
         <div className = "navbar_container">
-        <Link to="/" id="navbar_title" alt="Website logo">
-            <img src= {profile}/>
-        </Link>
+          <a href="/" id="navbar_title" alt="Website logo">
+            <img src={profile} />
+          </a>
           {/* <a href="index.html" id="navbar_title" alt="Website logo">
             Portfolio
           </a> */}
@@ -144,7 +144,7 @@ function App() {
       
       <div>
         <main>
-          <h1 class="header3" id="fadein2" ref={scrollRef1}>
+          <h1 class="header3" ref={scrollRef1}>
               <p>
                   I'm a candidate for a BASc in Biomedical Engineering, and pursuing a specialization in Neural Engineering. I have a passion for 3D CAD Modelling, Coding, and Visual Design. I'm currently seeking new work opportunities and experiences to expand my skills and abilities.
               </p>
@@ -179,7 +179,7 @@ function App() {
             </video>
           </div>
 
-          <h3 class = "Descript_content" id = "fadein2">
+          <h3 class = "Descript_content">
               <p1>
                 I have also developed a prosthetic for hand amputees, that filters electrical signals from EMG electrodes and processes the output using an Arduino to control the claw gripper. I designed components in SolidWorks 3D printed them with the goal of creating a cost-effective solution
               </p1>
@@ -261,6 +261,59 @@ function App() {
           <div class="Image_Display">
               <img src="/SkateDrawing.png" alt="Skate Drawing" height="40%"/>
           </div>
+
+          {/* fix scrollRef3 */}
+          <h3 class="Descript_header" ref={scrollRef3}> 
+              <p>
+                  Graphic Design
+              </p>
+          </h3>
+
+          <h3 class="Descript_content">
+              <p>
+                As an avid artist, I continually improve my skills in visual communication. I aspire to create design for organizations that allow the user and reader to understand graphics clearly. A number of my designs have already been chosen as logos for design teams and clubs at the University of Waterloo.
+              </p>
+          </h3>
+
+          <div class="Image_Display">
+              <img src="/Orbital1.png" alt="Skate Posed" height="40%"/>
+              <img src="/Orbital2.png"  alt="Skate Explode" height="40%"/>
+          </div>
+
+          <h3 class="Descript_header" ref={scrollRef3}> 
+              <p1>
+                  Visual Art
+              </p1>
+          </h3>
+
+          <h3 class="Descript_content">
+              <p>
+                On my own time, I enjoy drawing on digital platforms, which develops my creativity and visual design skills. All of the art and designs on this website are my personal creation.
+              </p>
+          </h3>
+
+          <div class="Image_Display">
+            <video controls muted>
+                  <source src = '/lady video.mp4' type = "video/mp4" height= "500px"/>
+                  Your browser does not support the video tag.
+            </video>
+            <video controls muted>
+                  <source src = '/dude video.mp4' type = "video/mp4" height= "500px"/>
+                  Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <div class="Image_Display">
+          <video controls muted>
+                  <source src = '/asianman video.mp4' type = "video/mp4" height= "500px"/>
+                  Your browser does not support the video tag.
+            </video>
+            <video controls muted>
+                  <source src = '/gambino video.mp4' type = "video/mp4" height= "500px"/>
+                  Your browser does not support the video tag.
+            </video>
+          </div>
+
 
         </main>
       </div>
