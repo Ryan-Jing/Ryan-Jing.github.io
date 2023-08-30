@@ -148,10 +148,24 @@ nav {
     box-shadow: 0 3px 1rem rgba( 0, 0, 0, .1 );
 }
 
+.fade-in {
+    opacity: 0;
+    animation: fadeInAnimation 1.5s ease-in-out forwards;
+  }  
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .fadein1
 {
     opacity: 0;
-    transition: 2s;
+    transition: opacity 1.5s;
 }
 
 .fadein2
@@ -281,6 +295,20 @@ nav {
     height: 120px;
     max-width: 1600px;
     
+}
+
+.Descript_header p1
+{ 
+    display: flex;
+    font-family: "Avenir-Light", sans-serif;
+    font-weight: bold;
+    font-size: 1.7rem;
+    font-weight: 0;
+    position: relative;
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+    transform: translate(0%, 70%);
 }
 
 .Descript_header p
@@ -465,6 +493,11 @@ nav {
     height: auto; /* Maintain the aspect ratio */
 }
 
+.Image_Display video {
+    max-width: 45%; /* Set the maximum width to 100% of the container */
+    height: auto; /* Maintain the aspect ratio */
+}
+
 
 .footer {
     height: 250px;
@@ -525,8 +558,8 @@ nav {
     position: relative;
     margin-left: 45%;
     margin-top: -18%;
-    opacity: 1;
-    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    animation: fadeInAnimation 1s ease-in-out forwards;
 }
 
 
@@ -545,6 +578,10 @@ nav {
 
 /* CONTACT PAGE CSS */
 
+h1 {
+    opacity: 0;
+    animation: fadeInAnimation 1.5s ease-in-out forwards;
+}
 .contact_background {
     position: absolute;
     width: 30%;
@@ -566,21 +603,25 @@ input[type="email"],
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #fff;
+    color: black;
     margin-left: 38%;
     margin-right: 15%;
     font-family: 'Caudex', serif;
     font-weight: 200;
-
+    opacity: 0;
+    animation: fadeInAnimation 1.5s ease-in-out forwards;
 }
 
 .form_submit[type="submit"] {
     background-color: #393b3e;
-    color: #fff;
+    color: #ffffff;
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-right: 12%;
     font-family: 'Caudex', serif;
     font-weight: 200;
+    opacity: 0;
+    animation: fadeInAnimation 1.5s ease-in-out forwards;
 }
 
 .form_submit[type="submit"]:hover {
