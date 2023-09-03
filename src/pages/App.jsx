@@ -146,7 +146,7 @@ function App() {
         <main>
           <h1 class="header3" ref={scrollRef1}>
               <p>
-                  I'm a candidate for a BASc in Biomedical Engineering, and pursuing a specialization in Neural Engineering. I have a passion for 3D CAD Modelling, Coding, and Visual Design. I'm currently seeking new work opportunities and experiences to expand my skills and abilities.
+                  I'm a candidate for a BASc in Biomedical Engineering, and pursuing a specialization in Neural Engineering. I have a passion for Software, Firmware, Rapid Prototypingm, CAD, Visual design, Leadership, and Teamwork. I'm continually seeking new opportunities and experiences to expand my skills and abilities to be applied in my own work and projects with the goal of improving the lives of others always in mind.
               </p>
           </h1>
 
@@ -263,7 +263,7 @@ function App() {
           </div>
 
           {/* fix scrollRef3 */}
-          <h3 class="Descript_header" ref={scrollRef3}> 
+          <h3 class="Descript_header"> 
               <p>
                   Graphic Design
               </p>
@@ -280,7 +280,7 @@ function App() {
               <img src="/Orbital2.png"  alt="Skate Explode" height="40%"/>
           </div>
 
-          <h3 class="Descript_header" ref={scrollRef3}> 
+          <h3 class="Descript_header"> 
               <p1>
                   Visual Art
               </p1>
@@ -318,7 +318,7 @@ function App() {
         </main>
       </div>
 
-       <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+       <br/><br/><br/><br/><br/><br/>
       <footer>
         <footerContainer className = "footer">
             <footerContent>

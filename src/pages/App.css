@@ -270,6 +270,7 @@ nav {
     height: 40px;
     opacity: 0;
     transition: 3s; 
+    font-size: 2.5rem;
 }
 
 .header4
@@ -500,7 +501,7 @@ nav {
 
 
 .footer {
-    height: 250px;
+    height: 180px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -576,8 +577,61 @@ nav {
     position: relative;
 }
 
+.Experience_Header {
+    position: relative;  
+    height: 40px;
+    margin-top: 23%;
+}
+
+
 /* CONTACT PAGE CSS */
 
+.Contact_Info {
+    text-align: left;
+    font-size: 1rem;
+    font-family: 'Avenir-Light', serif;
+    font-weight: 200;
+    margin-left: 41%;
+    margin-top: -2%;
+    animation: fadeInAnimation 1.5s ease-in-out forwards;
+}
+
+.Contact_Info ul {
+  list-style-type: none;
+  padding: 0;
+  margin-left: 4%;
+}
+
+.Contact_Info li {
+  margin-bottom: 5px;
+}
+
+/* Style the bullet points */
+.Contact_Info li::before {
+  content: "•"; 
+  display: inline-block;
+  width: 1em; /* Adjust the width to control the spacing between the bullet and text */
+  margin-left: -1em; 
+  margin-right: 5px; /* Space between the bullet and text */
+  color: #535557; /* Color of the bullet */
+  font-weight: bold; 
+}
+
+.Contact_Info a1 {
+    color: #000000;
+    cursor: pointer; /* Change cursor on hover to a hand pointer */
+    user-select: all; /* Allow text selection on click */
+    transition: color 0.3s ease; /* Add a smooth color transition effect */
+}
+
+.Contact_Info a1:hover {
+  color: #a09f9f; /* Change to a different color on hover */
+}
+
+.Contact_Info a {
+    color: #164ecf;
+}
+  
 h1 {
     opacity: 0;
     animation: fadeInAnimation 1.5s ease-in-out forwards;
@@ -599,7 +653,7 @@ input[type="email"],
 .form_content {
     width: 40%;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #fff;

@@ -17,6 +17,15 @@ function Contact(){
     header.classList.toggle('scrolling_active', windowPosition )
   })
 
+  function copyToClipboard(text) {
+    const el = document.createElement("textarea");
+    el.value = text;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+  }
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -84,17 +93,26 @@ function Contact(){
       
     <h1>Contact Me</h1>
 
-    <div id="cf4" className='contact_background'>
-        <img className="bottomContact" src= {contactOne} />
-        <img className="topContact"  src= {contactTwo}/>
-    </div>
-
+    <h2 className="Contact_Info">
+      You can always reach me through my contact info below:
+      <ul>
+        <li>Email: <a1>r5jing@uwaterloo.ca</a1></li>
+        <li>Cell: <a1>(647) 972 1223</a1></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/ryan-jing-577201216" target="_blank" >Ryan Jing</a></li>
+      </ul>
+      Alternatively, you can fill out this form below to send me a personlized message. (Work in progress. Sorry!)
+    </h2>
     <form onSubmit={handleSubmit}>
       <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" className = "form_content"/>
       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" className = "form_content" />
       <textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Message" className = "form_content"></textarea>
       <button type="submit" className = "form_submit">Submit</button>
     </form>
+
+    <div id="cf4" className='contact_background'>
+        <img className="bottomContact" src= {contactOne} />
+        <img className="topContact"  src= {contactTwo}/>
+    </div>
 
     <div class="footerContainer">
         <div class = "footerContent">
