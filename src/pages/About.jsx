@@ -84,8 +84,24 @@ function About(){
           My name is Ryan Jing. I am a Biomedical Engineering undergraduate student at the University of Waterloo. I have a strong passion for learning new skills and creating meaningful projects. My hobbies include music, visual art, sports (especially winter sports), and cooking. I am actively seeking co-op opportunities to expand my knowledge and skills further, broaden my professional network, and establish myself as a promising engineer in the field.
         </p2>
     </div>
-    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <div>
+      <h1 className='Experience_Header'>
+          Experience
+      </h1>
+    </div>
 
+    <br/><br/><br/><br/><br/><br/>
+
+    <footer>
+        <footerContainer className = "footer">
+            <footerContent>
+                  <a href = "https://github.com/Ryan-Jing" target="_blank"> 
+                    Github
+                  </a>
+            </footerContent>
+        </footerContainer>
+
+      </footer>
   </>
   );
 };
