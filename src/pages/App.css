@@ -516,10 +516,9 @@ nav {
     justify-content: space-between;
     height: 80px;
     z-index: 1;
-    width: 100%;
     max-width: 4000px;
-    margin: 0 auto; /*first number is distance from top and bottom, second number is left and right. Can also specify every value with 0 0 0 0*/
-    padding: 0 50px;
+    align-items: center;
+    justify-content: center;
 }
 
 .footer a {
@@ -528,8 +527,7 @@ nav {
     font-family: 'Caudex', serif;
     font-weight: 200;
     color: black;
-    align-items: center;
-    margin-left: 40%;
+    margin-left: 20%;
 }
 
 /* ABOUT ME PAGE CSS */
@@ -750,6 +748,5 @@ animation-direction: alternate;
     font-family: 'Caudex', serif;
     font-weight: 200;
     color: black;
-    align-items: center;
 }
 
