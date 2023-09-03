@@ -325,9 +325,12 @@ function App() {
                   <a href = "https://github.com/Ryan-Jing" target="_blank"> 
                     Github
                   </a>
+
+                  <a href = "https://www.linkedin.com/in/ryan-jing-577201216" target="_blank"> 
+                    LinkedIn
+                  </a>
             </footerContent>
         </footerContainer>
-
       </footer>
     </>
   )
