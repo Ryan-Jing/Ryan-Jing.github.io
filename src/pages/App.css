@@ -590,7 +590,7 @@ nav {
     font-family: 'Avenir-Light', serif;
     font-weight: 200;
     margin-left: 41%;
-    margin-top: -2%;
+    margin-top: 0%;
     animation: fadeInAnimation 1.5s ease-in-out forwards;
 }
 
@@ -651,7 +651,7 @@ input[type="email"],
 .form_content {
     width: 40%;
     padding: 10px;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #fff;

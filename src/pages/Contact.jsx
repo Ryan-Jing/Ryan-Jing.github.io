@@ -114,13 +114,13 @@ function Contact(){
         <img className="topContact"  src= {contactTwo}/>
     </div>
 
-    <div class="footerContainer">
+    {/* <div class="footerContainer">
         <div class = "footerContent">
               <a href = "https://github.com/Ryan-Jing" target="_blank"> 
                 Github
               </a>
         </div>
-    </div>
+    </div> */}
 
   </>
   );
