@@ -499,6 +499,19 @@ nav {
     height: auto; /* Maintain the aspect ratio */
 }
 
+.Image_Display_Solo {
+    display:flex;
+    gap: 5px;
+    margin-top: 5%;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+}
+
+.Image_Display_Solo img {
+    max-width: 40%; /* Set the maximum width to 100% of the container */
+    height: auto; /* Maintain the aspect ratio */
+}
+
 
 .footer {
     height: 180px;
