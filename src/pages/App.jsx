@@ -146,7 +146,7 @@ function App() {
         <main>
           <h1 class="header3" ref={scrollRef1}>
               <p>
-                  I'm a candidate for a BASc in Biomedical Engineering, and pursuing a specialization in Neural Engineering. I have a passion for Software, Firmware, Rapid Prototypingm, CAD, Visual design, Leadership, and Teamwork. I'm continually seeking new opportunities and experiences to expand my skills and abilities to be applied in my own work and projects with the goal of improving the lives of others always in mind.
+                  I'm a candidate for a BASc in Biomedical Engineering, and pursuing a specialization in Neural Engineering. I have a passion for Software, Firmware, Rapid Prototyping, CAD, Visual design, Leadership, and Teamwork. I'm continually seeking new opportunities and experiences to expand my skills and abilities to be applied in my own work and projects with the goal of improving the lives of others always in mind.
               </p>
           </h1>
 
@@ -185,7 +185,7 @@ function App() {
               </p1>
           </h3>
 
-          <div class = "EMG_media">
+          <div className = "EMG_media">
             <p1>
               <video controls muted>
                 <source src = '/EMGClawVideo.mp4' type = "video/mp4" height= "500px"/>
@@ -249,7 +249,7 @@ function App() {
               <img src="/OrcaExplode.png"  alt="Orca Explode" height="40%"/>
           </div>
 
-          <div class="Image_Display">
+          <div class="Image_Display_Solo">
               <img src="/OrcaDrawing.png" alt="Orca Drawing" height="40%"/>
           </div>
 
@@ -258,7 +258,7 @@ function App() {
               <img src="/SkateExplode.png"  alt="Skate Explode" height="40%"/>
           </div>
 
-          <div class="Image_Display">
+          <div class="Image_Display_Solo">
               <img src="/SkateDrawing.png" alt="Skate Drawing" height="40%"/>
           </div>
 
