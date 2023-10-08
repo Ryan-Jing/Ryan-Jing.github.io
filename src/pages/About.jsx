@@ -81,8 +81,9 @@ function About(){
         <img className="Profile_Image " src="/ProfileImage.JPG" alt="Fading Image"/>
 
         <p2 className = "fade-in">
-          My name is Ryan Jing. I am a Biomedical Engineering undergraduate student at the University of Waterloo. I have a strong passion for learning new skills and creating meaningful projects. My hobbies include music, visual art, sports (especially winter sports), and cooking. I am actively seeking co-op opportunities to expand my knowledge and skills further, broaden my professional network, and establish myself as a promising engineer in the field.
-        </p2>
+        I'm Ryan Jing, an undergraduate student majoring in Biomedical Engineering at the University of Waterloo. 🔬 I am deeply passionate about acquiring new skills and undertaking meaningful projects. 💡 My interests extend beyond academics, encompassing music 🎵, visual art 🎨, sports (with a special focus on winter sports ⛷️), and culinary pursuits 🍳.
+
+        Currently, I am actively searching for co-op opportunities to enhance my knowledge and skills, expand my professional network, and establish myself as a promising engineer in the field. 🚀 I would welcome the opportunity to connect and explore potential collaborations.        </p2>
     </div>
     <div>
       <h1 className='Experience_Header'>
