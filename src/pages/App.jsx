@@ -13,6 +13,7 @@ import LegoExplode from '/LegoExplode.png'
 import './App.css'
 
 function App() {
+
   //const [count, setCount] = useState(0)
   window.addEventListener('scroll', function(){
     let header = document.querySelector('nav');
@@ -181,8 +182,11 @@ function App() {
 
           <h3 class = "Descript_content">
               <p1>
-                I have also developed a prosthetic for hand amputees, that filters electrical signals from EMG electrodes and processes the output using an Arduino to control the claw gripper. I designed components in SolidWorks 3D printed them with the goal of creating a cost-effective solution
+                I have also developed a prosthetic for hand amputees, that filters electrical signals from EMG electrodes and processes the output using an Arduino to control the claw gripper. I designed components in SolidWorks 3D printed them with the goal of creating a cost-effective solution.
               </p1>
+              <p2>
+                <a href = "https://vimeo.com/872231875?share=copy">For more, watch this video.</a>
+              </p2>
           </h3>
 
           <div className = "EMG_media">
