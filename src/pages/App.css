@@ -556,7 +556,7 @@ nav {
     font-size: 8rem;
     font-family: 'Caudex', serif;
     font-weight: 200;
-    margin-top: 7%;
+    margin-top: 2%;
     margin-left: 10%;
     position: relative;
 }
@@ -569,7 +569,7 @@ nav {
     justify-content: center;
     position: relative;
     margin-left: 45%;
-    margin-top: -18%;
+    margin-top: -12%;
     opacity: 0;
     animation: fadeInAnimation 1s ease-in-out forwards;
 }
@@ -582,7 +582,7 @@ nav {
     font-size: 1rem;
     font-family: 'Avenir-Light', serif;
     font-weight: 200;
-    margin-top: -25%;
+    margin-top: -31%;
     margin-right: 60%;
     margin-left: 10.5%;
     position: relative;
