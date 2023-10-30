@@ -7,6 +7,10 @@
   width: 100%;
 }
 
+/* ============================================================================================== */
+/* MAIN PAGE CSS */
+/* ============================================================================================== */
+
 .background_image {
   position: absolute;
   top: 0;
@@ -15,7 +19,7 @@
   height: 100%;
 }
 
-@keyframes cf3FadeInOut 
+@keyframes cf3FadeInOut
 {
   0% {
   opacity:1;
@@ -31,7 +35,7 @@
   }
 }
 
-#cf3 img.top 
+#cf3 img.top
 {
 animation-name: cf3FadeInOut;
 animation-timing-function: ease-in-out;
@@ -45,7 +49,7 @@ animation-direction: alternate;
     width: 100%;
     opacity: 80%;
     z-index: -5;
-    left: 0;  
+    left: 0;
     position: relative;
     -webkit-mask-image: -webkit-linear-gradient(bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%);
     mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
@@ -151,7 +155,7 @@ nav {
 .fade-in {
     opacity: 0;
     animation: fadeInAnimation 1.5s ease-in-out forwards;
-  }  
+  }
 
 @keyframes fadeInAnimation {
   from {
@@ -175,9 +179,9 @@ nav {
 }
 
 
-.header 
+.header
 {
-    position: relative;  
+    position: relative;
     height: 130px;
     /*check how to make it so that when the screen is minimized, the ryan jing is centered, and not to the left side*/
     /*
@@ -186,7 +190,7 @@ nav {
     */
 }
 
-.header p 
+.header p
 {
     display: flex;
     text-decoration: none;
@@ -205,13 +209,13 @@ nav {
 
 .header2
 {
-    position: relative;  
+    position: relative;
     height: 120px;
 
 }
 
 .header2 p
-{ 
+{
     display: flex;
     text-align: center;
     text-decoration: none;
@@ -263,19 +267,19 @@ nav {
 }
 
 .header3 {
-    position: relative;  
+    position: relative;
     margin-top: 50%;
     margin-left: 10%;
     margin-right: 10%;
     height: 40px;
     opacity: 0;
-    transition: 3s; 
+    transition: 3s;
     font-size: 2.5rem;
 }
 
 .header4
 {
-    position: relative;  
+    position: relative;
     margin-top: 15%;
     margin-left: 10%;
     margin-right: 10%;
@@ -283,8 +287,8 @@ nav {
 }
 
 .header4 p
-{ 
-    position: relative;  
+{
+    position: relative;
     font-size: 3rem;
     font-family: 'Caudex', serif;
     font-weight: 200;
@@ -292,14 +296,14 @@ nav {
 
 .Descript_header
 {
-    position: relative;  
+    position: relative;
     height: 120px;
     max-width: 1600px;
-    
+
 }
 
 .Descript_header p1
-{ 
+{
     display: flex;
     font-family: "Avenir-Light", sans-serif;
     font-weight: bold;
@@ -313,7 +317,7 @@ nav {
 }
 
 .Descript_header p
-{ 
+{
     display: flex;
     font-family: "Avenir-Light", sans-serif;
     font-weight: bold;
@@ -328,14 +332,14 @@ nav {
 
 .Descript_content
 {
-    position: relative;  
+    position: relative;
     height: 65px;
     z-index: 10;
     max-width: 1600px;
 }
 
 .Descript_content p
-{ 
+{
     display: flex;
     text-align: left;
     font-family: "Avenir-Light", sans-serif;
@@ -349,7 +353,7 @@ nav {
 }
 
 .Descript_content p1
-{ 
+{
     display: flex;
     text-align: left;
     font-family: "Avenir-Light", sans-serif;
@@ -363,7 +367,7 @@ nav {
 }
 
 .Descript_content p2
-{ 
+{
     display: flex;
     text-align: left;
     font-family: "Avenir-Light", sans-serif;
@@ -377,7 +381,7 @@ nav {
 }
 
 .Descript_content a
-{ 
+{
     display: flex;
     text-align: left;
     font-family: "Avenir-Light", sans-serif;
@@ -436,7 +440,7 @@ nav {
     height: auto; /* Maintain the aspect ratio */
 }
 
-.whitestrip 
+.whitestrip
 {
     width: 100px;
     overflow: hidden;
@@ -448,7 +452,7 @@ nav {
     z-index: 20;
 }
 
-.box 
+.box
 {
     margin: 12em auto;
     overflow: hidden;
@@ -465,7 +469,7 @@ nav {
     position: relative;
 }
 
-.ratio::before 
+.ratio::before
 {
     background: rgba(0,0,0,.5);
     color: white;
@@ -479,7 +483,7 @@ nav {
 
 .ratio-1\:1 { padding-top: 100%; }
 
-.crop 
+.crop
 {
     background: white;
     overflow: hidden;
@@ -487,7 +491,7 @@ nav {
     display: flex;
 }
 
-.crop > * 
+.crop > *
 {
     height: 100%;
     position: absolute;
@@ -505,7 +509,7 @@ nav {
     margin-bottom: -15%;
 }
 
-  
+
 .Image_Display {
     display:flex;
     gap: 5px;
@@ -537,7 +541,6 @@ nav {
     height: auto; /* Maintain the aspect ratio */
 }
 
-
 .footer {
     height: 180px;
     display: flex;
@@ -560,21 +563,22 @@ nav {
 }
 
 .footer a {
-    position: relative;  
+    position: relative;
     font-size: 3rem;
     font-family: 'Caudex', serif;
     font-weight: 200;
     color: black;
     margin-left: 20%;
 }
-
+/* ============================================================================================== */
 /* ABOUT ME PAGE CSS */
+/* ============================================================================================== */
 
 .Profile_Header {
-    position: relative;  
+    position: relative;
 }
 
-.Profile_Header p1 
+.Profile_Header p1
 {
     display: flex;
     align-items: center;
@@ -600,7 +604,7 @@ nav {
 }
 
 
-.Profile_Header p2 
+.Profile_Header p2
 {
     display: flex;
     text-align: left;
@@ -614,13 +618,43 @@ nav {
 }
 
 .Experience_Header {
-    position: relative;  
+    position: relative;
     height: 40px;
-    margin-top: 23%;
+    margin-top: 8%;
+    margin-bottom: 7%;
 }
 
+bodyExperience {
+    font-family: "Avenir-Light", sans-serif;
+}
 
-/* CONTACT PAGE CSS */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.column {
+    width: 30%;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+positionTitle {
+    font-size: 130%;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+positionBlurb {
+    font-size: 110%;
+    margin-top: 10px;
+}
+
+/* ============================================================================================== */
+/* CONTACT ME PAGE CSS */
+/* ============================================================================================== */
 
 .Contact_Info {
     text-align: left;
@@ -633,24 +667,24 @@ nav {
 }
 
 .Contact_Info ul {
-  list-style-type: none;
-  padding: 0;
-  margin-left: 4%;
+    list-style-type: none;
+    padding: 0;
+    margin-left: 4%;
 }
 
 .Contact_Info li {
-  margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 /* Style the bullet points */
 .Contact_Info li::before {
-  content: "•"; 
-  display: inline-block;
-  width: 1em; /* Adjust the width to control the spacing between the bullet and text */
-  margin-left: -1em; 
-  margin-right: 5px; /* Space between the bullet and text */
-  color: #535557; /* Color of the bullet */
-  font-weight: bold; 
+    content: "•";
+    display: inline-block;
+    width: 1em; /* Adjust the width to control the spacing between the bullet and text */
+    margin-left: -1em;
+    margin-right: 5px; /* Space between the bullet and text */
+    color: #535557; /* Color of the bullet */
+    font-weight: bold;
 }
 
 .Contact_Info a1 {
@@ -661,13 +695,13 @@ nav {
 }
 
 .Contact_Info a1:hover {
-  color: #a09f9f; /* Change to a different color on hover */
+    color: #a09f9f; /* Change to a different color on hover */
 }
 
 .Contact_Info a {
     color: #164ecf;
 }
-  
+
 h1 {
     opacity: 0;
     animation: fadeInAnimation 1.5s ease-in-out forwards;
@@ -718,7 +752,7 @@ input[type="email"],
     background-color: #7c7e80;
 }
 
-@keyframes cf4FadeInOut 
+@keyframes cf4FadeInOut
 {
   0% {
   opacity:1;
@@ -736,18 +770,18 @@ input[type="email"],
 
 #cf4 img.topContact
 {
-animation-name: cf4FadeInOut;
-animation-timing-function: ease-in-out;
-animation-iteration-count: infinite;
-animation-duration: 0.5s;
-animation-direction: alternate;
+    animation-name: cf4FadeInOut;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 0.5s;
+    animation-direction: alternate;
 }
 
 .topContact
 {
     width: 99%;
     z-index: -5;
-    left: 0;  
+    left: 0;
     position: relative;
     margin-bottom: -2%;
     margin-top: -9.5%;
@@ -778,13 +812,12 @@ animation-direction: alternate;
     width: 100%;
     align-items: center;
     justify-content: center;
-} 
+}
 
 .footerContainer a {
-    position: relative;  
+    position: relative;
     font-size: 3rem;
     font-family: 'Caudex', serif;
     font-weight: 200;
     color: black;
 }
-
