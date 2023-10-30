@@ -19,22 +19,22 @@ function About(){
   //   const header = document.getElementById("fadein1");
   //   const duration = 1000; // Animation duration in milliseconds
   //   const start = performance.now();
-    
+
   //   const easeInOutQuad = t => t<.5 ? 2*t*t : -1+(4-2*t)*t;
-    
+
   //   const fade = () => {
   //     const elapsed = performance.now() - start;
   //     const progress = Math.min(elapsed / duration, 1); // Ensure progress doesn't exceed 1
   //     const easedProgress = easeInOutQuad(progress);
   //     header.style.opacity = easedProgress;
-      
+
   //     if (progress < 1) {
   //       window.requestAnimationFrame(fade);
   //     } else {
   //       setIsTextVisible(true); // Start text fade-in animation after header animation completes
   //     }
   //   };
-    
+
   //   fade();
   // }, []);
 
@@ -72,7 +72,7 @@ function About(){
         </ul>
       </div>
     </nav>
-      
+
     <div class = "Profile_Header">
         <p1 className = "fade-in">
           Profile
@@ -85,23 +85,85 @@ function About(){
         <br></br><br></br>
         I'm Ryan Jing, an undergraduate student majoring in Biomedical Engineering at the University of Waterloo. 🔬 I am  passionate about acquiring new skills and undertaking meaningful projects, of which many are shown in this website! 💡 Beyond academics, my hobbies encompass music 🎵, visual art 🎨, sports (SNOWBOARDING ⛷️), and lots of cooking 🍳.
         <br></br><br></br>
-        Currently, I am actively searching for co-op opportunities to enhance my knowledge and skills, expand my professional network, and establish myself as a promising engineer in the field. 🚀 I would welcome the opportunity to connect and explore potential collaborations. 
+        Currently, I am actively searching for co-op opportunities to enhance my knowledge and skills, expand my professional network, and establish myself as a promising engineer in the field. 🚀 I would welcome the opportunity to connect and explore potential collaborations.
         <br></br><br></br>
         Thank you for exploring my website and learning more about who I am and what I do! All of the art and designs in this website were designed by me for this website. I hope you enjoy!
         </p2>
     </div>
     <div>
-      <h1 className='Experience_Header'>
+      <h1 className = 'Experience_Header'>
           Experience
       </h1>
     </div>
+    <bodyExperience>
+
+    {/*--UNDER CONSTRUCTION */}
+    <div class="container">
+    <div class="column">
+        <div>
+          <positionTitle>==================================</positionTitle>
+        </div>
+        <positionTitle>Sorry... This section is under construction! 🚜🔨👷🏻‍♂️</positionTitle>
+        <div>
+          <positionTitle>==================================</positionTitle>
+        </div>
+        </div>
+        <br></br>        <br></br>
+
+    </div>
+    {/*--UNDER CONSTRUCTION */}
+
+
+    <div class="container">
+        <div class="column">
+            <positionTitle>Position 1</positionTitle>
+            <div>
+              <positionBlurb>I created a solution that boosted sales by one gajillion percent!</positionBlurb>
+            </div>
+        </div>
+        <div class="column">
+            <positionTitle>Position 2</positionTitle>
+            <div>
+              <positionBlurb>Innovated and automated all workflows so no more employees needed!</positionBlurb>
+            </div>
+        </div>
+        <div class="column">
+            <positionTitle>Position 3</positionTitle>
+            <div>
+              <positionBlurb>Added daily morning muffins as mandatory to company workflow</positionBlurb>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="column">
+            <positionTitle>Position 4</positionTitle>
+            <div>
+              <positionBlurb>WORK WORK WORK WORK WORK </positionBlurb>
+            </div>
+        </div>
+        <div class="column">
+            <positionTitle>Position 5</positionTitle>
+            <div>
+              <positionBlurb>Commited 2 PRs, and left</positionBlurb>
+            </div>
+        </div>
+        <div class="column">
+            <positionTitle>Position 6</positionTitle>
+            <div>
+              <positionBlurb>In progress...</positionBlurb>
+            </div>
+        </div>
+    </div>
+
+    </bodyExperience>
 
     <br/><br/><br/><br/><br/><br/>
 
     <footer>
         <footerContainer className = "footer">
             <footerContent>
-                  <a href = "https://github.com/Ryan-Jing" target="_blank"> 
+                  <a href = "https://github.com/Ryan-Jing" target="_blank">
                     Github
                   </a>
             </footerContent>
