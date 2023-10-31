@@ -617,10 +617,20 @@ nav {
     position: relative;
 }
 
+.scroll-button-experience
+{
+    position: absolute;
+    border: none;
+    cursor: pointer;
+    margin-left: -30%;
+    top: 90%;
+    background-color: transparent;
+}
+
 .Experience_Header {
     position: relative;
     height: 40px;
-    margin-top: 8%;
+    margin-top: 16%;
     margin-bottom: 7%;
 }
 

@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 import profile from '/profile-head.ico'
 import './App.css'
 
+import downButton from '../assets/down-arrow.png'
+
 function About(){
 
   useEffect(() => {
@@ -14,6 +16,17 @@ function About(){
     let windowPosition = window.scrollY > 0;
     header.classList.toggle('scrolling_active', windowPosition )
   })
+
+  const scrollRef1 = useRef(null);
+
+  const scrollToExperienceSection = () => {
+    const scrollOffset = 200; // Adjust this value as needed
+    const scrollPosition = scrollRef1.current.offsetTop - scrollOffset;
+    window.scrollTo({
+      top: scrollPosition,
+      behavior: 'smooth'
+    });
+  };
 
   // useEffect(() => {
   //   const header = document.getElementById("fadein1");
@@ -90,8 +103,13 @@ function About(){
         Thank you for exploring my website and learning more about who I am and what I do! All of the art and designs in this website were designed by me for this website. I hope you enjoy!
         </p2>
     </div>
+
+    <button className="scroll-button-experience" onClick={scrollToExperienceSection}>
+          <img className = "down-button" src={downButton}/>
+    </button>
+
     <div>
-      <h1 className = 'Experience_Header'>
+      <h1 className = 'Experience_Header' ref={scrollRef1}>
           Experience
       </h1>
     </div>
