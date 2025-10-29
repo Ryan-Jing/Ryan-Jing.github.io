@@ -490,6 +490,69 @@ scrollTopStyle.textContent = `
 document.head.appendChild(scrollTopStyle);
 */
 
+// ==========================================
+// CLICK ASTERISK ANIMATION
+// Simple cartoon-style grey asterisk on click
+// ==========================================
+document.addEventListener('click', (e) => {
+    const asterisk = document.createElement('div');
+    asterisk.className = 'click-asterisk';
+    asterisk.textContent = '*';
+    asterisk.style.left = e.clientX + 'px';
+    asterisk.style.top = e.clientY + 'px';
+
+    document.body.appendChild(asterisk);
+
+    // Remove after brief display
+    setTimeout(() => {
+        asterisk.remove();
+    }, 300);
+});
+
+// Add asterisk click styles
+const asteriskStyle = document.createElement('style');
+asteriskStyle.textContent = `
+    .click-asterisk {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--gray);
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(0);
+        font-family: var(--font-mono);
+        animation: asteriskPop 0.3s steps(3) forwards;
+    }
+
+    @keyframes asteriskPop {
+        0% {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+        }
+        33% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.5;
+        }
+        66% {
+            transform: translate(-50%, -50%) scale(1.3);
+            opacity: 0.6;
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(1.5);
+            opacity: 0;
+        }
+    }
+
+    /* Hide on touch devices */
+    @media (hover: none) {
+        .click-asterisk {
+            display: none;
+        }
+    }
+`;
+document.head.appendChild(asteriskStyle);
+
 /**
  * ==========================================
  * END OF JAVASCRIPT FILE
