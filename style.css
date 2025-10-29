@@ -1,28 +1,43 @@
 /* ==========================================
-   MODERN TECH COLOR PALETTE & ROOT VARIABLES
-   Dark, minimal, and tech-focused theme with glassmorphism
+   GRUVBOX MATERIAL COLOR PALETTE & ROOT VARIABLES
+   Dark, warm, retro-tech theme with rainbow accents
    ========================================== */
-:root {
-    /* Dark Theme Colors */
-    --bg-primary: #0a0e27;
-    --bg-secondary: #111827;
-    --bg-tertiary: #1a1f3a;
-    --bg-glass: rgba(17, 24, 39, 0.7);
-    --fg-primary: #e5e7eb;
-    --fg-secondary: #9ca3af;
-    --fg-tertiary: #6b7280;
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
-    /* Orange Accent Colors */
-    --orange: #ff6b35;
-    --orange-bright: #ff8c61;
-    --orange-light: #ffa689;
-    --orange-glow: rgba(255, 107, 53, 0.3);
+:root {
+    /* Gruvbox Dark Backgrounds */
+    --bg-primary: #282828;
+    --bg-secondary: #32302f;
+    --bg-tertiary: #3c3836;
+    --bg-glass: rgba(40, 40, 40, 0.75);
+    --bg-elevated: #504945;
+
+    /* Gruvbox Foreground Colors */
+    --fg-primary: #ebdbb2;
+    --fg-secondary: #d5c4a1;
+    --fg-tertiary: #bdae93;
+    --fg-muted: #a89984;
+
+    /* Gruvbox Rainbow Accents */
+    --gruvbox-red: #fb4934;
+    --gruvbox-green: #b8bb26;
+    --gruvbox-yellow: #fabd2f;
+    --gruvbox-blue: #83a598;
+    --gruvbox-purple: #d3869b;
+    --gruvbox-aqua: #8ec07c;
+    --gruvbox-orange: #fe8019;
+
+    /* Primary Accent (Gruvbox Orange/Yellow) */
+    --accent-primary: #d79921;
+    --accent-bright: #fabd2f;
+    --accent-orange: #d65d0e;
+    --accent-glow: rgba(215, 153, 33, 0.3);
 
     /* Neutral Colors */
-    --white: #ffffff;
-    --black: #000000;
-    --gray: #4b5563;
-    --gray-light: #6b7280;
+    --white: #fbf1c7;
+    --black: #1d2021;
+    --gray: #928374;
+    --gray-dark: #7c6f64;
 
     /* Spacing - More compact for minimalism */
     --spacing-xs: 0.5rem;
@@ -31,9 +46,9 @@
     --spacing-lg: 3rem;
     --spacing-xl: 5rem;
 
-    /* Typography */
-    --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Courier New', monospace;
+    /* Typography - JetBrains Mono */
+    --font-primary: 'JetBrains Mono', monospace;
+    --font-mono: 'JetBrains Mono', monospace;
 
     /* Transitions */
     --transition-fast: 0.2s ease;
@@ -42,7 +57,7 @@
 
     /* Glassmorphism */
     --glass-blur: 12px;
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(235, 219, 178, 0.1);
 }
 
 /* ==========================================
@@ -63,10 +78,10 @@ html {
 body {
     font-family: var(--font-primary);
     background:
-        radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.03) 1px, transparent 0);
-    background-size: 100% 100%, 100% 100%, 40px 40px;
+        radial-gradient(circle at 20% 30%, rgba(131, 165, 152, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(211, 134, 155, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(184, 187, 38, 0.04) 0%, transparent 50%);
+    background-size: 100% 100%, 100% 100%, 100% 100%;
     background-color: var(--bg-primary);
     background-attachment: fixed;
     color: var(--fg-primary);
@@ -96,13 +111,13 @@ p {
 }
 
 a {
-    color: var(--orange);
+    color: var(--accent-primary);
     text-decoration: none;
     transition: var(--transition-fast);
 }
 
 a:hover {
-    color: var(--orange-bright);
+    color: var(--accent-bright);
 }
 
 /* ==========================================
@@ -126,7 +141,7 @@ a:hover {
 
 .navbar.scrolled {
     padding: 0.4rem 0;
-    background: rgba(17, 24, 39, 0.85);
+    background: rgba(40, 40, 40, 0.9);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
 }
@@ -143,13 +158,13 @@ a:hover {
 .nav-logo {
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--orange-bright);
+    color: var(--accent-bright);
     transition: var(--transition-fast);
 }
 
 .nav-logo:hover {
     transform: scale(1.1);
-    color: var(--orange-light);
+    color: var(--gruvbox-orange);
 }
 
 .nav-menu {
@@ -174,7 +189,7 @@ a:hover {
     left: 50%;
     width: 0;
     height: 2px;
-    background-color: var(--orange-bright);
+    background: linear-gradient(90deg, var(--gruvbox-red), var(--gruvbox-yellow), var(--gruvbox-green), var(--gruvbox-aqua), var(--gruvbox-blue), var(--gruvbox-purple));
     transition: var(--transition-fast);
     transform: translateX(-50%);
 }
@@ -184,7 +199,7 @@ a:hover {
 }
 
 .nav-link:hover {
-    color: var(--orange-bright);
+    color: var(--accent-bright);
 }
 
 /* Hamburger Menu for Mobile */
@@ -232,27 +247,28 @@ a:hover {
 }
 
 .btn-primary {
-    background-color: var(--orange);
-    color: var(--white);
-    border-color: var(--orange);
+    background-color: var(--accent-primary);
+    color: var(--black);
+    border-color: var(--accent-primary);
+    font-weight: 600;
 }
 
 .btn-primary:hover {
-    background-color: var(--orange-bright);
-    border-color: var(--orange-bright);
+    background-color: var(--accent-bright);
+    border-color: var(--accent-bright);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(214, 93, 14, 0.3);
+    box-shadow: 0 4px 12px var(--accent-glow);
 }
 
 .btn-secondary {
     background-color: transparent;
-    color: var(--orange);
-    border-color: var(--orange);
+    color: var(--accent-bright);
+    border-color: var(--accent-bright);
 }
 
 .btn-secondary:hover {
-    background-color: var(--orange);
-    color: var(--white);
+    background-color: var(--accent-primary);
+    color: var(--black);
     transform: translateY(-2px);
 }
 
@@ -296,7 +312,7 @@ a:hover {
 }
 
 .highlight {
-    color: var(--orange-bright);
+    color: var(--gruvbox-orange);
     position: relative;
 }
 
@@ -335,7 +351,7 @@ a:hover {
 .mouse {
     width: 25px;
     height: 40px;
-    border: 2px solid var(--orange);
+    border: 2px solid var(--accent-bright);
     border-radius: 20px;
     position: relative;
 }
@@ -344,7 +360,7 @@ a:hover {
     content: '';
     width: 4px;
     height: 8px;
-    background-color: var(--orange);
+    background-color: var(--accent-bright);
     border-radius: 2px;
     position: absolute;
     top: 8px;
@@ -407,9 +423,9 @@ a:hover {
     content: '';
     display: block;
     margin: 10px auto 0;
-    width: 80px;
+    width: 100px;
     height: 4px;
-    background-color: var(--orange);
+    background: linear-gradient(90deg, var(--gruvbox-red), var(--gruvbox-orange), var(--gruvbox-yellow), var(--gruvbox-green), var(--gruvbox-aqua), var(--gruvbox-blue), var(--gruvbox-purple));
     border-radius: 2px;
 }
 
@@ -487,7 +503,7 @@ a:hover {
     -webkit-backdrop-filter: blur(var(--glass-blur));
     border-radius: 16px;
     overflow: hidden;
-    border: 1px solid var(--glass-border);
+    border: 2px solid var(--glass-border);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     transition: var(--transition-normal);
     cursor: pointer;
@@ -495,9 +511,19 @@ a:hover {
 
 .project-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 40px var(--orange-glow), 0 8px 32px rgba(0, 0, 0, 0.4);
-    border-color: rgba(255, 107, 53, 0.3);
+    box-shadow: 0 12px 40px var(--accent-glow), 0 8px 32px rgba(0, 0, 0, 0.4);
 }
+
+/* Individual project card colors */
+.project-card:nth-child(1):hover { border-color: var(--gruvbox-red); }
+.project-card:nth-child(2):hover { border-color: var(--gruvbox-orange); }
+.project-card:nth-child(3):hover { border-color: var(--gruvbox-yellow); }
+.project-card:nth-child(4):hover { border-color: var(--gruvbox-green); }
+.project-card:nth-child(5):hover { border-color: var(--gruvbox-aqua); }
+.project-card:nth-child(6):hover { border-color: var(--gruvbox-blue); }
+.project-card:nth-child(7):hover { border-color: var(--gruvbox-purple); }
+.project-card:nth-child(8):hover { border-color: var(--gruvbox-red); }
+.project-card:nth-child(9):hover { border-color: var(--gruvbox-orange); }
 
 .project-card:active {
     transform: translateY(-8px) scale(0.98);
@@ -549,19 +575,31 @@ a:hover {
 }
 
 .tag {
-    background-color: var(--orange);
-    color: var(--white);
+    background-color: var(--bg-elevated);
+    color: var(--fg-primary);
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 500;
+    border: 1px solid var(--gray-dark);
     transition: var(--transition-fast);
 }
 
 .tag:hover {
-    background-color: var(--orange-bright);
+    background-color: var(--accent-primary);
+    color: var(--black);
+    border-color: var(--accent-bright);
     transform: scale(1.05);
 }
+
+/* Rainbow tag variants - cycle through colors */
+.tag:nth-child(7n+1) { border-color: var(--gruvbox-red); }
+.tag:nth-child(7n+2) { border-color: var(--gruvbox-orange); }
+.tag:nth-child(7n+3) { border-color: var(--gruvbox-yellow); }
+.tag:nth-child(7n+4) { border-color: var(--gruvbox-green); }
+.tag:nth-child(7n+5) { border-color: var(--gruvbox-aqua); }
+.tag:nth-child(7n+6) { border-color: var(--gruvbox-blue); }
+.tag:nth-child(7n+7) { border-color: var(--gruvbox-purple); }
 
 /* ==========================================
    EXPERIENCE SECTION
@@ -586,9 +624,10 @@ a:hover {
     left: 50%;
     top: 0;
     bottom: 0;
-    width: 2px;
-    background-color: var(--orange);
+    width: 3px;
+    background: linear-gradient(180deg, var(--gruvbox-red), var(--gruvbox-orange), var(--gruvbox-yellow), var(--gruvbox-green), var(--gruvbox-aqua), var(--gruvbox-blue), var(--gruvbox-purple));
     transform: translateX(-50%);
+    border-radius: 2px;
 }
 
 .experience-item {
@@ -630,12 +669,13 @@ a:hover {
 
 .experience-date span {
     display: inline-block;
-    background-color: var(--orange);
-    color: var(--white);
+    background-color: var(--accent-primary);
+    color: var(--black);
     padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: 20px;
     font-weight: 600;
     font-size: 0.9rem;
+    border: 1px solid var(--accent-bright);
 }
 
 .experience-content {
@@ -652,8 +692,8 @@ a:hover {
 
 .experience-content:hover {
     transform: scale(1.02);
-    box-shadow: 0 8px 24px var(--orange-glow), 0 4px 16px rgba(0, 0, 0, 0.3);
-    border-color: rgba(255, 107, 53, 0.3);
+    box-shadow: 0 8px 24px var(--accent-glow), 0 4px 16px rgba(0, 0, 0, 0.3);
+    border-color: var(--accent-primary);
 }
 
 .experience-title {
@@ -663,7 +703,7 @@ a:hover {
 }
 
 .experience-company {
-    color: var(--orange-bright);
+    color: var(--accent-bright);
     font-size: 1.1rem;
     margin-bottom: var(--spacing-sm);
     font-weight: 500;
@@ -713,7 +753,7 @@ a:hover {
 
 .contact-icon {
     font-size: 1.5rem;
-    color: var(--orange);
+    color: var(--accent-bright);
 }
 
 .contact-link {
@@ -723,7 +763,7 @@ a:hover {
 }
 
 .contact-link:hover {
-    color: var(--orange-bright);
+    color: var(--accent-bright);
 }
 
 .social-links {
@@ -750,10 +790,11 @@ a:hover {
 }
 
 .social-link:hover {
-    background-color: var(--orange);
-    color: var(--white);
+    background-color: var(--accent-primary);
+    color: var(--black);
     transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(214, 93, 14, 0.3);
+    box-shadow: 0 4px 12px var(--accent-glow);
+    border-color: var(--accent-bright);
 }
 
 .social-link:active {
