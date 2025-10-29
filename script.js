@@ -237,7 +237,7 @@ window.addEventListener('scroll', updateActiveNavLink);
 const activeStyle = document.createElement('style');
 activeStyle.textContent = `
     .nav-link.active {
-        color: var(--orange-bright);
+        color: var(--accent-bright);
     }
 
     .nav-link.active::after {
