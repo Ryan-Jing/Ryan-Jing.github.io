@@ -1,13 +1,438 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/profile-head.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ryan Jing: Website</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ryan Jing - Biomedical Engineering Student Portfolio">
+    <title>Ryan Jing | Portfolio</title>
+
+    <!-- Favicon - Update with your icon path -->
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ========================================
+         NAVIGATION BAR
+         Top navigation with links to main sections
+    ========================================= -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">RJ</a>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========================================
+         HERO/LANDING SECTION
+         Main landing page with introduction
+    ========================================= -->
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <div class="hero-text fade-in">
+                <h1 class="hero-title">Hi, I'm <span class="highlight">Ryan Jing</span></h1>
+                <h2 class="hero-subtitle">Biomedical Engineering Student</h2>
+                <p class="hero-description">
+                    Passionate about developing medical devices and embedded systems.
+                    Specializing in firmware development, PCB design, and hardware integration.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#experience" class="btn btn-secondary">Experience</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         ABOUT SECTION
+         Brief introduction and bio
+    ========================================= -->
+    <section id="about" class="about-section section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I'm a Biomedical Engineering student at the University of Waterloo,
+                        specializing in Medical Devices. I'm constantly working on new projects
+                        and exploring different tools in embedded systems, firmware development,
+                        and hardware design.
+                    </p>
+                    <p>
+                        This portfolio showcases some of my work and experience through various
+                        projects, highlighting my journey in developing innovative solutions for
+                        medical devices and embedded systems.
+                    </p>
+                    <div class="about-image-placeholder">
+                        <!-- Add your photo here -->
+                        <p class="placeholder-text">[ Your Photo Here ]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         PROJECTS SECTION
+         Showcase of engineering projects
+         Add new projects by copying the project-card structure
+    ========================================= -->
+    <section id="projects" class="projects-section section">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+
+                <!-- PROJECT 1: EMG Hand Prosthetic -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Image placeholder - Add your image path here -->
+                        <div class="image-placeholder">
+                            <p>[ EMG Prosthetic Image ]</p>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">EMG Hand Prosthetic</h3>
+                        <p class="project-description">
+                            Engineered high-fidelity hand prosthetic prototype for amputees.
+                            Designed LTSPICE circuit and PCB for processing/filtering EMG signals
+                            from skin electrodes to detect forearm flexion. Integrated Arduino
+                            firmware with SolidWorks-modeled, 3D-printed mechanical components.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Arduino</span>
+                            <span class="tag">PCB Design</span>
+                            <span class="tag">SolidWorks</span>
+                            <span class="tag">Signal Processing</span>
+                        </div>
+                        <!-- Add video/demo link here when available -->
+                    </div>
+                </div>
+
+                <!-- PROJECT 2: Electroretinography Research -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="image-placeholder">
+                            <p>[ ERG Research Image ]</p>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Electroretinography Electrode Research</h3>
+                        <p class="project-description">
+                            Research at UWaterloo's Nanoengineering Department synthesizing
+                            ERG electrodes with Au-Ca and Au-Pt nanoparticles. Investigating
+                            materials to optimize retinal neural response capture and reduce
+                            electrical noise, with focus on adaptability for diverse patient needs.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Research</span>
+                            <span class="tag">Nanotechnology</span>
+                            <span class="tag">Signal Analysis</span>
+                            <span class="tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 3: Mechanoreceptor Model -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="image-placeholder">
+                            <p>[ Mechanoreceptor Model Image ]</p>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Mechanoreceptor Model</h3>
+                        <p class="project-description">
+                            Developed Python simulation for SA-1 and FA-1 mechanoreceptors in
+                            the finger. Simulates receptor array behavior scanning over
+                            topographical surfaces, converting physical pressure to current
+                            response with visual 3D output.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">MATLAB</span>
+                            <span class="tag">Mathematical Modeling</span>
+                            <span class="tag">Simulation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 4: Foot-Drop FES Device -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="image-placeholder">
+                            <p>[ Foot-Drop Device Image ]</p>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Foot-Drop FES Device</h3>
+                        <p class="project-description">
+                            MATLAB simulation of gait cycle for functional electrical stimulation
+                            device. Developed controller to optimize FES functionality for foot-drop
+                            patients, ensuring precise muscle contraction timing during each step.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">MATLAB</span>
+                            <span class="tag">Control Systems</span>
+                            <span class="tag">Medical Devices</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 5: Arduino Live Translation -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="image-placeholder">
+                            <p>[ Arduino Translation Image ]</p>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Arduino Live Translation</h3>
+                        <p class="project-description">
+                            Python program using OpenAI's Whisper API for live audio transcription
+                            and translation. Microphone captures audio to differentiate speech from
+                            noise, with translated text displayed on Arduino-connected LCD screen.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Arduino</span>
+                            <span class="tag">OpenAI API</span>
+                            <span class="tag">Hardware</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 6: CAD Work -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="image-placeholder">
+                            <p>[ CAD Work Images ]</p>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">CAD & Design Work</h3>
+                        <p class="project-description">
+                            Various SolidWorks projects including technical drawings, assemblies,
+                            and BOMs. Experience with tolerances, 3D printing with PLA, and
+                            machine shop work with wood and metals for hands-on project development.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">SolidWorks</span>
+                            <span class="tag">3D Printing</span>
+                            <span class="tag">CAD</span>
+                            <span class="tag">Manufacturing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--
+                    TO ADD A NEW PROJECT:
+                    Copy the entire project-card div above and paste it here.
+                    Update the image path, title, description, and tags.
+                -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         EXPERIENCE SECTION
+         Professional work experience
+         Add new experiences by copying the experience-item structure
+    ========================================= -->
+    <section id="experience" class="experience-section section">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+
+                <!-- EXPERIENCE 1: OtO -->
+                <div class="experience-item">
+                    <div class="experience-date">
+                        <span>Jan - Aug 2025</span>
+                    </div>
+                    <div class="experience-content">
+                        <h3 class="experience-title">Embedded Engineer</h3>
+                        <h4 class="experience-company">OtO | Toronto, ON</h4>
+                        <ul class="experience-description">
+                            <li>Designed electrical schematics and PCBs in Altium; designed PCB bring-up testing suite for hardware debugging/validation</li>
+                            <li>Built prototype PCBs using OpenPNP; validated performance using oscilloscopes, spectral analyzers, logic analyzers, DMMs</li>
+                            <li>Reduced device sleep current by 34%, boosted charging speed by 47%, and implemented new battery-failure operation features</li>
+                            <li>Developed firmware features for ESP32; temperature-controlled charging, I2C motor controllers, integrating new ICs, bugfixes</li>
+                            <li>Implemented CI workflows with hardware emulation, unit tests, and static code analysis for improved code robustness</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- EXPERIENCE 2: Elev8 & Perform -->
+                <div class="experience-item">
+                    <div class="experience-date">
+                        <span>May - Aug 2024</span>
+                    </div>
+                    <div class="experience-content">
+                        <h3 class="experience-title">Hardware and Software Developer</h3>
+                        <h4 class="experience-company">Elev8 & Perform | Toronto, ON</h4>
+                        <ul class="experience-description">
+                            <li>Spearheaded device firmware development; BLE for data transmission, I2C for gas/flow sensors, handling tasks with FreeRTOS</li>
+                            <li>Designed PCB integrating ESP32 and sensors; modeled and 3D printed device housing for ergonomics and functionality</li>
+                            <li>Implemented Python-based data visualization solutions for comprehensive sensor data analysis, testing, and system validation</li>
+                            <li>Developed Python Flask API and web app on Google Cloud, visualizing live device data, and saving to MongoDB collection</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- EXPERIENCE 3: Onsemi -->
+                <div class="experience-item">
+                    <div class="experience-date">
+                        <span>Sep - Dec 2023</span>
+                    </div>
+                    <div class="experience-content">
+                        <h3 class="experience-title">Firmware Developer</h3>
+                        <h4 class="experience-company">Onsemi | Waterloo, ON</h4>
+                        <ul class="experience-description">
+                            <li>Developed embedded software for RSL15 MCU (ARM Cortex-M33), SDK sample applications, and fixing customer bugs</li>
+                            <li>Created GPIO drivers, HAL components, and firmware in C (AUTOSAR); implemented interrupts and watchdog timers</li>
+                            <li>Designed firmware architecture for SDK applications, from memory mapping to customer-facing code, using Jama</li>
+                            <li>Implemented unit testing (CppUTest); hardware testing with DMM, logic analyzers, STM32CubeMonPwr, and JTAG debuggers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- EXPERIENCE 4: UWaterloo Research -->
+                <div class="experience-item">
+                    <div class="experience-date">
+                        <span>Jan 2024 - Jan 2025</span>
+                    </div>
+                    <div class="experience-content">
+                        <h3 class="experience-title">Undergraduate Research Assistant</h3>
+                        <h4 class="experience-company">University of Waterloo - Nanotechnology Engineering | Waterloo, ON</h4>
+                        <ul class="experience-description">
+                            <li>Synthesized electroretinography (ERG) electrodes with Au-Ca and Au-Pt nanoparticles for R&D of diagnostic sensor strips</li>
+                            <li>Validated in-lab electrodes using oscilloscope, DMM; analyzed signal data with Excel and Python, 10% improved performance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- EXPERIENCE 5: WATOLINK -->
+                <div class="experience-item">
+                    <div class="experience-date">
+                        <span>Jan 2023 - Jan 2025</span>
+                    </div>
+                    <div class="experience-content">
+                        <h3 class="experience-title">Integration Lead</h3>
+                        <h4 class="experience-company">WATOLINK - AI/ML Research | Waterloo, ON</h4>
+                        <ul class="experience-description">
+                            <li>Integrating hardware components (Motor, GUI, BCI) and Python scripts using Jetson Nano for BCI-controlled wheelchair</li>
+                            <li>Researching and training AI models (SSVEP) using internal EEG data, creating hands-free command system for paraplegics</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- EXPERIENCE 6: Ontario Health -->
+                <div class="experience-item">
+                    <div class="experience-date">
+                        <span>Jan - Apr 2023</span>
+                    </div>
+                    <div class="experience-content">
+                        <h3 class="experience-title">Junior Systems Engineer</h3>
+                        <h4 class="experience-company">Ontario Health | Toronto, ON</h4>
+                        <ul class="experience-description">
+                            <li>Developed serverless Electronic Medical Record (EMR) web app on Azure using AngularJS, JavaScript, Node.js, and MongoDB</li>
+                            <li>Optimized RESTful API endpoints and backend, resulting in 94% development cost reduction and improved EMR accessibility</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!--
+                    TO ADD A NEW EXPERIENCE:
+                    Copy the entire experience-item div above and paste it here.
+                    Update the date, title, company, and description list.
+                -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         CONTACT SECTION
+         Contact information and resume download
+    ========================================= -->
+    <section id="contact" class="contact-section section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <p class="contact-text">
+                    I'm always open to discussing new projects, opportunities,
+                    or collaborations. Feel free to reach out!
+                </p>
+
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">✉</div>
+                        <a href="mailto:ryanjing23@gmail.com" class="contact-link">ryanjing23@gmail.com</a>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <!-- LinkedIn - Update href with your LinkedIn URL -->
+                    <a href="#" class="social-link" target="_blank" rel="noopener">
+                        <span class="social-icon">in</span>
+                        LinkedIn
+                    </a>
+
+                    <!-- Instagram - Update href with your Instagram URL -->
+                    <a href="#" class="social-link" target="_blank" rel="noopener">
+                        <span class="social-icon">ig</span>
+                        Instagram
+                    </a>
+
+                    <!-- GitHub -->
+                    <a href="https://github.com/ryanjing23" class="social-link" target="_blank" rel="noopener">
+                        <span class="social-icon">gh</span>
+                        GitHub
+                    </a>
+                </div>
+
+                <!-- Resume Download Section -->
+                <div class="resume-download">
+                    <h3 class="resume-title">Download My Resume</h3>
+                    <p class="resume-text">View or download my complete resume as a PDF</p>
+                    <!-- Update href with path to your resume PDF -->
+                    <a href="assets/Resume_2025.pdf" class="btn btn-primary" download>
+                        Download Resume (PDF)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         FOOTER
+    ========================================= -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Ryan Jing. All rights reserved.</p>
+            <p>Built with passion for engineering and design.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
 </html>
