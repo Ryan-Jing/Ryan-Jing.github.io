@@ -15,27 +15,20 @@
 <body>
 
     <!-- ========================================
-         NAVIGATION BAR
-         Top navigation with links to main sections
+         SIDEBAR NAVIGATION
+         Collapsible sidebar with icon toggle
     ========================================= -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#home" class="nav-logo" aria-label="Home">
-                <img src="assets/icons/favicon.ico" alt="Ryan Jing logo" class="nav-logo-img" width="32" height="32" loading="lazy">
-            </a>
-            <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
-                <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
-                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
+    <nav class="sidebar" id="sidebar">
+        <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">
+            <img src="assets/icons/favicon.ico" alt="Menu" class="sidebar-icon">
+        </button>
+        <ul class="sidebar-menu" id="sidebar-menu">
+            <li class="sidebar-item"><a href="#home" class="sidebar-link">Home</a></li>
+            <li class="sidebar-item"><a href="#about" class="sidebar-link">About</a></li>
+            <li class="sidebar-item"><a href="#projects" class="sidebar-link">Projects</a></li>
+            <li class="sidebar-item"><a href="#experience" class="sidebar-link">Experience</a></li>
+            <li class="sidebar-item"><a href="#contact" class="sidebar-link">Contact</a></li>
+        </ul>
     </nav>
 
     <!-- ========================================
@@ -45,17 +38,17 @@
     <section id="home" class="hero-section">
         <div class="hero-content">
             <div class="hero-text fade-in">
-                <h1 class="hero-title">Hi, I'm <span class="highlight">Ryan Jing</span></h1>
+                <h1 class="hero-title"><span class="highlight">Ryan Jing's Portfolio</span></h1>
                 <h2 class="hero-subtitle">Biomedical Engineering Student</h2>
                 <p class="hero-description">
                     Passionate about developing medical devices and embedded systems.
                     Specializing in firmware development, PCB design, and hardware integration.
                 </p>
-                <div class="hero-buttons">
+                <!-- <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View Projects</a>
                     <a href="#experience" class="btn btn-secondary">Experience</a>
                     <a href="#contact" class="btn btn-secondary">Contact Me</a>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="scroll-indicator">
@@ -103,12 +96,14 @@
             <div class="projects-grid">
 
                 <!-- PROJECT 1: EMG Hand Prosthetic -->
-                <div class="project-card">
+                <div class="project-card" data-expand-content='["assets/projects/EMG/Claw_Function_Demonstraton_Pt1.mp4"]'>
                     <div class="project-image">
-                        <!-- Image placeholder - Add your image path here -->
-                        <div class="image-placeholder">
-                            <p>[ EMG Prosthetic Image ]</p>
-                        </div>
+                        <!-- Video element - plays on hover -->
+                        <video class="project-video" muted loop playsinline>
+                            <source src="assets/projects/EMG/Claw_Function_Demonstraton_Pt1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-hover-hint">Hover to play</div>
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">EMG Hand Prosthetic</h3>
@@ -124,16 +119,17 @@
                             <span class="tag">SolidWorks</span>
                             <span class="tag">Signal Processing</span>
                         </div>
-                        <!-- Add video/demo link here when available -->
+                        <div class="expand-button">
+                            Click to expand <span class="expand-arrow">↓</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- PROJECT 2: Electroretinography Research -->
-                <div class="project-card">
+                <div class="project-card" data-expand-content='["assets/projects/ERG/ERG_Lab.jpeg"]'>
                     <div class="project-image">
-                        <div class="image-placeholder">
-                            <p>[ ERG Research Image ]</p>
-                        </div>
+                        <!-- Image - properly formatted -->
+                        <img src="assets/projects/ERG/ERG_Lab.jpeg" alt="Electroretinography Electrode Research" class="project-image-img">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Electroretinography Electrode Research</h3>
@@ -148,6 +144,9 @@
                             <span class="tag">Nanotechnology</span>
                             <span class="tag">Signal Analysis</span>
                             <span class="tag">Python</span>
+                        </div>
+                        <div class="expand-button">
+                            Click to expand <span class="expand-arrow">↓</span>
                         </div>
                     </div>
                 </div>
@@ -176,29 +175,7 @@
                     </div>
                 </div>
 
-                <!-- PROJECT 4: Foot-Drop FES Device -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="image-placeholder">
-                            <p>[ Foot-Drop Device Image ]</p>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Foot-Drop FES Device</h3>
-                        <p class="project-description">
-                            MATLAB simulation of gait cycle for functional electrical stimulation
-                            device. Developed controller to optimize FES functionality for foot-drop
-                            patients, ensuring precise muscle contraction timing during each step.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">MATLAB</span>
-                            <span class="tag">Control Systems</span>
-                            <span class="tag">Medical Devices</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PROJECT 5: Arduino Live Translation -->
+                <!-- PROJECT 4: Arduino Live Translation -->
                 <div class="project-card">
                     <div class="project-image">
                         <div class="image-placeholder">
@@ -206,22 +183,24 @@
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Arduino Live Translation</h3>
+                        <h3 class="project-title">Cardboard DJ Set</h3>
                         <p class="project-description">
-                            Python program using OpenAI's Whisper API for live audio transcription
-                            and translation. Microphone captures audio to differentiate speech from
-                            noise, with translated text displayed on Arduino-connected LCD screen.
+                            Interactive DJ set made from cardboard and equipped with sensors.
+                            The setup includes a turntable, mixer, and various effects, all
+                            controlled through an Arduino board. Users can manipulate the
+                            cardboard components to create unique sounds and mixes.
                         </p>
                         <div class="project-tags">
                             <span class="tag">Python</span>
                             <span class="tag">Arduino</span>
-                            <span class="tag">OpenAI API</span>
                             <span class="tag">Hardware</span>
+                            <span class="tag">Interactive Design</span>
+                            <span class="tag">Sound Design</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- PROJECT 6: CAD Work -->
+                <!-- PROJECT 5: CAD Work -->
                 <div class="project-card">
                     <div class="project-image">
                         <div class="image-placeholder">
@@ -240,6 +219,30 @@
                             <span class="tag">3D Printing</span>
                             <span class="tag">CAD</span>
                             <span class="tag">Manufacturing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 6: Deck Building -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="image-placeholder">
+                            <p>[ Deck Building Image ]</p>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Building a Deck in my Backyard</h3>
+                        <p class="project-description">
+                            Designed and built a wooden deck in my backyard using sustainable materials.
+                            The project involved planning the layout, selecting materials, and executing
+                            the construction with a focus on durability and aesthetics.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Planning</span>
+                            <span class="tag">Woodworking</span>
+                            <span class="tag">Sustainability</span>
+                            <span class="tag">Construction</span>
+                            <span class="tag">Power Tools</span>
                         </div>
                     </div>
                 </div>
@@ -279,6 +282,14 @@
                             <li>Developed firmware features for ESP32; temperature-controlled charging, I2C motor controllers, integrating new ICs, bugfixes</li>
                             <li>Implemented CI workflows with hardware emulation, unit tests, and static code analysis for improved code robustness</li>
                         </ul>
+                        <div class="experience-tags">
+                            <span class="tag">ESP32</span>
+                            <span class="tag">Altium</span>
+                            <span class="tag">PCB Design</span>
+                            <span class="tag">Firmware</span>
+                            <span class="tag">C/C++</span>
+                            <span class="tag">Hardware Testing</span>
+                        </div>
                     </div>
                 </div>
 
@@ -370,6 +381,92 @@
             </div>
         </div>
     </section>
+
+    <!-- ========================================
+         PROJECTS SECTION
+         Showcase of engineering projects
+         Add new projects by copying the project-card structure
+    ========================================= -->
+    <section id="artworks" class="artworks-section section">
+        <div class="container">
+            <h2 class="section-title">Artworks</h2>
+            <div class="artworks-grid">
+
+                <!-- ARTWORK 1: EMG Hand Prosthetic -->
+                <div class="artwork-card">
+                    <div class="artwork-image">
+                        <!-- Image placeholder - Add your image path here -->
+                        <div class="image-placeholder">
+                            <p>[ EMG Prosthetic Image ]</p>
+                        </div>
+                    </div>
+                    <div class="artwork-content">
+                        <h3 class="artwork-title">Digital Art</h3>
+                        <p class="artwork-description">
+                            Digital art using Procreate.
+                        </p>
+                        <div class="artwork-tags">
+                            <span class="tag">Arduino</span>
+                            <span class="tag">PCB Design</span>
+                            <span class="tag">SolidWorks</span>
+                            <span class="tag">Signal Processing</span>
+                        </div>
+                        <!-- Add video/demo link here when available -->
+                    </div>
+                </div>
+
+                <!-- ARTWORK 2: Electroretinography Research -->
+                <div class="artwork-card">
+                    <div class="artwork-image">
+                        <div class="image-placeholder">
+                            <p>[ ERG Research Image ]</p>
+                        </div>
+                    </div>
+                    <div class="artwork-content">
+                        <h3 class="artwork-title">Logo Design</h3>
+                        <p class="artwork-description">
+                            Logo design for various organizations and design teams using Procreate.
+                        </p>
+                        <div class="artwork-tags">
+                            <span class="tag">Research</span>
+                            <span class="tag">Nanotechnology</span>
+                            <span class="tag">Signal Analysis</span>
+                            <span class="tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ARTWORK 3: Mechanoreceptor Model -->
+                <div class="artwork-card">
+                    <div class="artwork-image">
+                        <div class="image-placeholder">
+                            <p>[ Mechanoreceptor Model Image ]</p>
+                        </div>
+                    </div>
+                    <div class="artwork-content">
+                        <h3 class="artwork-title">Other</h3>
+                        <p class="artwork-description">
+                            Other art.
+                        </p>
+                        <div class="artwork-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">MATLAB</span>
+                            <span class="tag">Mathematical Modeling</span>
+                            <span class="tag">Simulation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--
+                    TO ADD A NEW ARTWORK:
+                    Copy the entire artwork-card div above and paste it here.
+                    Update the image path, title, description, and tags.
+                -->
+
+            </div>
+        </div>
+    </section>
+
 
     <!-- ========================================
          CONTACT SECTION
