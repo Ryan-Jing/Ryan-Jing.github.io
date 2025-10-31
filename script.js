@@ -669,12 +669,27 @@ document.head.appendChild(videoStyle);
 
 // Function to determine if file is a video
 function isVideo(filename) {
+    if (!filename) return false;
     const videoExtensions = ['.mp4', '.webm', '.ogg', '.mov'];
     return videoExtensions.some(ext => filename.toLowerCase().endsWith(ext));
 }
 
 // Function to create media element (video or image)
-function createMediaElement(src) {
+function createMediaElement(item) {
+    // Handle both old format (string) and new format (object)
+    let src, text;
+
+    if (typeof item === 'string') {
+        src = item;
+        text = null;
+    } else {
+        src = item.src;
+        text = item.text || null;
+    }
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'modal-item-wrapper';
+
     if (isVideo(src)) {
         const video = document.createElement('video');
         video.controls = true;
@@ -687,14 +702,32 @@ function createMediaElement(src) {
         source.type = 'video/mp4';
 
         video.appendChild(source);
-        return video;
+        wrapper.appendChild(video);
     } else {
         const img = document.createElement('img');
         img.src = src;
         img.alt = 'Project media';
         img.className = 'modal-media';
-        return img;
+        wrapper.appendChild(img);
     }
+
+    // Add optional text caption if provided
+    if (text) {
+        const caption = document.createElement('div');
+        caption.className = 'modal-media-caption';
+        caption.textContent = text;
+        wrapper.appendChild(caption);
+    }
+
+    return wrapper;
+}
+
+// Function to create text block element
+function createTextElement(content) {
+    const textBlock = document.createElement('div');
+    textBlock.className = 'modal-text-block';
+    textBlock.innerHTML = content; // Support HTML formatting
+    return textBlock;
 }
 
 // Function to get layout class based on number of items
@@ -726,13 +759,20 @@ function openModal(contentUrls) {
     const contentWrapper = document.createElement('div');
     contentWrapper.className = `modal-content ${getLayoutClass(contentUrls.length)}`;
 
-    // Add media elements
-    contentUrls.forEach(url => {
-        const mediaWrapper = document.createElement('div');
-        mediaWrapper.className = 'modal-media-wrapper';
-        const mediaElement = createMediaElement(url);
-        mediaWrapper.appendChild(mediaElement);
-        contentWrapper.appendChild(mediaWrapper);
+    // Add content elements (media or text)
+    contentUrls.forEach(item => {
+        // Check if it's a text-only block
+        if (typeof item === 'object' && item.type === 'text') {
+            const textElement = createTextElement(item.content);
+            contentWrapper.appendChild(textElement);
+        } else {
+            // It's media (image/video) - could be string or object with src
+            const mediaWrapper = document.createElement('div');
+            mediaWrapper.className = 'modal-media-wrapper';
+            const mediaElement = createMediaElement(item);
+            mediaWrapper.appendChild(mediaElement);
+            contentWrapper.appendChild(mediaWrapper);
+        }
     });
 
     // Assemble modal
@@ -915,10 +955,11 @@ modalStyle.textContent = `
         max-width: 1400px;
         background: var(--card-bg);
         border-radius: 12px;
-        padding: 2rem;
+        padding: 0;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         transform: scale(0.9);
         transition: transform 0.3s ease;
+        overflow: hidden;
     }
 
     .modal-overlay.active .modal-container {
@@ -956,6 +997,10 @@ modalStyle.textContent = `
         height: 100%;
         display: flex;
         gap: 1rem;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 2rem;
+        box-sizing: border-box;
     }
 
     /* Single item - full screen */
@@ -998,11 +1043,12 @@ modalStyle.textContent = `
     /* Four+ items - grid */
     .modal-content.layout-grid {
         flex-wrap: wrap;
+        align-content: flex-start;
     }
 
     .modal-content.layout-grid .modal-media-wrapper {
         flex: 1 1 calc(50% - 0.5rem);
-        height: calc(50% - 0.5rem);
+        height: 400px;
         min-width: 300px;
     }
 
@@ -1033,6 +1079,62 @@ modalStyle.textContent = `
         object-fit: contain;
     }
 
+    /* ===== MEDIA ITEM WRAPPER (for captions) ===== */
+    .modal-item-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* ===== MEDIA CAPTIONS ===== */
+    .modal-media-caption {
+        padding: 0.75rem 1rem;
+        background: rgba(0, 0, 0, 0.5);
+        color: var(--fg-primary);
+        font-size: 0.9rem;
+        line-height: 1.5;
+        text-align: center;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+
+    /* ===== TEXT BLOCKS ===== */
+    .modal-text-block {
+        width: 100%;
+        padding: 1.5rem;
+        background: rgba(0, 0, 0, 0.2);
+        color: var(--fg-primary);
+        font-size: 1rem;
+        line-height: 1.8;
+        border-radius: 8px;
+        margin: 0.5rem 0;
+    }
+
+    .modal-text-block p {
+        margin-bottom: 1rem;
+    }
+
+    .modal-text-block p:last-child {
+        margin-bottom: 0;
+    }
+
+    .modal-text-block h3 {
+        color: var(--accent-bright);
+        margin-bottom: 0.75rem;
+        font-size: 1.3rem;
+    }
+
+    .modal-text-block ul,
+    .modal-text-block ol {
+        margin-left: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .modal-text-block li {
+        margin-bottom: 0.5rem;
+    }
+
     /* ===== IMAGE STYLING ===== */
     .project-image-img {
         width: 100%;
@@ -1061,6 +1163,9 @@ modalStyle.textContent = `
         .modal-container {
             width: 95%;
             height: 95vh;
+        }
+
+        .modal-content {
             padding: 1rem;
         }
 
