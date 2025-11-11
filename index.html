@@ -38,7 +38,7 @@
     <section id="home" class="hero-section">
         <div class="hero-content">
             <div class="hero-text fade-in">
-                <h1 class="hero-title"><span class="highlight">Ryan Jing's Portfolio (WIP)</span></h1>
+                <h1 class="hero-title"><span class="highlight">Ryan Jing's Portfolio</span></h1>
                 <h2 class="hero-subtitle">Biomedical Engineering Student</h2>
                 <p class="hero-description">
                     Passionate about developing medical devices and embedded systems.
@@ -77,8 +77,7 @@
                         medical devices and embedded systems.
                     </p>
                     <div class="about-image-placeholder">
-                        <!-- Add your photo here -->
-                        <p class="placeholder-text">[ Your Photo Here ]</p>
+                        <img src="assets/images/portrait_one.jpeg" alt="Ryan Jing Profile Picture" class="about-image">
                     </div>
                 </div>
             </div>
@@ -178,24 +177,34 @@
                 </div>
 
                 <!-- PROJECT 4: DJ Box -->
-                <div class="project-card">
+                <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>Portable DJ Mixing System</h3><p>Developed a fully functional, portable DJ mixing system built from cardboard with integrated hardware controls and real-time audio processing capabilities. This project combined embedded systems engineering, audio signal processing, and full-stack web development to create a standalone music mixing solution that operates independently of network connectivity.</p><p><strong>Hardware Architecture:</strong> The system is built around an ESP32 microcontroller running FreeRTOS, managing multiple hardware inputs including buttons, rotary encoders, and potentiometers. The firmware handles hardware interrupts for responsive button actions and implements I2C communication protocol to transmit control signals to a Raspberry Pi 5. The multi-threaded architecture ensures real-time performance without input lag.</p><p><strong>Audio Processing:</strong> The Raspberry Pi 5 serves as the audio processing engine, receiving control inputs from the ESP32 via I2C and applying real-time audio effects including mixing, EQ adjustments, crossfading, and tempo modulation. The system outputs processed audio to Bluetooth devices such as wireless headphones, enabling completely portable operation without requiring Wi-Fi connectivity.</p><p><strong>Web Interface & Spotify Integration:</strong> Developed a custom web application with a backend API that integrates with Spotify\u2019s API for playlist management. Users authenticate their Spotify account, browse their playlists through an intuitive interface, and select tracks for download. The backend handles secure authentication, playlist retrieval, and local audio file management on the Raspberry Pi 5, ensuring all music is available offline for mixing sessions in any location.</p><p>This project demonstrates proficiency in embedded C/C++ development, real-time operating systems, hardware communication protocols, audio DSP, full-stack web development, and system integration across multiple platforms.</p>"}, "assets/projects/DJ/DJ_Video.mov", {"src": "assets/projects/DJ/DJ_Box.jpeg", "text": "Complete DJ box assembly showing cardboard construction and control layout"}, {"src": "assets/projects/DJ/DJ_Wire.jpeg", "text": "Internal electronics - ESP32 wiring and hardware integration"}, {"src": "assets/projects/DJ/DJ_Group.jpeg", "text": "Team presentation showcasing the final working prototype"}]'>
                     <div class="project-image">
-                        <div class="image-placeholder">
-                            <p>[ Images Coming Soon! ]</p>
-                        </div>
+                        <!-- Video element - plays on hover -->
+                        <video class="project-video" muted loop playsinline>
+                            <source src="assets/projects/DJ/DJ_Video.mov" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-hover-hint">Hover to play</div>
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Cardboard DJ Set</h3>
                         <p class="project-description">
-                            Interactive DJ set made from cardboard and equipped with sensors.
-                            The setup includes a turntable, mixer, and various effects, all
-                            controlled through an Arduino board. Users can manipulate the
-                            cardboard components to create unique sounds and mixes.
+                            With a team of 3, we designed an interactive DJ set made from cardboard,
+                            equipped with actuators to mimic a professional DJ setup.
+                            This includes a turntable, mixer, and various effects, with
+                            hardware controls between microcontroller and SBC. Users can upload their song, and manipulate the cardboard components to create unique sounds and mixes.
                         </p>
                         <div class="project-tags">
-                            <span class="tag">Hardware</span>
-                            <span class="tag">Interactive Design</span>
-                            <span class="tag">Sound Design</span>
+                            <span class="tag">ESP32</span>
+                            <span class="tag">FreeRTOS</span>
+                            <span class="tag">Raspberry Pi 5</span>
+                            <span class="tag">I2C</span>
+                            <span class="tag">Audio Processing</span>
+                            <span class="tag">Web Development</span>
+                            <span class="tag">Spotify API</span>
+                        </div>
+                        <div class="expand-button">
+                            Click to expand <span class="expand-arrow">↓</span>
                         </div>
                     </div>
                 </div>
@@ -426,58 +435,50 @@
             <h2 class="section-title">Artworks</h2>
             <div class="artworks-grid">
 
-                <!-- ARTWORK 1: Placeholder -->
-                <div class="artwork-card">
+                <!-- ARTWORK 1: Digital Art -->
+                <div class="artwork-card" data-expand-content='[{"type": "text", "content": "<h3>Digital Art Portfolio</h3><p>[Add your description here]</p>"}, {"src": "assets/artworks/lady_video.mov", "text": "[Add stuff]"}, {"src": "assets/artworks/gambino_video.mov", "text": "[Add stuff]"}, {"src": "assets/artworks/asianman_video.mov", "text": "[Add stuff]"}, {"src": "assets/artworks/dude_video.mp4", "text": "[Add stuff]"}, {"src": "assets/artworks/skull_video.mov", "text": "[Add stuff]"}, {"src": "assets/artworks/flyingman_video.mp4", "text": "[Add stuff]"}, {"src": "assets/artworks/art_one.jpeg", "text": "[Add description for art_one]"}, {"src": "assets/artworks/art_two.jpeg", "text": "[Add description for art_two]"}, {"src": "assets/artworks/art_three.jpeg", "text": "[Add description for art_three]"}, {"src": "assets/artworks/art_four.jpeg", "text": "[Add description for art_four]"}, {"src": "assets/artworks/art_five.jpeg", "text": "[Add description for art_five]"}, {"src": "assets/artworks/art_six.jpeg", "text": "[Add description for art_six]"}, {"src": "assets/artworks/art_seven.jpeg", "text": "[Add description for art_seven]"}, {"src": "assets/artworks/art_eight.jpeg", "text": "[Add description for art_eight]"}, {"src": "assets/artworks/art_nine.jpeg", "text": "[Add description for art_nine]"}, {"src": "assets/artworks/art_ten.jpeg", "text": "[Add description for art_ten]"}, "assets/artworks/asianman_video.mp4", "assets/artworks/dude_video.mp4", "assets/artworks/flyingman_video.mov", "assets/artworks/gambino_video.mov", "assets/artworks/skull_video.mov"]'>
                     <div class="artwork-image">
-                        <!-- Image placeholder - Add your image path here -->
-                        <div class="image-placeholder">
-                            <p>[ Placeholder Image ]</p>
-                        </div>
+                        <!-- Video element - plays on hover -->
+                        <video class="project-video" muted loop playsinline>
+                            <source src="assets/artworks/lady_video.mov" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="art-video-hover-hint">Hover to play</div>
                     </div>
                     <div class="artwork-content">
                         <h3 class="artwork-title">Digital Art</h3>
                         <p class="artwork-description">
-                            Digital art.
+                            Digital art created using Procreate, featuring character illustrations, animations, and creative explorations.
                         </p>
                         <div class="artwork-tags">
                             <span class="tag">Procreate</span>
+                            <span class="tag">Digital Art</span>
+                            <span class="tag">Animation</span>
                         </div>
-                        <!-- Add video/demo link here when available -->
+                        <div class="expand-button">
+                            Click to expand <span class="expand-arrow">↓</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- ARTWORK 2: Placeholder -->
-                <div class="artwork-card">
+                <!-- ARTWORK 2: Logo Design -->
+                <div class="artwork-card" data-expand-content='[{"type": "text", "content": "<h3>Logo Design Portfolio</h3><p>[Add your description here]</p>"}, {"src": "assets/artworks/logos/logo_four.jpeg", "text": "[Add description for logo_four]"}, {"src": "assets/artworks/logos/logo_one.jpeg", "text": "[Add description for logo_one]"}, {"src": "assets/artworks/logos/logo_two.jpeg", "text": "[Add description for logo_two]"}, {"src": "assets/artworks/logos/logo_three.jpeg", "text": "[Add description for logo_three]"}]'>
                     <div class="artwork-image">
-                        <div class="image-placeholder">
-                            <p>[ Placeholder Image ]</p>
-                        </div>
+                        <!-- Image - properly formatted -->
+                        <img src="assets/artworks/logos/logo_four.jpeg" alt="Logo Design" class="project-image-img">
                     </div>
                     <div class="artwork-content">
                         <h3 class="artwork-title">Logo Design</h3>
                         <p class="artwork-description">
-                            Logo design for various organizations and design teams using Procreate.
+                            Logo design for various organizations and design teams using Procreate. Professional branding and identity work.
                         </p>
                         <div class="artwork-tags">
-                            <span class="tag">Logo</span>
+                            <span class="tag">Logo Design</span>
+                            <span class="tag">Branding</span>
+                            <span class="tag">Procreate</span>
                         </div>
-                    </div>
-                </div>
-
-                <!-- ARTWORK 3: Placeholder -->
-                <div class="artwork-card">
-                    <div class="artwork-image">
-                        <div class="image-placeholder">
-                            <p>[ Placeholder Image ]</p>
-                        </div>
-                    </div>
-                    <div class="artwork-content">
-                        <h3 class="artwork-title">Other</h3>
-                        <p class="artwork-description">
-                            Other art.
-                        </p>
-                        <div class="artwork-tags">
-                            <span class="tag">Other</span>
+                        <div class="expand-button">
+                            Click to expand <span class="expand-arrow">↓</span>
                         </div>
                     </div>
                 </div>
@@ -515,19 +516,13 @@
 
                 <div class="social-links">
                     <!-- LinkedIn - Update href with your LinkedIn URL -->
-                    <a href="#" class="social-link" target="_blank" rel="noopener">
+                    <a href="https://www.linkedin.com/in/ryan-jing-577201216/" class="social-link" target="_blank" rel="noopener">
                         <span class="social-icon">in</span>
                         LinkedIn
                     </a>
 
-                    <!-- Instagram - Update href with your Instagram URL -->
-                    <a href="#" class="social-link" target="_blank" rel="noopener">
-                        <span class="social-icon">ig</span>
-                        Instagram
-                    </a>
-
                     <!-- GitHub -->
-                    <a href="https://github.com/ryanjing23" class="social-link" target="_blank" rel="noopener">
+                    <a href="https://github.com/Ryan-Jing" class="social-link" target="_blank" rel="noopener">
                         <span class="social-icon">gh</span>
                         GitHub
                     </a>
@@ -538,7 +533,7 @@
                     <h3 class="resume-title">Download My Resume</h3>
                     <p class="resume-text">View or download my complete resume as a PDF</p>
                     <!-- Update href with path to your resume PDF -->
-                    <a href="assets/Resume_2025.pdf" class="btn btn-primary" download>
+                    <a href="assets/files/Resume_2026.pdf" class="btn btn-primary" download>
                         Download Resume (PDF)
                     </a>
                 </div>
@@ -551,8 +546,7 @@
     ========================================= -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Ryan Jing. All rights reserved.</p>
-            <p>Built with passion for engineering and design.</p>
+            <p>2025 Ryan Jing</p>
         </div>
     </footer>
 
