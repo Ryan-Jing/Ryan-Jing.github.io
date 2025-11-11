@@ -824,12 +824,12 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Add click listeners to expand buttons and project images
+// Add click listeners to expand buttons and project/artwork images
 document.addEventListener('click', (e) => {
     // Handle expand button clicks
     if (e.target.closest('.expand-button')) {
-        const projectCard = e.target.closest('.project-card');
-        const contentUrls = projectCard.getAttribute('data-expand-content');
+        const card = e.target.closest('.project-card') || e.target.closest('.artwork-card');
+        const contentUrls = card?.getAttribute('data-expand-content');
 
         if (contentUrls) {
             try {
@@ -841,10 +841,10 @@ document.addEventListener('click', (e) => {
         }
     }
 
-    // Handle project image clicks
-    if (e.target.closest('.project-image')) {
-        const projectCard = e.target.closest('.project-card');
-        const contentUrls = projectCard.getAttribute('data-expand-content');
+    // Handle project/artwork image clicks
+    if (e.target.closest('.project-image') || e.target.closest('.artwork-image')) {
+        const card = e.target.closest('.project-card') || e.target.closest('.artwork-card');
+        const contentUrls = card?.getAttribute('data-expand-content');
 
         if (contentUrls) {
             try {
@@ -868,6 +868,20 @@ modalStyle.textContent = `
     }
 
     .project-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+    }
+
+    /* ===== ARTWORK CARD LAYOUT FIX ===== */
+    .artwork-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .artwork-content {
         display: flex;
         flex-direction: column;
         flex: 1;
@@ -906,7 +920,7 @@ modalStyle.textContent = `
     /* ===== VIDEO HOVER HINT ===== */
     .video-hover-hint {
         position: absolute;
-        top: 50%;
+        top: 51%;
         left: 50%;
         transform: translate(-50%, -50%);
         background: rgba(0, 0, 0, 0.7);
@@ -921,8 +935,33 @@ modalStyle.textContent = `
     }
 
     .project-card:hover .video-hover-hint,
+    .artwork-card:hover .video-hover-hint,
     .project-video:hover ~ .video-hover-hint,
     .project-video.playing ~ .video-hover-hint {
+        opacity: 0;
+    }
+
+    /* ===== ART VIDEO HOVER HINT ===== */
+    .art-video-hover-hint {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.7);
+        color: var(--white);
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        opacity: 0.7;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: 2;
+    }
+
+    .project-card:hover .art-video-hover-hint,
+    .artwork-card:hover .art-video-hover-hint,
+    .project-video:hover ~ .art-video-hover-hint,
+    .project-video.playing ~ .art-video-hover-hint {
         opacity: 0;
     }
 
