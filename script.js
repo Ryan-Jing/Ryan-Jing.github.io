@@ -824,27 +824,18 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Add click listeners to expand buttons and project/artwork images
+// Add click listeners to project/artwork cards (entire card is clickable except tags)
 document.addEventListener('click', (e) => {
-    // Handle expand button clicks
-    if (e.target.closest('.expand-button')) {
-        const card = e.target.closest('.project-card') || e.target.closest('.artwork-card');
-        const contentUrls = card?.getAttribute('data-expand-content');
-
-        if (contentUrls) {
-            try {
-                const urls = JSON.parse(contentUrls);
-                openModal(urls);
-            } catch (err) {
-                console.error('Error parsing expand content:', err);
-            }
-        }
+    // Don't open modal if clicking on a tag
+    if (e.target.closest('.tag')) {
+        return;
     }
 
-    // Handle project/artwork image clicks
-    if (e.target.closest('.project-image') || e.target.closest('.artwork-image')) {
-        const card = e.target.closest('.project-card') || e.target.closest('.artwork-card');
-        const contentUrls = card?.getAttribute('data-expand-content');
+    // Check if click is within a project or artwork card
+    const card = e.target.closest('.project-card') || e.target.closest('.artwork-card');
+
+    if (card) {
+        const contentUrls = card.getAttribute('data-expand-content');
 
         if (contentUrls) {
             try {
@@ -1040,6 +1031,30 @@ modalStyle.textContent = `
         overflow-x: hidden;
         padding: 2rem;
         box-sizing: border-box;
+
+        /* Scrollbar styling for Firefox */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(215, 153, 33, 0.6) rgba(40, 40, 40, 0.3);
+    }
+
+    /* ===== CUSTOM SCROLLBAR FOR WEBKIT BROWSERS (Chrome, Safari, Edge) ===== */
+    .modal-content::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    .modal-content::-webkit-scrollbar-track {
+        background: rgba(40, 40, 40, 0.3);
+        border-radius: 10px;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb {
+        background: rgba(215, 153, 33, 0.6);
+        border-radius: 10px;
+        border: 2px solid rgba(40, 40, 40, 0.3);
+    }
+
+    .modal-content::-webkit-scrollbar-thumb:hover {
+        background: rgba(215, 153, 33, 0.9);
     }
 
     /* Single item - full screen */

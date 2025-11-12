@@ -95,11 +95,11 @@
             <div class="projects-grid">
 
                 <!-- PROJECT 1: EMG Hand Prosthetic -->
-                <div class="project-card" data-expand-content='["assets/projects/EMG/Claw_Function_Demonstraton_Pt1.mp4"]'>
+                <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>EMG-Controlled Hand Prosthetic</h3><p>Developed with a partner a functional hand prosthetic prototype designed for upper-limb amputees, combining analog signal processing, and mechanical design to create a biometric control interface.</p><p><strong>Analog Signal Processing:</strong> Designed and implemented a custom analog filter circuit to process electromyography (EMG) signals captured from skin surface electrodes placed on the forearm. The circuit filters muscle activation signals, amplifies them to a usable range, and passes the conditioned signal to a comparator that outputs a digital high/low signal corresponding to forearm flexion and extension.</p><p> Programmed an Arduino microcontroller to interpret the comparator output and control servo motors that actuate the prosthetic fingers. The firmware implements threshold detection, and debouncing for stable operation.</p><p>Partner designed the complete prosthetic hand mechanism in SolidWorks, optimizing for printability, weight, and range of motion. The claw design features articulating fingers driven by a tendon-based actuation system, all fabricated using 3D printing for rapid prototyping and iteration. The integration of electronics, motors, and mechanical linkages was carefully planned to fit within a compact, wearable form factor.</p>"}, {"src": "assets/projects/EMG/Claw_Function_Demonstraton_Pt1.mov", "text": "Demonstration of EMG-controlled claw grasping motion"}, {"src": "assets/projects/EMG/EMGClawVideo.Mov", "text": "Additional demonstration video"}, {"src": "assets/projects/EMG/EMGClawCad.png", "text": "CAD Model"}]'>
                     <div class="project-image">
                         <!-- Video element - plays on hover -->
                         <video class="project-video" muted loop playsinline>
-                            <source src="assets/projects/EMG/Claw_Function_Demonstraton_Pt1.mp4" type="video/mp4">
+                            <source src="assets/projects/EMG/Claw_Function_Demonstraton_Pt1.mov" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                         <div class="video-hover-hint">Hover to play</div>
@@ -107,16 +107,14 @@
                     <div class="project-content">
                         <h3 class="project-title">EMG Hand Prosthetic</h3>
                         <p class="project-description">
-                            Engineered with a partner a high-fidelity hand prosthetic prototype for amputees.
-                            Designed analog filter for processing/filtering EMG signals
-                            from skin electrodes to detect forearm flexion. Integrated Arduino
-                            firmware with SolidWorks-modeled, 3D-printed mechanical components.
+                            Developed a functional hand prosthetic prototype using EMG processing. Designed custom analog filter circuit to capture muscle signals from skin surface electrodes, outputting digital logic to an Arduino that processes these signals to actuate servo motors in a 3D-printed claw hand designed in SolidWorks.
                         </p>
                         <div class="project-tags">
                             <span class="tag">Arduino</span>
-                            <span class="tag">PCB Design</span>
+                            <span class="tag">Analog Circuits</span>
+                            <span class="tag">EMG Processing</span>
                             <span class="tag">SolidWorks</span>
-                            <span class="tag">Signal Processing</span>
+                            <span class="tag">3D Printing</span>
                         </div>
                         <div class="expand-button">
                             Click to expand <span class="expand-arrow">↓</span>
@@ -151,7 +149,7 @@
                 </div>
 
                 <!-- PROJECT 3: Mechanoreceptor Model -->
-                <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>Mechanoreceptor Simulation Project</h3><p>This project demonstrates a comprehensive Python-based simulation of SA-1 and FA-1 mechanoreceptors located in human fingertips. The simulation models how these receptors respond to different surface textures and pressures, converting mechanical stimuli into electrical signals that would be interpreted by the nervous system.</p><p>The visualizations below show various scanning models and 3D plots that illustrate receptor activation patterns across different topographical surfaces.</p>"}, {"src": "assets/projects/Mechanoreceptor/COW_image.png", "text": "Input surface texture"}, {"src": "assets/projects/Mechanoreceptor/COW_Scanning_Model_3D_Plot.png", "text": "3D plot showing receptor response"}, {"src": "assets/projects/Mechanoreceptor/COW_Scanning_Model_Heatmap.png", "text": "Heatmap visualization of activation patterns"}, {"src": "assets/projects/Mechanoreceptor/SurfaceTexture_Scanning_Model_3D_Plot.png", "text": "Surface texture scanning model"}, {"src": "assets/projects/Mechanoreceptor/Scanning_Model_3D_Plot.png", "text": "General scanning model output"}]'>
+                <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>Mechanoreceptor Simulation Project</h3><p>This project demonstrates a comprehensive Python-based simulation of SA-1 and FA-1 mechanoreceptors located in human fingertips. The simulation models how these receptors respond to different surface textures and pressures, converting mechanical stimuli into electrical signals that would be interpreted by the nervous system.</p><p>The visualizations below show various scanning models and 3D plots that illustrate receptor activation patterns across different topographical surfaces.</p>"}, {"src": "assets/projects/Mechanoreceptor/COW_image.png", "text": "Input surface texture"}, {"src": "assets/projects/Mechanoreceptor/COW_Scanning_Model_3D_Plot.png", "text": "3D plot showing receptor response"}, {"src": "assets/projects/Mechanoreceptor/COW_Scanning_Model_Heatmap.png", "text": "Heatmap visualization of activation patterns"}, {"src": "assets/projects/Mechanoreceptor/Scanning_Model_3D_Plot.png", "text": "Model output scanning over keyboard topography"}, {"src": "assets/projects/Mechanoreceptor/surface_texture_image.png", "text": "Surface texture example"}, {"src": "assets/projects/Mechanoreceptor/SurfaceTexture_Scanning_Model_3D_Plot.png", "text": "Scanning model output over surface texture example"}]'>
                     <div class="project-image">
                         <div class="image-placeholder">
                             <img src="assets/projects/Mechanoreceptor/SurfaceTexture_Scanning_Model_3D_Plot.png" alt="Mechanoreceptor Model" class="project-image-img">
@@ -177,7 +175,7 @@
                 </div>
 
                 <!-- PROJECT 4: DJ Box -->
-                <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>Portable DJ Mixing System</h3><p>Developed a fully functional, portable DJ mixing system built from cardboard with integrated hardware controls and real-time audio processing capabilities. This project combined embedded systems engineering, audio signal processing, and full-stack web development to create a standalone music mixing solution that operates independently of network connectivity.</p><p><strong>Hardware Architecture:</strong> The system is built around an ESP32 microcontroller running FreeRTOS, managing multiple hardware inputs including buttons, rotary encoders, and potentiometers. The firmware handles hardware interrupts for responsive button actions and implements I2C communication protocol to transmit control signals to a Raspberry Pi 5. The multi-threaded architecture ensures real-time performance without input lag.</p><p><strong>Audio Processing:</strong> The Raspberry Pi 5 serves as the audio processing engine, receiving control inputs from the ESP32 via I2C and applying real-time audio effects including mixing, EQ adjustments, crossfading, and tempo modulation. The system outputs processed audio to Bluetooth devices such as wireless headphones, enabling completely portable operation without requiring Wi-Fi connectivity.</p><p><strong>Web Interface & Spotify Integration:</strong> Developed a custom web application with a backend API that integrates with Spotify\u2019s API for playlist management. Users authenticate their Spotify account, browse their playlists through an intuitive interface, and select tracks for download. The backend handles secure authentication, playlist retrieval, and local audio file management on the Raspberry Pi 5, ensuring all music is available offline for mixing sessions in any location.</p><p>This project demonstrates proficiency in embedded C/C++ development, real-time operating systems, hardware communication protocols, audio DSP, full-stack web development, and system integration across multiple platforms.</p>"}, "assets/projects/DJ/DJ_Video.mov", {"src": "assets/projects/DJ/DJ_Box.jpeg", "text": "Complete DJ box assembly showing cardboard construction and control layout"}, {"src": "assets/projects/DJ/DJ_Wire.jpeg", "text": "Internal electronics - ESP32 wiring and hardware integration"}, {"src": "assets/projects/DJ/DJ_Group.jpeg", "text": "Team presentation showcasing the final working prototype"}]'>
+                <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>Portable DJ Mixing System</h3><p>Developed a fully functional, portable DJ mixing system built from cardboard with integrated hardware controls and real-time audio processing capabilities. This project combined embedded systems engineering, audio signal processing, and full-stack web development to create a standalone music mixing solution that operates independently of network connectivity.</p><p><strong>Hardware Architecture:</strong> The system is built around an ESP32 microcontroller running FreeRTOS, managing multiple hardware inputs including buttons, rotary encoders, and potentiometers. The firmware handles hardware interrupts for responsive button actions and implements I2C communication protocol to transmit control signals to a Raspberry Pi 5. The multi-threaded architecture ensures real-time performance without input lag.</p><p><strong>Audio Processing:</strong> The Raspberry Pi 5 serves as the audio processing engine, receiving control inputs from the ESP32 via I2C and applying real-time audio effects including mixing, EQ adjustments, crossfading, and tempo modulation. The system outputs processed audio to Bluetooth devices such as wireless headphones, enabling completely portable operation without requiring Wi-Fi connectivity.</p><p><strong>Web Interface & Spotify Integration:</strong> Developed a custom web application with a backend API that integrates with Spotify\u2019s API for playlist management. Users authenticate their Spotify account, browse their playlists through an intuitive interface, and select tracks for download. The backend handles secure authentication, playlist retrieval, and local audio file management on the Raspberry Pi 5, ensuring all music is available offline for mixing sessions in any location.</p><p>This project demonstrates proficiency in embedded C/C++ development, real-time operating systems, hardware communication protocols, audio DSP, full-stack web development, and system integration across multiple platforms.</p>"}, {"src": "assets/projects/DJ/DJ_Video.mov", "text": "Clip of DJ Box"}, {"src": "assets/projects/DJ/DJ_Box.jpeg", "text": "Complete DJ box assembly showing cardboard construction and control layout"}, {"src": "assets/projects/DJ/DJ_Wire.jpeg", "text": "Internal electronics - ESP32 wiring and hardware integration"}, {"src": "assets/projects/DJ/DJ_Group.jpeg", "text": "Team presentation showcasing the final working prototype"}]'>
                     <div class="project-image">
                         <!-- Video element - plays on hover -->
                         <video class="project-video" muted loop playsinline>
@@ -219,7 +217,7 @@
                     <div class="project-content">
                         <h3 class="project-title">CAD & Design Work</h3>
                         <p class="project-description">
-                            Extensive 3D modeling and engineering design using SolidWorks and Onshape. Projects include device housing design, FEA analysis, aerodynamic modeling, and design for 3D printing and manufacturing.
+                             3D modeling and engineering design using SolidWorks and Onshape. Projects and work experience include device housing design, FEA analysis, aerodynamic modeling, and design for 3D printing and manufacturing.
                         </p>
                         <div class="project-tags">
                             <span class="tag">SolidWorks</span>
@@ -244,7 +242,7 @@
                     <div class="project-content">
                         <h3 class="project-title">Building a Deck in my Backyard</h3>
                         <p class="project-description">
-                            Built a complete backyard deck from the ground up. Hands-on construction project using hand saws, table saw, circular saw, and various power tools. Gained practical experience in wood cutting, joinery, and structural outdoor construction.
+                            Built a backyard deck, hands-on construction project using hand saws, table saw, circular saw, and various power tools. Gained practical experience in wood cutting, joinery, and structural outdoor construction.
                         </p>
                         <div class="project-tags">
                             <span class="tag">Woodworking</span>
