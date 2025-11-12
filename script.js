@@ -6,6 +6,110 @@
  */
 
 // ==========================================
+// SAFARI AUTOPLAY WORKAROUND
+// Safari requires user interaction before videos can autoplay
+// ==========================================
+(function() {
+    // Detect Safari browser (but not Chrome on iOS or other browsers)
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+    if (isSafari) {
+        // Create welcome overlay
+        const overlay = document.createElement('div');
+        overlay.id = 'safari-welcome-overlay';
+        overlay.innerHTML = `
+            <div class="welcome-content">
+                <h2>Welcome to My Portfolio</h2>
+                <p>Click anywhere to continue</p>
+                <div class="click-indicator">↓</div>
+            </div>
+        `;
+
+        // Add styles for the overlay
+        const overlayStyle = document.createElement('style');
+        overlayStyle.textContent = `
+            #safari-welcome-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 10000;
+                cursor: pointer;
+                animation: fadeIn 0.5s ease;
+            }
+
+            .welcome-content {
+                text-align: center;
+                color: white;
+            }
+
+            .welcome-content h2 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                color: var(--accent-bright, #d79921);
+            }
+
+            .welcome-content p {
+                font-size: 1.2rem;
+                color: var(--fg-secondary, #a8a8a8);
+                margin-bottom: 2rem;
+            }
+
+            .click-indicator {
+                font-size: 3rem;
+                animation: bounce 2s infinite;
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+
+            @keyframes bounce {
+                0%, 20%, 50%, 80%, 100% {
+                    transform: translateY(0);
+                }
+                40% {
+                    transform: translateY(-20px);
+                }
+                60% {
+                    transform: translateY(-10px);
+                }
+            }
+
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(overlayStyle);
+        document.body.appendChild(overlay);
+
+        // Remove overlay on any click
+        overlay.addEventListener('click', function() {
+            overlay.style.animation = 'fadeOut 0.5s ease';
+            setTimeout(() => {
+                overlay.remove();
+            }, 500);
+        });
+
+        // Also remove on any key press
+        document.addEventListener('keydown', function removeOverlay() {
+            overlay.style.animation = 'fadeOut 0.5s ease';
+            setTimeout(() => {
+                overlay.remove();
+            }, 500);
+            document.removeEventListener('keydown', removeOverlay);
+        });
+    }
+})();
+
+// ==========================================
 // SIDEBAR NAVIGATION TOGGLE
 // Handles sidebar expand/collapse functionality
 // ==========================================
@@ -581,17 +685,88 @@ document.head.appendChild(asteriskStyle);
 // Find all video elements with the project-video class
 const projectVideos = document.querySelectorAll('.project-video');
 
-// Add hover event listeners to each video
-projectVideos.forEach(video => {
+// Optimize video loading for faster playback
+projectVideos.forEach((video, index) => {
+    // Set preload attribute to load metadata immediately
+    video.setAttribute('preload', 'metadata');
+
+    // Create loading spinner element
+    const spinner = document.createElement('div');
+    spinner.className = 'video-loading-spinner';
+    spinner.innerHTML = '<div class="spinner"></div>';
+    video.parentElement.appendChild(spinner);
+
+    // Preload first few videos with higher priority (visible on page load)
+    if (index < 3) {
+        video.setAttribute('preload', 'auto');
+        // Load the first frame immediately for instant display
+        video.load();
+    }
+
+    let isHovering = false;
+
     // When mouse enters the video area
     video.addEventListener('mouseenter', function() {
-        this.play(); // Start playing the video
+        isHovering = true;
+        console.log('Mouse enter - readyState:', this.readyState);
+
+        // Show spinner if video isn't ready to play through
+        if (this.readyState < 4) {
+            spinner.style.display = 'flex';
+            console.log('Showing spinner');
+        }
+
+        // Ensure video is loaded before playing
+        if (this.readyState < 2) {
+            this.load();
+        }
+
+        const playPromise = this.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(err => {
+                console.log('Video play failed:', err);
+                spinner.style.display = 'none';
+            });
+        }
     });
 
     // When mouse leaves the video area
     video.addEventListener('mouseleave', function() {
+        isHovering = false;
         this.pause(); // Pause the video
-        this.currentTime = 0; // Reset to beginning (optional - remove this line to keep progress)
+        this.currentTime = 0; // Reset to beginning
+        spinner.style.display = 'none'; // Hide spinner
+    });
+
+    // Monitor loading progress
+    video.addEventListener('loadstart', function() {
+        if (isHovering) {
+            spinner.style.display = 'flex';
+            console.log('Load started');
+        }
+    });
+
+    video.addEventListener('loadeddata', function() {
+        console.log('Data loaded - readyState:', this.readyState);
+    });
+
+    // Hide spinner when video can play through without buffering
+    video.addEventListener('canplaythrough', function() {
+        spinner.style.display = 'none';
+        console.log('Can play through - hiding spinner');
+    });
+
+    // Also hide on canplay (slightly earlier)
+    video.addEventListener('canplay', function() {
+        if (this.readyState >= 3) {
+            spinner.style.display = 'none';
+        }
+    });
+
+    // Hide spinner when actually playing
+    video.addEventListener('playing', function() {
+        spinner.style.display = 'none';
+        console.log('Video playing - hiding spinner');
     });
 
     // Optional: Add a fade-in effect when video starts playing
@@ -604,6 +779,25 @@ projectVideos.forEach(video => {
     video.addEventListener('pause', function() {
         this.style.opacity = '0.95';
     });
+
+    // Show spinner if waiting for data while hovering
+    video.addEventListener('waiting', function() {
+        if (isHovering) {
+            spinner.style.display = 'flex';
+            console.log('Waiting for data - showing spinner');
+        }
+    });
+
+    // Preload videos as they come into viewport
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && entry.target.readyState < 2) {
+                entry.target.load();
+            }
+        });
+    }, { rootMargin: '100px' });
+
+    observer.observe(video);
 });
 
 // Add CSS styling for project videos
@@ -629,9 +823,42 @@ videoStyle.textContent = `
     }
 
     /* Ensure videos fit properly in project cards */
-    .project-image {
+    .project-image,
+    .artwork-image {
+        position: relative;
         overflow: hidden; /* Prevents video from spilling out during zoom */
         border-radius: 8px;
+    }
+
+    /* Loading spinner overlay */
+    .video-loading-spinner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 10;
+        pointer-events: none;
+        border-radius: 8px;
+    }
+
+    /* Spinner animation */
+    .video-loading-spinner .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid var(--accent-bright, #d79921);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
 `;
 document.head.appendChild(videoStyle);
