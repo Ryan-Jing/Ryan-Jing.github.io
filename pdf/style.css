@@ -259,7 +259,8 @@ strong {
     color: #666;
     font-style: italic;
     margin-bottom: var(--spacing-md);
-    text-align: center;
+    text-align: left;
+    max-width: 600px;
 }
 
 .media-note {
@@ -270,6 +271,13 @@ strong {
     border-radius: 4px;
     margin-bottom: var(--spacing-sm);
     border-left: 3px solid #ffc107;
+    max-width: 600px;
+}
+
+.media-note a {
+    color: #0066cc;
+    text-decoration: underline;
+    font-weight: 600;
 }
 
 .media-path {

@@ -20,6 +20,9 @@
                 Passionate about developing medical devices and embedded systems.
                 Specializing in firmware development, PCB design, and hardware integration.
             </p>
+            <p style="margin-top: 1rem; font-size: 0.95rem; color: #0066cc;">
+                Full interactive website: <a href="https://ryan-jing.github.io" style="font-weight: 600;">ryan-jing.github.io</a>
+            </p>
         </div>
     </section>
 
@@ -60,21 +63,31 @@
                 <h3 class="project-title">EMG Hand Prosthetic</h3>
                 <div class="project-summary">
                     <p>
-                        Engineered high-fidelity hand prosthetic prototype for amputees.
-                        Designed LTSPICE circuit and PCB for processing/filtering EMG signals
-                        from skin electrodes to detect forearm flexion. Integrated Arduino
-                        firmware with SolidWorks-modeled, 3D-printed mechanical components.
+                        Developed a functional hand prosthetic prototype using EMG processing. Designed custom analog filter circuit to capture muscle signals from skin surface electrodes, outputting digital logic to an Arduino that processes these signals to actuate servo motors in a 3D-printed claw hand designed in SolidWorks.
                     </p>
                     <div class="project-tags">
                         <span class="tag">Arduino</span>
-                        <span class="tag">PCB Design</span>
+                        <span class="tag">Analog Circuits</span>
+                        <span class="tag">EMG Processing</span>
                         <span class="tag">SolidWorks</span>
-                        <span class="tag">Signal Processing</span>
+                        <span class="tag">3D Printing</span>
                     </div>
                 </div>
+                <div class="project-details">
+                    <h4>EMG-Controlled Hand Prosthetic</h4>
+                    <p>Developed with a partner a functional hand prosthetic prototype designed for upper-limb amputees, combining analog signal processing, and mechanical design to create a biometric control interface.</p>
+
+                    <p><strong>Analog Signal Processing:</strong> Designed and implemented a custom analog filter circuit to process electromyography (EMG) signals captured from skin surface electrodes placed on the forearm. The circuit filters muscle activation signals, amplifies them to a usable range, and passes the conditioned signal to a comparator that outputs a digital high/low signal corresponding to forearm flexion and extension.</p>
+
+                    <p>Programmed an Arduino microcontroller to interpret the comparator output and control servo motors that actuate the prosthetic fingers. The firmware implements threshold detection, and debouncing for stable operation.</p>
+
+                    <p>Partner designed the complete prosthetic hand mechanism in SolidWorks, optimizing for printability, weight, and range of motion. The claw design features articulating fingers driven by a tendon-based actuation system, all fabricated using 3D printing for rapid prototyping and iteration. The integration of electronics, motors, and mechanical linkages was carefully planned to fit within a compact, wearable form factor.</p>
+                </div>
                 <div class="project-media">
-                    <div class="media-note">[Video: Claw Function Demonstration]</div>
-                    <p class="media-path">assets/projects/EMG/Claw_Function_Demonstraton_Pt1.mp4</p>
+                    <img src="../assets/projects/EMG/EMGClawCad.png" alt="EMG Claw CAD Model" class="project-image">
+                    <p class="media-caption">CAD Model of the prosthetic hand mechanism</p>
+
+                    <div class="media-note">[Video demonstration available on full website: <a href="https://ryan-jing.github.io#projects">ryan-jing.github.io</a> - Claw function and EMG control]</div>
                 </div>
             </div>
 
@@ -131,11 +144,14 @@
                     <img src="../assets/projects/Mechanoreceptor/COW_Scanning_Model_Heatmap.png" alt="Heatmap visualization of activation patterns" class="project-image">
                     <p class="media-caption">Heatmap visualization of activation patterns</p>
 
-                    <img src="../assets/projects/Mechanoreceptor/SurfaceTexture_Scanning_Model_3D_Plot.png" alt="Surface texture scanning model" class="project-image">
-                    <p class="media-caption">Surface texture scanning model</p>
+                    <img src="../assets/projects/Mechanoreceptor/Scanning_Model_3D_Plot.png" alt="Model output scanning over keyboard topography" class="project-image">
+                    <p class="media-caption">Model output scanning over keyboard topography</p>
 
-                    <img src="../assets/projects/Mechanoreceptor/Scanning_Model_3D_Plot.png" alt="General scanning model output" class="project-image">
-                    <p class="media-caption">General scanning model output</p>
+                    <img src="../assets/projects/Mechanoreceptor/surface_texture_image.png" alt="Surface texture example" class="project-image">
+                    <p class="media-caption">Surface texture example</p>
+
+                    <img src="../assets/projects/Mechanoreceptor/SurfaceTexture_Scanning_Model_3D_Plot.png" alt="Scanning model output over surface texture example" class="project-image">
+                    <p class="media-caption">Scanning model output over surface texture example</p>
                 </div>
             </div>
 
@@ -172,9 +188,6 @@
                     <p>This project demonstrates proficiency in embedded C/C++ development, real-time operating systems, hardware communication protocols, audio DSP, full-stack web development, and system integration across multiple platforms.</p>
                 </div>
                 <div class="project-media">
-                    <div class="media-note">[Video: DJ Box Demonstration]</div>
-                    <p class="media-path">assets/projects/DJ/DJ_Video.mov</p>
-
                     <img src="../assets/projects/DJ/DJ_Box.jpeg" alt="Complete DJ box assembly" class="project-image">
                     <p class="media-caption">Complete DJ box assembly showing cardboard construction and control layout</p>
 
@@ -183,6 +196,8 @@
 
                     <img src="../assets/projects/DJ/DJ_Group.jpeg" alt="Team presentation" class="project-image">
                     <p class="media-caption">Team presentation showcasing the final working prototype</p>
+
+                    <div class="media-note">[Video demonstration available on full website: <a href="https://ryan-jing.github.io#projects">ryan-jing.github.io</a> - DJ Box in operation]</div>
                 </div>
             </div>
 
@@ -191,7 +206,7 @@
                 <h3 class="project-title">CAD & Design Work</h3>
                 <div class="project-summary">
                     <p>
-                        Extensive 3D modeling and engineering design using SolidWorks and Onshape. Projects include device housing design, FEA analysis, aerodynamic modeling, and design for 3D printing and manufacturing.
+                        3D modeling and engineering design using SolidWorks and Onshape. Projects and work experience include device housing design, FEA analysis, aerodynamic modeling, and design for 3D printing and manufacturing.
                     </p>
                     <div class="project-tags">
                         <span class="tag">SolidWorks</span>
@@ -239,7 +254,7 @@
                 <h3 class="project-title">Building a Deck in my Backyard</h3>
                 <div class="project-summary">
                     <p>
-                        Built a complete backyard deck from the ground up. Hands-on construction project using hand saws, table saw, circular saw, and various power tools. Gained practical experience in wood cutting, joinery, and structural outdoor construction.
+                        Built a backyard deck, hands-on construction project using hand saws, table saw, circular saw, and various power tools. Gained practical experience in wood cutting, joinery, and structural outdoor construction.
                     </p>
                     <div class="project-tags">
                         <span class="tag">Woodworking</span>
@@ -401,10 +416,8 @@
     </section>
 
     <!-- ========================================
-         ARTWORKS SECTION (COMMENTED OUT)
-         Uncomment this section to include artwork in PDF
+         ARTWORKS SECTION
     ========================================= -->
-    <!--
     <section id="artworks" class="artworks-section section">
         <div class="container">
             <h2 class="section-title">Artworks</h2>
@@ -426,12 +439,7 @@
                     <p>I enjoy drawing both on paper and on digital platforms. I find interesting art online to use as reference and inspiration.</p>
                 </div>
                 <div class="project-media">
-                    <div class="media-note">[Video: lady_video.mov - Digital in Procreate]</div>
-                    <div class="media-note">[Video: gambino_video.mov - Digital in Procreate]</div>
-                    <div class="media-note">[Video: asianman_video.mov - Digital in Procreate]</div>
-                    <div class="media-note">[Video: dude_video.mp4 - Digital in Procreate]</div>
-                    <div class="media-note">[Video: skull_video.mov - Digital in Procreate]</div>
-                    <div class="media-note">[Video: flyingman_video.mp4 - Digital in Procreate]</div>
+                    <div class="media-note">[Animation videos available on full website: <a href="https://ryan-jing.github.io#artworks">ryan-jing.github.io</a> - Digital artwork created in Procreate]</div>
 
                     <img src="../assets/artworks/art_one.jpeg" alt="Digital art" class="project-image">
                     <p class="media-caption">Digital in Procreate</p>
@@ -498,7 +506,6 @@
 
         </div>
     </section>
-    -->
 
     <!-- ========================================
          CONTACT SECTION
