@@ -49,9 +49,9 @@ def fetch_stats(start_date, end_date, debug=False):
     headers = {"Authorization": f"Bearer {API_TOKEN}"}
 
     try:
-        # Try hits endpoint
+        # Use /stats/total endpoint - more reliable for daily stats
         response = requests.get(
-            f"{BASE_URL}/stats/hits",
+            f"{BASE_URL}/stats/total",
             headers=headers,
             params={
                 "start": start_date.strftime("%Y-%m-%d"),
@@ -62,40 +62,12 @@ def fetch_stats(start_date, end_date, debug=False):
         data = response.json()
 
         if debug:
-            print(f"\n{Colors.YELLOW}DEBUG INFO - /stats/hits:{Colors.RESET}")
-            print(f"API URL: {BASE_URL}/stats/hits")
+            print(f"\n{Colors.YELLOW}DEBUG INFO:{Colors.RESET}")
+            print(f"API URL: {BASE_URL}/stats/total")
             print(f"Date range: {start_date.strftime('%Y-%m-%d')} to {end_date.strftime('%Y-%m-%d')}")
             print(f"Response status: {response.status_code}")
             print(f"Raw response data:")
             print(json.dumps(data, indent=2))
-
-            # Also try /stats/total endpoint
-            print(f"\n{Colors.YELLOW}DEBUG INFO - /stats/total:{Colors.RESET}")
-            response2 = requests.get(
-                f"{BASE_URL}/stats/total",
-                headers=headers,
-                params={
-                    "start": start_date.strftime("%Y-%m-%d"),
-                    "end": end_date.strftime("%Y-%m-%d")
-                }
-            )
-            print(f"Response status: {response2.status_code}")
-            print(f"Raw response data:")
-            print(json.dumps(response2.json(), indent=2))
-
-            # Also try /stats/pages endpoint
-            print(f"\n{Colors.YELLOW}DEBUG INFO - /stats/pages:{Colors.RESET}")
-            response3 = requests.get(
-                f"{BASE_URL}/stats/pages",
-                headers=headers,
-                params={
-                    "start": start_date.strftime("%Y-%m-%d"),
-                    "end": end_date.strftime("%Y-%m-%d")
-                }
-            )
-            print(f"Response status: {response3.status_code}")
-            print(f"Raw response data:")
-            print(json.dumps(response3.json(), indent=2))
             print(f"{Colors.YELLOW}{'─' * 50}{Colors.RESET}\n")
 
         return data
@@ -121,65 +93,15 @@ def get_color_for_count(count, max_count):
         return Colors.BG_BLACK, Colors.RED
 
 
-# def print_header(title):
-#     """Print a styled header"""
-#     width = 70
-#     print(f"\n{Colors.CYAN}{Colors.BOLD}{'=' * width}{Colors.RESET}")
-#     print(f"{Colors.CYAN}{Colors.BOLD}{title.center(width)}{Colors.RESET}")
-#     print(f"{Colors.CYAN}{Colors.BOLD}{'=' * width}{Colors.RESET}\n")
-
-
-# def display_weekly_bar_chart(stats_data):
-#     """Display a bar chart for the last 7 days"""
-#     print_header("WEEKLY VIEWS - Last 7 Days")
-#
-#     # Process data to get daily counts
-#     daily_counts = {}
-#     if 'stats' in stats_data:
-#         for stat in stats_data['stats']:
-#             for day_data in stat.get('days', []):
-#                 date = day_data[0][:10]  # Extract date part
-#                 count = day_data[1]
-#                 daily_counts[date] = daily_counts.get(date, 0) + count
-#
-#     # Get last 7 days
-#     end_date = datetime.now()
-#     dates = [(end_date - timedelta(days=i)).strftime("%Y-%m-%d") for i in range(6, -1, -1)]
-#
-#     # Calculate max for scaling
-#     max_count = max([daily_counts.get(date, 0) for date in dates] + [1])
-#
-#     # Display bar chart
-#     bar_width = 50
-#     for date in dates:
-#         count = daily_counts.get(date, 0)
-#         bar_length = int((count / max_count) * bar_width) if max_count > 0 else 0
-#
-#         # Color based on count
-#         _, color = get_color_for_count(count, max_count)
-#
-#         # Format date nicely
-#         dt = datetime.strptime(date, "%Y-%m-%d")
-#         day_name = dt.strftime("%a")
-#         date_str = dt.strftime("%b %d")
-#
-#         bar = '█' * bar_length
-#         print(f"{Colors.BOLD}{day_name} {date_str}{Colors.RESET} │ {color}{bar}{Colors.RESET} {Colors.BOLD}{count}{Colors.RESET} views")
-#
-#     total_week = sum([daily_counts.get(date, 0) for date in dates])
-#     print(f"\n{Colors.BOLD}Total this week: {Colors.GREEN}{total_week}{Colors.RESET} views")
-
-
 def display_monthly_calendar(stats_data):
     """Display a calendar heatmap for the current month"""
-    # Process data to get daily counts
+    # Process data to get daily counts from /stats/total response
     daily_counts = {}
     if 'stats' in stats_data:
-        for stat in stats_data['stats']:
-            for day_data in stat.get('days', []):
-                date = day_data[0][:10]
-                count = day_data[1]
-                daily_counts[date] = daily_counts.get(date, 0) + count
+        for day_stat in stats_data['stats']:
+            date = day_stat['day']
+            count = day_stat.get('daily', 0)
+            daily_counts[date] = count
 
     # Get current month
     now = datetime.now()
@@ -218,7 +140,7 @@ def display_monthly_calendar(stats_data):
 
         print("  ".join(week_str))
 
-    # Print legend
+    # Print legend (commented out for space)
     print(f"\n{Colors.BOLD}Legend:{Colors.RESET}")
     print(f"  {Colors.GRAY}■{Colors.RESET} 0 views")
     print(f"  {Colors.GREEN}■{Colors.RESET} Low (1-25%)")
@@ -227,21 +149,19 @@ def display_monthly_calendar(stats_data):
     print(f"  {Colors.RED}■{Colors.RESET} Very High (75-100%)")
 
     # Print monthly total
-    monthly_total = sum([daily_counts.get(f"{year}-{month:02d}-{day:02d}", 0)
-                        for week in cal for day in week if day != 0])
-    print(f"{Colors.BOLD}Month total: {Colors.GREEN}{monthly_total}{Colors.RESET}")
+    total = stats_data.get('total', 0)
+    print(f"{Colors.BOLD}Month total: {Colors.GREEN}{total}{Colors.RESET}")
 
 
 def display_summary(stats_data):
     """Display overall summary statistics"""
-    # Process data to get daily counts
+    # Process data to get daily counts from /stats/total response
     daily_counts = {}
     if 'stats' in stats_data:
-        for stat in stats_data['stats']:
-            for day_data in stat.get('days', []):
-                date = day_data[0][:10]
-                count = day_data[1]
-                daily_counts[date] = daily_counts.get(date, 0) + count
+        for day_stat in stats_data['stats']:
+            date = day_stat['day']
+            count = day_stat.get('daily', 0)
+            daily_counts[date] = count
 
     # Get past 3 days
     now = datetime.now()
@@ -253,20 +173,15 @@ def display_summary(stats_data):
     yesterday_count = daily_counts.get(yesterday, 0)
     two_days_count = daily_counts.get(two_days_ago, 0)
 
-    # Calculate totals
-    total_hits = 0
-    if 'stats' in stats_data:
-        for stat in stats_data['stats']:
-            total_hits += stat.get('count', 0)
+    # Get totals
+    total = stats_data.get('total', 0)
 
     # Get date range
-    end_date = now
-    start_date = end_date.replace(day=1)  # Start of month
+    start_date = now.replace(day=1)
+    days_in_period = (now - start_date).days + 1
+    avg_per_day = total / days_in_period if days_in_period > 0 else 0
 
-    days_in_period = (end_date - start_date).days + 1
-    avg_per_day = total_hits / days_in_period if days_in_period > 0 else 0
-
-    print(f"{Colors.BOLD}Total: {Colors.GREEN}{total_hits}{Colors.RESET} | {Colors.BOLD}Avg/day: {Colors.CYAN}{avg_per_day:.1f}{Colors.RESET}")
+    print(f"{Colors.BOLD}Total: {Colors.GREEN}{total}{Colors.RESET} | {Colors.BOLD}Avg/day: {Colors.CYAN}{avg_per_day:.1f}{Colors.RESET}")
     print(f"{Colors.BOLD}Today: {Colors.GREEN}{today_count}{Colors.RESET} | Yesterday: {Colors.CYAN}{yesterday_count}{Colors.RESET} | {(now - timedelta(days=2)).strftime('%a')}: {Colors.CYAN}{two_days_count}{Colors.RESET}")
 
 
@@ -280,9 +195,10 @@ def display_dashboard(refresh_interval=REFRESH_INTERVAL, show_next_update=True, 
     clear_screen()
 
     # Fetch data for current month
+    # Add 1 day to end_date to ensure we get today's data (timezone safety)
     now = datetime.now()
     start_date = now.replace(day=1)
-    end_date = now
+    end_date = now + timedelta(days=1)  # Request one day ahead to ensure we get today
 
     stats_data = fetch_stats(start_date, end_date, debug=debug)
 
