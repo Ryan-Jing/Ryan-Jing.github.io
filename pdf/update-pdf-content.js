@@ -197,14 +197,17 @@ function generateProjectHTML(project) {
             mediaItems.forEach(media => {
                 const isVideo = media.src.match(/\.(mp4|mov|avi)$/i);
                 if (isVideo) {
-                    html += `                    <div class="media-note">[Video: ${path.basename(media.src)}${media.text ? ' - ' + media.text : ''}]</div>\n`;
-                    html += `                    <p class="media-path">${media.src}</p>\n\n`;
+                    html += `                    <div class="media-item">\n`;
+                    html += `                        <div class="media-note">[Video: ${path.basename(media.src)}${media.text ? ' - ' + media.text : ''}]</div>\n`;
+                    html += `                        <p class="media-path">${media.src}</p>\n`;
+                    html += `                    </div>\n\n`;
                 } else {
-                    html += `                    <img src="../${media.src}" alt="${media.text || 'Project image'}" class="project-image">\n`;
+                    html += `                    <div class="media-item">\n`;
+                    html += `                        <img src="../${media.src}" alt="${media.text || 'Project image'}" class="project-image">\n`;
                     if (media.text) {
-                        html += `                    <p class="media-caption">${media.text}</p>\n`;
+                        html += `                        <p class="media-caption">${media.text}</p>\n`;
                     }
-                    html += '\n';
+                    html += `                    </div>\n`;
                 }
             });
             html += `                </div>\n`;
