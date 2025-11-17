@@ -76,6 +76,37 @@ def fetch_stats(start_date, end_date, debug=False):
         sys.exit(1)
 
 
+def fetch_stat_type(stat_type, start_date, end_date, debug=False):
+    """Fetch specific stat type from GoatCounter API (toprefs, browsers, systems, locations, sizes)"""
+    headers = {"Authorization": f"Bearer {API_TOKEN}"}
+
+    try:
+        response = requests.get(
+            f"{BASE_URL}/stats/{stat_type}",
+            headers=headers,
+            params={
+                "start": start_date.strftime("%Y-%m-%d"),
+                "end": end_date.strftime("%Y-%m-%d")
+            }
+        )
+        response.raise_for_status()
+        data = response.json()
+
+        if debug:
+            print(f"\n{Colors.YELLOW}DEBUG INFO ({stat_type}):{Colors.RESET}")
+            print(f"API URL: {BASE_URL}/stats/{stat_type}")
+            print(f"Response status: {response.status_code}")
+            print(f"Raw response data:")
+            print(json.dumps(data, indent=2))
+            print(f"{Colors.YELLOW}{'─' * 50}{Colors.RESET}\n")
+
+        return data
+    except requests.exceptions.RequestException as e:
+        if debug:
+            print(f"{Colors.RED}Error fetching {stat_type} data: {e}{Colors.RESET}")
+        return None
+
+
 def get_color_for_count(count, max_count):
     """Get color based on view count intensity"""
     if count == 0:
@@ -141,12 +172,12 @@ def display_monthly_calendar(stats_data):
         print("  ".join(week_str))
 
     # Print legend (commented out for space)
-    print(f"\n{Colors.BOLD}Legend:{Colors.RESET}")
-    print(f"  {Colors.GRAY}■{Colors.RESET} 0 views")
-    print(f"  {Colors.GREEN}■{Colors.RESET} Low (1-25%)")
-    print(f"  {Colors.CYAN}■{Colors.RESET} Medium (25-50%)")
-    print(f"  {Colors.YELLOW}■{Colors.RESET} High (50-75%)")
-    print(f"  {Colors.RED}■{Colors.RESET} Very High (75-100%)")
+    # print(f"\n{Colors.BOLD}Legend:{Colors.RESET}")
+    # print(f"  {Colors.GRAY}■{Colors.RESET} 0 views")
+    # print(f"  {Colors.GREEN}■{Colors.RESET} Low (1-25%)")
+    # print(f"  {Colors.CYAN}■{Colors.RESET} Medium (25-50%)")
+    # print(f"  {Colors.YELLOW}■{Colors.RESET} High (50-75%)")
+    # print(f"  {Colors.RED}■{Colors.RESET} Very High (75-100%)")
 
     # Print monthly total
     total = stats_data.get('total', 0)
@@ -185,6 +216,103 @@ def display_summary(stats_data):
     print(f"{Colors.BOLD}Today: {Colors.GREEN}{today_count}{Colors.RESET} | Yesterday: {Colors.CYAN}{yesterday_count}{Colors.RESET} | {(now - timedelta(days=2)).strftime('%a')}: {Colors.CYAN}{two_days_count}{Colors.RESET}")
 
 
+def display_stat_table(title, data, max_items=5):
+    """Display a generic stat table with percentages"""
+    if not data or 'stats' not in data:
+        print(f"{Colors.BOLD}{title}{Colors.RESET}")
+        print(f"{Colors.DIM}Nothing to display{Colors.RESET}")
+        return
+
+    stats = data['stats']
+    total_count = sum(item.get('count', 0) for item in stats)
+
+    if total_count == 0:
+        print(f"{Colors.BOLD}{title}{Colors.RESET}")
+        print(f"{Colors.DIM}Nothing to display{Colors.RESET}")
+        return
+
+    print(f"{Colors.BOLD}{title}{Colors.RESET}")
+
+    # Show top N items
+    for item in stats[:max_items]:
+        name = item.get('name', '(unknown)')
+        # Handle empty names (common for referrers with no referrer)
+        if not name or name.strip() == '':
+            name = '(unknown)'
+        count = item.get('count', 0)
+        percentage = (count / total_count * 100) if total_count > 0 else 0
+
+        # Create a thin horizontal line bar
+        bar_length = 10
+        filled = int(percentage / 100 * bar_length)
+        empty = bar_length - filled
+        bar = f"{Colors.GREEN}{Colors.BOLD}{'━' * filled}{Colors.RESET}{Colors.DIM}{'─' * empty}{Colors.RESET}"
+
+        print(f"{percentage:5.1f}% {bar} {name} {Colors.DIM}{count}{Colors.RESET}")
+
+
+def display_referrers(data):
+    """Display top referrers"""
+    display_stat_table("Top Referrers", data, max_items=5)
+
+
+def display_browsers(data):
+    """Display browser statistics"""
+    display_stat_table("Browsers", data, max_items=5)
+
+
+def display_systems(data):
+    """Display operating system statistics"""
+    display_stat_table("Systems", data, max_items=5)
+
+
+def display_locations(data):
+    """Display location statistics"""
+    display_stat_table("Locations", data, max_items=5)
+
+
+def display_sizes(data):
+    """Display screen size statistics"""
+    if not data or 'stats' not in data:
+        print(f"{Colors.BOLD}Sizes{Colors.RESET}")
+        print(f"{Colors.DIM}Nothing to display{Colors.RESET}")
+        return
+
+    stats = data['stats']
+    total_count = sum(item.get('count', 0) for item in stats)
+
+    if total_count == 0:
+        print(f"{Colors.BOLD}Sizes{Colors.RESET}")
+        print(f"{Colors.DIM}Nothing to display{Colors.RESET}")
+        return
+
+    print(f"{Colors.BOLD}Sizes{Colors.RESET}")
+
+    # Size categories mapping
+    size_labels = {
+        'phone': 'Phones',
+        'tablet': 'Tablets',
+        'desktop': 'Computer',
+        'desktophd': '> HD',
+        'unknown': 'Other'
+    }
+
+    for item in stats:
+        # Use 'id' field for size category (API returns empty 'name' field)
+        size_id = item.get('id', 'unknown')
+        label = size_labels.get(size_id, size_id)
+        count = item.get('count', 0)
+        percentage = (count / total_count * 100) if total_count > 0 else 0
+
+        # Create a thin horizontal line bar
+        bar_length = 10
+        filled = int(percentage / 100 * bar_length)
+        empty = bar_length - filled
+        bar = f"{Colors.GREEN}{Colors.BOLD}{'━' * filled}{Colors.RESET}{Colors.DIM}{'─' * empty}{Colors.RESET}"
+
+        print(f"{percentage:5.1f}% {bar} {label} {Colors.DIM}{count}{Colors.RESET}")
+
+
 def clear_screen():
     """Clear the terminal screen"""
     os.system('clear' if os.name != 'nt' else 'cls')
@@ -202,13 +330,31 @@ def display_dashboard(refresh_interval=REFRESH_INTERVAL, show_next_update=True, 
 
     stats_data = fetch_stats(start_date, end_date, debug=debug)
 
+    # Fetch additional stats
+    referrers_data = fetch_stat_type('toprefs', start_date, end_date, debug=debug)
+    browsers_data = fetch_stat_type('browsers', start_date, end_date, debug=debug)
+    systems_data = fetch_stat_type('systems', start_date, end_date, debug=debug)
+    locations_data = fetch_stat_type('locations', start_date, end_date, debug=debug)
+    sizes_data = fetch_stat_type('sizes', start_date, end_date, debug=debug)
+
     # Display all views
     print(f"{Colors.BOLD}{Colors.DIM} ryan-jing.github.io{Colors.RESET}")
     print(f"{Colors.DIM}{'─' * 42}{Colors.RESET}")
     display_monthly_calendar(stats_data)
-    print(f"\n{Colors.DIM}{'─' * 42}{Colors.RESET}\n")
+    print(f"{Colors.DIM}{'─' * 42}{Colors.RESET}")
+
+    # Display additional stats
+    display_referrers(referrers_data)
+    print()
+    display_browsers(browsers_data)
+    print()
+    display_systems(systems_data)
+    print()
+    display_locations(locations_data)
+    print()
+    display_sizes(sizes_data)
+    print(f"{Colors.DIM}{'─' * 42}{Colors.RESET}")
     display_summary(stats_data)
-    print(f"\n{Colors.DIM}{'─' * 42}{Colors.RESET}\n")
 
     if show_next_update:
         print(f"{Colors.GRAY}Next: {refresh_interval // 60}min | Ctrl+C to exit{Colors.RESET}")
