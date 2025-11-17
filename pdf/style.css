@@ -73,7 +73,6 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.2;
     margin-bottom: var(--spacing-sm);
     color: #000;
-    page-break-after: avoid;
 }
 
 h1 { font-size: 2.5rem; }
@@ -113,7 +112,6 @@ strong {
    ========================================== */
 .section {
     padding: var(--spacing-lg) 0;
-    page-break-inside: avoid;
 }
 
 .container {
@@ -129,7 +127,6 @@ strong {
     position: relative;
     padding-bottom: var(--spacing-sm);
     border-bottom: 3px solid #d79921;
-    page-break-after: avoid;
 }
 
 /* ==========================================
@@ -140,7 +137,6 @@ strong {
     padding: var(--spacing-lg) 0;
     border-bottom: 2px solid #d79921;
     margin-bottom: var(--spacing-lg);
-    page-break-after: avoid;
 }
 
 .hero-title {
@@ -166,7 +162,6 @@ strong {
    ABOUT SECTION
    ========================================== */
 .about-section {
-    page-break-inside: avoid;
 }
 
 .about-content {
@@ -192,7 +187,6 @@ strong {
    PROJECTS SECTION
    ========================================== */
 .projects-section {
-    page-break-before: always;
 }
 
 .project-expanded {
@@ -201,14 +195,12 @@ strong {
     background: #f9f9f9;
     border-radius: 8px;
     border-left: 4px solid #d79921;
-    page-break-inside: avoid;
 }
 
 .project-title {
     color: #000;
     margin-bottom: var(--spacing-md);
     font-size: 1.75rem;
-    page-break-after: avoid;
 }
 
 .project-summary {
@@ -241,26 +233,40 @@ strong {
 
 .project-media {
     margin-top: var(--spacing-md);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+    align-items: start;
+}
+
+/* Single media item - take full width */
+.project-media:has(.media-item:only-child) {
+    grid-template-columns: 1fr;
+}
+
+/* Media item wrapper (contains image + caption) */
+.media-item {
+    display: flex;
+    flex-direction: column;
 }
 
 .project-image {
     width: 100%;
-    max-width: 600px;
     height: auto;
-    margin: var(--spacing-sm) 0;
+    margin: 0 0 var(--spacing-xs) 0;
     border-radius: 4px;
     border: 1px solid #ddd;
     display: block;
-    page-break-inside: avoid;
+    object-fit: contain;
 }
 
 .media-caption {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #666;
     font-style: italic;
-    margin-bottom: var(--spacing-md);
-    text-align: left;
-    max-width: 600px;
+    margin: 0;
+    text-align: center;
+    width: 100%;
 }
 
 .media-note {
@@ -316,7 +322,6 @@ strong {
    EXPERIENCE SECTION
    ========================================== */
 .experience-section {
-    page-break-before: always;
 }
 
 .experience-item {
@@ -325,7 +330,6 @@ strong {
     background: #f9f9f9;
     border-radius: 8px;
     border-left: 4px solid #83a598;
-    page-break-inside: avoid;
 }
 
 .experience-header {
@@ -373,14 +377,12 @@ strong {
    ARTWORKS SECTION (COMMENTED IN HTML)
    ========================================== */
 .artworks-section {
-    page-break-before: always;
 }
 
 /* ==========================================
    CONTACT SECTION
    ========================================== */
 .contact-section {
-    page-break-before: always;
     text-align: center;
 }
 
@@ -422,34 +424,32 @@ strong {
    PRINT-SPECIFIC STYLES
    ========================================== */
 @media print {
-    @page {
-        size: A4;
-        margin: 2cm;
-    }
-
     body {
         max-width: 100%;
         padding: 0;
         background: white;
     }
 
-    .section-title,
-    .project-title,
-    .experience-title {
-        page-break-after: avoid;
+    /* Maintain 2-column grid for images */
+    .project-media {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-lg);
     }
 
-    .project-expanded,
-    .experience-item {
-        page-break-inside: avoid;
+    /* Single media item - take full width when printing */
+    .project-media:has(.media-item:only-of-type) {
+        grid-template-columns: 1fr;
     }
 
     .project-image {
         max-height: 15cm;
-        width: auto;
-        page-break-inside: avoid;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
     }
 
+    /* Links - show URLs in print */
     a {
         color: #000;
         text-decoration: none;
