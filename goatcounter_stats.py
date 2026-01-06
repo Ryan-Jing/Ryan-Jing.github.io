@@ -37,7 +37,6 @@ class Colors:
     GRAY = '\033[90m'
 
     # Background colors for heatmap
-    BG_BLACK = '\033[40m'
     BG_GREEN_DARK = '\033[42m'
     BG_GREEN = '\033[102m'
     BG_YELLOW = '\033[103m'
@@ -110,18 +109,18 @@ def fetch_stat_type(stat_type, start_date, end_date, debug=False):
 def get_color_for_count(count, max_count):
     """Get color based on view count intensity"""
     if count == 0:
-        return Colors.BG_BLACK, Colors.GRAY
+        return Colors.GRAY
 
     ratio = count / max_count if max_count > 0 else 0
 
     if ratio < 0.25:
-        return Colors.BG_BLACK, Colors.GREEN
+        return Colors.GREEN
     elif ratio < 0.50:
-        return Colors.BG_BLACK, Colors.CYAN
+        return Colors.CYAN
     elif ratio < 0.75:
-        return Colors.BG_BLACK, Colors.YELLOW
+        return Colors.YELLOW
     else:
-        return Colors.BG_BLACK, Colors.RED
+        return Colors.RED
 
 
 def display_monthly_calendar(stats_data):
@@ -148,9 +147,9 @@ def display_monthly_calendar(stats_data):
 
     print(f"{Colors.BOLD}{month_name} {year}{Colors.RESET}")
 
-    # Print day headers
+    # Print day headers (4 chars each to align with number columns)
     days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    print("  ".join([f"{Colors.BOLD}{day}{Colors.RESET}" for day in days]))
+    print(" ".join([f"{Colors.BOLD} {day}{Colors.RESET}" for day in days]))
 
     # Print calendar grid
     for week in cal:
@@ -161,15 +160,15 @@ def display_monthly_calendar(stats_data):
             else:
                 date_str = f"{year}-{month:02d}-{day:02d}"
                 count = daily_counts.get(date_str, 0)
-                bg_color, fg_color = get_color_for_count(count, max_count)
+                fg_color = get_color_for_count(count, max_count)
 
                 # Highlight today
                 if day == now.day:
-                    week_str.append(f"{bg_color}{fg_color}{Colors.BOLD} {day:2d} {Colors.RESET}")
+                    week_str.append(f"{fg_color}{Colors.BOLD} {day:2d} {Colors.RESET}")
                 else:
-                    week_str.append(f"{bg_color}{fg_color} {day:2d} {Colors.RESET}")
+                    week_str.append(f"{fg_color} {day:2d} {Colors.RESET}")
 
-        print("  ".join(week_str))
+        print(" ".join(week_str))
 
     # Print legend (commented out for space)
     # print(f"\n{Colors.BOLD}Legend:{Colors.RESET}")
@@ -339,27 +338,27 @@ def display_dashboard(refresh_interval=REFRESH_INTERVAL, show_next_update=True, 
 
     # Display all views
     print(f"{Colors.BOLD}{Colors.DIM} ryan-jing.github.io{Colors.RESET}")
-    print(f"{Colors.DIM}{'─' * 42}{Colors.RESET}")
+    print(f"{Colors.DIM}{'─' * 33}{Colors.RESET}")
     display_monthly_calendar(stats_data)
-    print(f"{Colors.DIM}{'─' * 42}{Colors.RESET}")
+    print(f"{Colors.DIM}{'─' * 33}{Colors.RESET}")
 
     # Display additional stats
     display_referrers(referrers_data)
     print()
-    display_browsers(browsers_data)
-    print()
+    # display_browsers(browsers_data)
+    # print()
     display_systems(systems_data)
     print()
     display_locations(locations_data)
-    print()
-    display_sizes(sizes_data)
-    print(f"{Colors.DIM}{'─' * 42}{Colors.RESET}")
+    # print()
+    # display_sizes(sizes_data)
+    print(f"{Colors.DIM}{'─' * 33}{Colors.RESET}")
     display_summary(stats_data)
 
-    if show_next_update:
-        print(f"{Colors.GRAY}Next: {refresh_interval // 60}min | Ctrl+C to exit{Colors.RESET}")
-    else:
-        print(f"{Colors.GRAY}Updated: {now.strftime('%H:%M:%S')}{Colors.RESET}")
+    # if show_next_update:
+    #     print(f"{Colors.GRAY}Next: {refresh_interval // 60}min | Ctrl+C to exit{Colors.RESET}")
+    # else:
+    #     print(f"{Colors.GRAY}Updated: {now.strftime('%H:%M:%S')}{Colors.RESET}")
 
 
 def main():

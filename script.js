@@ -1260,28 +1260,28 @@ modalStyle.textContent = `
         box-sizing: border-box;
 
         /* Scrollbar styling for Firefox */
-        scrollbar-width: thin;
-        scrollbar-color: rgba(215, 153, 33, 0.6) rgba(40, 40, 40, 0.3);
+        scrollbar-width: thin !important;
+        scrollbar-color: #4a4a4a #1a1a1a !important;
     }
 
     /* ===== CUSTOM SCROLLBAR FOR WEBKIT BROWSERS (Chrome, Safari, Edge) ===== */
     .modal-content::-webkit-scrollbar {
-        width: 12px;
+        width: 12px !important;
     }
 
     .modal-content::-webkit-scrollbar-track {
-        background: rgba(40, 40, 40, 0.3);
+        background: #1a1a1a !important;
         border-radius: 10px;
     }
 
     .modal-content::-webkit-scrollbar-thumb {
-        background: rgba(215, 153, 33, 0.6);
+        background: #4a4a4a !important;
         border-radius: 10px;
-        border: 2px solid rgba(40, 40, 40, 0.3);
+        border: 2px solid #1a1a1a;
     }
 
     .modal-content::-webkit-scrollbar-thumb:hover {
-        background: rgba(215, 153, 33, 0.9);
+        background: #5a5a5a !important;
     }
 
     /* Single item - full screen */
