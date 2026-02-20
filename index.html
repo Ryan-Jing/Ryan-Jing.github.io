@@ -7,10 +7,10 @@
     <title>Ryan Jing | Portfolio</title>
 
     <!-- Favicon - Update with your icon path -->
-    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
 
     <!-- Apple Touch Icon for Safari Mobile -->
-    <link rel="apple-touch-icon" href="assets/icons/favicon.png">
+    <link rel="apple-touch-icon" href="assets/icons/favicon.ico">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
@@ -87,10 +87,9 @@
         </div>
     </section>
 
-    <!-- ========================================
+     <!-- ========================================
          PROJECTS SECTION
          Showcase of engineering projects
-         Add new projects by copying the project-card structure
     ========================================= -->
     <section id="projects" class="projects-section section">
         <div class="container">
@@ -124,7 +123,33 @@
                     </div>
                 </div>
 
-                <!-- PROJECT 2: EMG Hand Prosthetic -->
+                <!-- PROJECT 2: Electroretinography Research -->
+                <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>ERG Nanoparticle Electrode Sensor</h3><p>Researched and developed nanoparticle-based electrodes for electroretinography (ERG) diagnostics, targeting a present issue with accessibility in size and customization for ERG patches. I improved accessibility for early detection of diabetes-related retinal conditions compared to existing clinical products.</p><p><strong>Materials Research & Synthesis:</strong> Investigated limitations of current clinical ERG electrode materials and synthesized Au-Ca and Au-Pt nanoparticle electrodes as improved alternatives. Designed a specialized ERG sensor strip incorporating the synthesized electrodes, optimized for early-stage diabetic retinopathy screening.</p><p><strong>Validation & Testing:</strong> Characterized electrode performance using an oscilloscope and digital multimeter (DMM) to verify signal quality and electrical properties. Developed a Python-based validation pipeline to analyze signal output, confirming the electrodes met or exceeded the performance benchmarks of existing industry products while improving accessibility.</p>"}, {"src": "assets/projects/ERG/ERG_Lab.jpeg", "text": "ERG Sensor Patch Applied On Myself for Testing"}]'>
+                    <div class="project-image">
+                        <!-- Image - properly formatted -->
+                        <img src="assets/projects/ERG/ERG_Lab.jpeg" alt="Electroretinography Electrode Research" class="project-image-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Electroretinography Electrode Research</h3>
+                        <p class="project-description">
+                            Research at UWaterloo's Nanoengineering Department synthesizing
+                            ERG electrodes with Au-Ca and Au-Pt nanoparticles. Investigating
+                            materials to optimize retinal neural response capture and reduce
+                            electrical noise, with focus on adaptability for diverse patient needs.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Research</span>
+                            <span class="tag">Electroretinography</span>
+                            <span class="tag">Materials</span>
+                            <span class="tag">Signal Analysis</span>
+                        </div>
+                        <div class="expand-button">
+                            Click to expand <span class="expand-arrow">↓</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 3: EMG Hand Prosthetic -->
                 <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>EMG-Controlled Hand Prosthetic</h3><p>Developed with a partner a functional hand prosthetic prototype designed for upper-limb amputees, combining analog signal processing, and mechanical design to create a biometric control interface.</p><p><strong>Analog Signal Processing:</strong> Designed and implemented a custom analog filter circuit to process electromyography (EMG) signals captured from skin surface electrodes placed on the forearm. The circuit filters muscle activation signals, amplifies them to a usable range, and passes the conditioned signal to a comparator that outputs a digital high/low signal corresponding to forearm flexion and extension.</p><p> Programmed an Arduino microcontroller to interpret the comparator output and control servo motors that actuate the prosthetic fingers. The firmware implements threshold detection, and debouncing for stable operation.</p><p>Partner designed the complete prosthetic hand mechanism in SolidWorks, optimizing for printability, weight, and range of motion. The claw design features articulating fingers driven by a tendon-based actuation system, all fabricated using 3D printing for rapid prototyping and iteration. The integration of electronics, motors, and mechanical linkages was carefully planned to fit within a compact, wearable form factor.</p>"}, {"src": "assets/projects/EMG/Claw_Function_Demonstraton_Pt1.mov", "text": "Demonstration of EMG-controlled claw grasping motion"}, {"src": "assets/projects/EMG/EMGClawVideo.Mov", "text": "Additional demonstration video"}, {"src": "assets/projects/EMG/EMGClawCad.png", "text": "CAD Model"}]'>
                     <div class="project-image">
                         <!-- Video element - plays on hover -->
@@ -152,25 +177,25 @@
                     </div>
                 </div>
 
-                <!-- PROJECT 2: Electroretinography Research -->
-                <div class="project-card" data-expand-content='["assets/projects/ERG/ERG_Lab.jpeg"]'>
+                <!-- PROJECT 4: Foot Drop FES Model -->
+                <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>Foot Drop FES Model & Gait Visualization</h3><p>Optimized a functional electrical stimulation (FES) model in MATLAB for foot drop patients, leveraging real gait cycle data to improve stimulation timing and evaluate rehabilitative outcomes.</p><p><strong>FES Model Optimization:</strong> Analyzed muscle activity and joint kinematic data across the gait cycle to refine stimulation parameters within an existing FES model. Tuned the model to better replicate healthy gait patterns by targeting the appropriate muscle groups during swing phase, where foot drop impairment is most pronounced.</p><p><strong>Comparative Gait Visualization:</strong> Developed visual models in MATLAB illustrating side-by-side comparisons of normal gait, foot drop gait without stimulation, and FES-assisted gait. Visualizations emphasized joint kinematics — particularly ankle dorsiflexion — to clearly demonstrate the corrective effect of FES on pathological gait patterns.</p>"}, {"src": "assets/projects/FES/Foot_Drop_Output_Video.mp4", "text": "Video showing gait visualizations comparing normal, foot drop, and FES-assisted gait patterns"}]'>
                     <div class="project-image">
-                        <!-- Image - properly formatted -->
-                        <img src="assets/projects/ERG/ERG_Lab.jpeg" alt="Electroretinography Electrode Research" class="project-image-img">
+                        <!-- Video element - plays on hover -->
+                        <video class="project-video" muted loop playsinline>
+                            <source src="assets/projects/FES/Foot_Drop_Output_Video.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-hover-hint">Hover to play</div>
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Electroretinography Electrode Research</h3>
+                        <h3 class="project-title">Foot Drop FES Model & Gait Visualization</h3>
                         <p class="project-description">
-                            Research at UWaterloo's Nanoengineering Department synthesizing
-                            ERG electrodes with Au-Ca and Au-Pt nanoparticles. Investigating
-                            materials to optimize retinal neural response capture and reduce
-                            electrical noise, with focus on adaptability for diverse patient needs.
+                            Visualization model of foot drop gait patterns and FES-assisted gait using MATLAB, as a part of a project optimizing an FES model for foot drop patients. Analyzed gait cycle data to refine stimulation parameters and developed visual comparisons of normal, foot drop, and FES-assisted gait patterns.
                         </p>
                         <div class="project-tags">
-                            <span class="tag">Research</span>
-                            <span class="tag">Electroretinography</span>
-                            <span class="tag">Materials</span>
-                            <span class="tag">Signal Analysis</span>
+                            <span class="tag">MATLAB</span>
+                            <span class="tag">FES</span>
+                            <span class="tag">Gait Analysis</span>
                         </div>
                         <div class="expand-button">
                             Click to expand <span class="expand-arrow">↓</span>
@@ -178,7 +203,7 @@
                     </div>
                 </div>
 
-                <!-- PROJECT 3: Mechanoreceptor Model -->
+                <!-- PROJECT 5: Mechanoreceptor Model -->
                 <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>Mechanoreceptor Simulation Project</h3><p>This project demonstrates a comprehensive Python-based simulation of SA-1 and FA-1 mechanoreceptors located in human fingertips. The simulation models how these receptors respond to different surface textures and pressures, converting mechanical stimuli into electrical signals that would be interpreted by the nervous system.</p><p>The visualizations below show various scanning models and 3D plots that illustrate receptor activation patterns across different topographical surfaces.</p>"}, {"src": "assets/projects/Mechanoreceptor/COW_image.png", "text": "Input surface texture"}, {"src": "assets/projects/Mechanoreceptor/COW_Scanning_Model_3D_Plot.png", "text": "3D plot showing receptor response"}, {"src": "assets/projects/Mechanoreceptor/COW_Scanning_Model_Heatmap.png", "text": "Heatmap visualization of activation patterns"}, {"src": "assets/projects/Mechanoreceptor/Scanning_Model_3D_Plot.png", "text": "Model output scanning over keyboard topography"}, {"src": "assets/projects/Mechanoreceptor/surface_texture_image.png", "text": "Surface texture example"}, {"src": "assets/projects/Mechanoreceptor/SurfaceTexture_Scanning_Model_3D_Plot.png", "text": "Scanning model output over surface texture example"}]'>
                     <div class="project-image">
                         <div class="image-placeholder">
@@ -204,7 +229,7 @@
                     </div>
                 </div>
 
-                <!-- PROJECT 4: DJ Box -->
+                <!-- PROJECT 6: DJ Box -->
                 <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>Portable DJ Mixing System</h3><p>Developed a fully functional, portable DJ mixing system built from cardboard with integrated hardware controls and real-time audio processing capabilities. This project combined embedded systems engineering, audio signal processing, and full-stack web development to create a standalone music mixing solution that operates independently of network connectivity.</p><p><strong>Hardware Architecture:</strong> The system is built around an ESP32 microcontroller running FreeRTOS, managing multiple hardware inputs including buttons, rotary encoders, and potentiometers. The firmware handles hardware interrupts for responsive button actions and implements I2C communication protocol to transmit control signals to a Raspberry Pi 5. The multi-threaded architecture ensures real-time performance without input lag.</p><p><strong>Audio Processing:</strong> The Raspberry Pi 5 serves as the audio processing engine, receiving control inputs from the ESP32 via I2C and applying real-time audio effects including mixing, EQ adjustments, crossfading, and tempo modulation. The system outputs processed audio to Bluetooth devices such as wireless headphones, enabling completely portable operation without requiring Wi-Fi connectivity.</p><p><strong>Web Interface & Spotify Integration:</strong> Developed a custom web application with a backend API that integrates with Spotify\u2019s API for playlist management. Users authenticate their Spotify account, browse their playlists through an intuitive interface, and select tracks for download. The backend handles secure authentication, playlist retrieval, and local audio file management on the Raspberry Pi 5, ensuring all music is available offline for mixing sessions in any location.</p><p>This project demonstrates proficiency in embedded C/C++ development, real-time operating systems, hardware communication protocols, audio DSP, full-stack web development, and system integration across multiple platforms.</p>"}, {"src": "assets/projects/DJ/DJ_Video.mov", "text": "Clip of DJ Box"}, {"src": "assets/projects/DJ/DJ_Box.jpeg", "text": "Complete DJ box assembly showing cardboard construction and control layout"}, {"src": "assets/projects/DJ/DJ_Wire.jpeg", "text": "Internal electronics - ESP32 wiring and hardware integration"}, {"src": "assets/projects/DJ/DJ_Group.jpeg", "text": "Team presentation showcasing the final working prototype"}]'>
                     <div class="project-image">
                         <!-- Video element - plays on hover -->
@@ -237,7 +262,34 @@
                     </div>
                 </div>
 
-                <!-- PROJECT 5: CAD Work -->
+                <!-- PROJECT 7: Cadillac LYRIQ State Machine -->
+                <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>Cadillac LYRIQ State Machine &amp; Feature Override (MATLAB/Simulink)</h3><p>Designed and implemented a state machine in MATLAB/Simulink for the Cadillac LYRIQ as part of the University of Waterloo Alternate Fuels Team (UWAFT) EcoCar competition. The model manages the state flow of advanced driver assistance features — AIN (Automated Intervention), LCC (Lane Centering Control), AP (Automatic Parking), and CACC (Cooperative Adaptive Cruise Control) — and was integrated into the vehicle&apos;s real-time control system via RTMaps.</p><p><strong>State Machine Design:</strong> Modeled each driving feature as an individual Stateflow state machine, capturing discrete states, transition conditions, and feature override logic. A parent state machine coordinates all feature sub-machines, managing priority, conflict resolution, and system-level state transitions across the full ADAS feature set.</p><p><strong>RTMaps Integration &amp; CAN Validation:</strong> Converted the Simulink model into an RTMaps package for deployment on the vehicle&apos;s real-time middleware platform. Validated the model by replaying real CAN bus data captured from the Cadillac LYRIQ, verifying correct state transitions and feature activation sequences against expected vehicle behavior.</p>"}, {"src": "assets/projects/SM+FO/SM1.png", "text": "Block diagram of the state machine architecture"}, {"src": "assets/projects/SM+FO/SM2.png", "text": "Single feature state machine model (individual ADAS state)"}, {"src": "assets/projects/SM+FO/SM3.png", "text": "Parent state machine combining all feature states for overall system control"}]'>
+                    <div class="project-image">
+                        <img src="assets/projects/SM+FO/SM0.png" alt="Cadillac LYRIQ State Machine" class="project-image-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Cadillac LYRIQ State Machine & Feature Override</h3>
+                        <p class="project-description">
+                            Designed a hierarchical ADAS state machine in MATLAB/Simulink for the Cadillac LYRIQ
+                            as part of UWAFT's EcoCar competition. Modeled driving feature states (AIN, LCC, AP, CACC),
+                            converted the model to an RTMaps package, and validated state transitions using real
+                            CAN bus data from the vehicle.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">MATLAB</span>
+                            <span class="tag">Simulink</span>
+                            <span class="tag">RTMaps</span>
+                            <span class="tag">State Machine</span>
+                            <span class="tag">CAN Bus</span>
+                            <span class="tag">ADAS</span>
+                        </div>
+                        <div class="expand-button">
+                            Click to expand <span class="expand-arrow">↓</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 8: CAD Work -->
                 <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>Computer-Aided Design Portfolio</h3><p>Extensive experience in 3D modeling and engineering design using both SolidWorks and Onshape. Projects range from creating custom device housings and enclosures to performing finite element analysis (FEA) for structural validation. Skilled in aerodynamic modeling, assembly design with bill of materials (BOM), technical drawings with GD&T tolerancing, and design for manufacturing (DFM) principles.</p><p>The portfolio below showcases detailed assemblies with exploded views, engineering drawings, and rendered models optimized for 3D printing and rapid prototyping. Work includes complex multi-part assemblies, interference checking, and simulation-driven design modifications.</p><p>While most of the images below are earlier projects, I have continued my CAD work in professional experiences, for prototype device housing, integrating aerodynamic designs for sports devices, and more.</p>"}, {"src": "assets/projects/CAD/SkateExplode.png", "text": "Skateboard assembly - Exploded view showing component relationships"}, {"src": "assets/projects/CAD/SkateDrawing.png", "text": "Technical engineering drawing with dimensions and tolerances"}, {"src": "assets/projects/CAD/SkatePosed.png", "text": "Skateboard assembly - Rendered final model"}, {"src": "assets/projects/CAD/LegoExplode.png", "text": "LEGO-inspired mechanism - Exploded assembly view"}, {"src": "assets/projects/CAD/LegoPosed.png", "text": "LEGO mechanism - Fully assembled render"}, {"src": "assets/projects/CAD/OrcaExplode.png", "text": "Orca housing design - Component breakdown and assembly sequence"}, {"src": "assets/projects/CAD/OrcaDrawing.png", "text": "Orca enclosure - Manufacturing drawing with specifications"}, {"src": "assets/projects/CAD/OrcaPosed.png", "text": "Orca device housing - Final product visualization"}]'>
                     <div class="project-image">
                         <div class="image-placeholder">
@@ -262,7 +314,7 @@
                     </div>
                 </div>
 
-                <!-- PROJECT 6: Deck Building -->
+                <!-- PROJECT 9: Deck Building -->
                 <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>Hands-On Deck Construction</h3><p>I have always enjoyed working with my hands and building things from scratch. This backyard deck project allowed me to combine practical construction skills with creative problem-solving. From initial planning and measurements to the final finishing touches, I handled every aspect of the build.</p><p>The project involved extensive use of woodworking tools including hand saws for precision cuts, a table saw for ripping boards to width, circular saws for cross-cuts, and various power tools for drilling and fastening. I learned proper wood cutting techniques, how to work with pressure-treated lumber, and the importance of structural integrity in outdoor construction. The experience reinforced my appreciation for hands-on fabrication and the satisfaction of creating something functional and lasting.</p>"}, {"src": "assets/projects/Deck/deck_full.jpeg","text": "Completed deck - Full view of the finished construction"}, {"src": "assets/projects/Deck/deck_me.jpeg", "text": "On-site during construction with tools and materials"}]'>
                     <div class="project-image">
                         <div class="image-placeholder">
@@ -287,12 +339,6 @@
                     </div>
                 </div>
 
-                <!--
-                    TO ADD A NEW PROJECT:
-                    Copy the entire project-card div above and paste it here.
-                    Update the image path, title, description, and tags.
-                -->
-
             </div>
         </div>
     </section>
@@ -300,7 +346,6 @@
     <!-- ========================================
          EXPERIENCE SECTION
          Professional work experience
-         Add new experiences by copying the experience-item structure
     ========================================= -->
     <section id="experience" class="experience-section section">
         <div class="container">
@@ -480,9 +525,8 @@
     </section>
 
     <!-- ========================================
-         PROJECTS SECTION
-         Showcase of engineering projects
-         Add new projects by copying the project-card structure
+         ARTWORKS SECTION
+         Showcase of design/arat projects
     ========================================= -->
     <section id="artworks" class="artworks-section section">
         <div class="container">
