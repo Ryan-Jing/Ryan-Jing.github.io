@@ -3,3 +3,4 @@ dist/
 *.DS_Store
 GUIDE.md
 PDF_EXPORT_GUIDE.md
+exports/

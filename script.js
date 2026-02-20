@@ -117,23 +117,28 @@ const sidebar = document.getElementById('sidebar');
 const sidebarToggle = document.getElementById('sidebar-toggle');
 const sidebarLinks = document.querySelectorAll('.sidebar-link');
 
-// Toggle sidebar on button click
+// Mobile only: toggle sidebar on button click (hover handles desktop)
 if (sidebarToggle) {
     sidebarToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('expanded');
+        if (window.innerWidth <= 768) {
+            sidebar.classList.toggle('expanded');
+        }
     });
 }
 
-// Close sidebar when clicking a link
+// Mobile only: close sidebar when clicking a link
 sidebarLinks.forEach(link => {
     link.addEventListener('click', () => {
-        sidebar.classList.remove('expanded');
+        if (window.innerWidth <= 768) {
+            sidebar.classList.remove('expanded');
+        }
     });
 });
 
-// Close sidebar when clicking outside of it
+// Mobile only: close sidebar when clicking outside
 document.addEventListener('click', (e) => {
-    if (sidebar.classList.contains('expanded') &&
+    if (window.innerWidth <= 768 &&
+        sidebar.classList.contains('expanded') &&
         !sidebar.contains(e.target)) {
         sidebar.classList.remove('expanded');
     }

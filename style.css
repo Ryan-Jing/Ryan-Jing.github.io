@@ -170,7 +170,7 @@ a:hover {
     transition: width 0.3s ease;
 }
 
-.sidebar.expanded {
+.sidebar:hover {
     width: 250px;
 }
 
@@ -208,7 +208,7 @@ a:hover {
     transition: transform 0.3s ease;
 }
 
-.sidebar.expanded .sidebar-icon {
+.sidebar:hover .sidebar-icon {
     transform: rotate(90deg);
 }
 
@@ -226,7 +226,7 @@ a:hover {
     transition: opacity 0.3s ease;
 }
 
-.sidebar.expanded .sidebar-menu {
+.sidebar:hover .sidebar-menu {
     opacity: 1;
     pointer-events: all;
 }
