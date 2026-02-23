@@ -1,8 +1,2 @@
 # Ryan Jing - Personal Portfolio Website
-
-A minimalist personal portfolio website featuring a gruvbox-inspired color theme (black, white, and orange accents). Built with vanilla HTML, CSS, and JavaScript with smooth animations, scroll effects, and interactive features.
-
-## Table of Contents
-
-## Overview
 This portfolio website showcases my engineering projects, work experiences, and technical skills. It's designed to be responsive, accessible, and clear.
