@@ -690,6 +690,9 @@ document.head.appendChild(asteriskStyle);
 // Find all video elements with the project-video class
 const projectVideos = document.querySelectorAll('.project-video');
 
+// Detect touch devices (mobile) — hover-to-play is replaced with hold-to-play
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
 // Optimize video loading for faster playback
 projectVideos.forEach((video, index) => {
     // Set preload attribute to load metadata immediately
@@ -710,38 +713,40 @@ projectVideos.forEach((video, index) => {
 
     let isHovering = false;
 
-    // When mouse enters the video area
-    video.addEventListener('mouseenter', function() {
-        isHovering = true;
-        console.log('Mouse enter - readyState:', this.readyState);
+    if (!isTouchDevice) {
+        // When mouse enters the video area (desktop only)
+        video.addEventListener('mouseenter', function() {
+            isHovering = true;
+            console.log('Mouse enter - readyState:', this.readyState);
 
-        // Show spinner if video isn't ready to play through
-        if (this.readyState < 4) {
-            spinner.style.display = 'flex';
-            console.log('Showing spinner');
-        }
+            // Show spinner if video isn't ready to play through
+            if (this.readyState < 4) {
+                spinner.style.display = 'flex';
+                console.log('Showing spinner');
+            }
 
-        // Ensure video is loaded before playing
-        if (this.readyState < 2) {
-            this.load();
-        }
+            // Ensure video is loaded before playing
+            if (this.readyState < 2) {
+                this.load();
+            }
 
-        const playPromise = this.play();
-        if (playPromise !== undefined) {
-            playPromise.catch(err => {
-                console.log('Video play failed:', err);
-                spinner.style.display = 'none';
-            });
-        }
-    });
+            const playPromise = this.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(err => {
+                    console.log('Video play failed:', err);
+                    spinner.style.display = 'none';
+                });
+            }
+        });
 
-    // When mouse leaves the video area
-    video.addEventListener('mouseleave', function() {
-        isHovering = false;
-        this.pause(); // Pause the video
-        this.currentTime = 0; // Reset to beginning
-        spinner.style.display = 'none'; // Hide spinner
-    });
+        // When mouse leaves the video area (desktop only)
+        video.addEventListener('mouseleave', function() {
+            isHovering = false;
+            this.pause(); // Pause the video
+            this.currentTime = 0; // Reset to beginning
+            spinner.style.display = 'none'; // Hide spinner
+        });
+    }
 
     // Monitor loading progress
     video.addEventListener('loadstart', function() {
@@ -804,6 +809,72 @@ projectVideos.forEach((video, index) => {
 
     observer.observe(video);
 });
+
+// ==========================================
+// MOBILE HOLD-TO-PLAY
+// On touch devices, hold the preview to play video.
+// A short tap still expands the card normally.
+// ==========================================
+if (isTouchDevice) {
+    // Change hint text from "Hover to play" to "Hold to play"
+    document.querySelectorAll('.video-hover-hint, .art-video-hover-hint').forEach(hint => {
+        hint.textContent = 'Hold to play';
+    });
+
+    projectVideos.forEach((video) => {
+        const imageContainer = video.parentElement;
+        let holdTimer = null;
+        let isHolding = false;
+        let touchStartY = 0;
+
+        // Start hold timer on touchstart
+        imageContainer.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+            holdTimer = setTimeout(() => {
+                isHolding = true;
+                video.classList.add('playing');
+                if (video.readyState < 2) video.load();
+                video.play().catch(() => {});
+            }, 400);
+        }, { passive: true });
+
+        // Cancel hold if user scrolls before threshold
+        imageContainer.addEventListener('touchmove', (e) => {
+            if (!isHolding && holdTimer) {
+                const moveY = Math.abs(e.touches[0].clientY - touchStartY);
+                if (moveY > 10) {
+                    clearTimeout(holdTimer);
+                    holdTimer = null;
+                }
+            }
+        }, { passive: true });
+
+        // On release: if holding, stop video and block card expand click
+        imageContainer.addEventListener('touchend', (e) => {
+            clearTimeout(holdTimer);
+            holdTimer = null;
+            if (isHolding) {
+                video.pause();
+                video.currentTime = 0;
+                video.classList.remove('playing');
+                isHolding = false;
+                e.preventDefault(); // suppress click → modal doesn't open
+            }
+        });
+
+        // Clean up on cancelled touch (e.g. incoming call)
+        imageContainer.addEventListener('touchcancel', () => {
+            clearTimeout(holdTimer);
+            holdTimer = null;
+            if (isHolding) {
+                video.pause();
+                video.currentTime = 0;
+                video.classList.remove('playing');
+                isHolding = false;
+            }
+        });
+    });
+}
 
 // Add CSS styling for project videos
 const videoStyle = document.createElement('style');
@@ -1143,7 +1214,7 @@ modalStyle.textContent = `
     /* ===== VIDEO HOVER HINT ===== */
     .video-hover-hint {
         position: absolute;
-        top: 51%;
+        top: 85%;
         left: 50%;
         transform: translate(-50%, -50%);
         background: rgba(0, 0, 0, 0.7);
@@ -1167,7 +1238,7 @@ modalStyle.textContent = `
     /* ===== ART VIDEO HOVER HINT ===== */
     .art-video-hover-hint {
         position: absolute;
-        top: 60%;
+        top: 85%;
         left: 50%;
         transform: translate(-50%, -50%);
         background: rgba(0, 0, 0, 0.7);
