@@ -170,8 +170,11 @@ a:hover {
     transition: width 0.3s ease;
 }
 
-.sidebar:hover {
-    width: 250px;
+/* Hover only applies on real pointer devices (desktop), not touch screens */
+@media (hover: hover) {
+    .sidebar:hover {
+        width: 250px;
+    }
 }
 
 /* Sidebar Toggle Button (Icon) */
@@ -208,8 +211,10 @@ a:hover {
     transition: transform 0.3s ease;
 }
 
-.sidebar:hover .sidebar-icon {
-    transform: rotate(90deg);
+@media (hover: hover) {
+    .sidebar:hover .sidebar-icon {
+        transform: rotate(90deg);
+    }
 }
 
 /* Sidebar Menu */
@@ -226,9 +231,11 @@ a:hover {
     transition: opacity 0.3s ease;
 }
 
-.sidebar:hover .sidebar-menu {
-    opacity: 1;
-    pointer-events: all;
+@media (hover: hover) {
+    .sidebar:hover .sidebar-menu {
+        opacity: 1;
+        pointer-events: all;
+    }
 }
 
 /* Sidebar Items */
@@ -1123,6 +1130,10 @@ a:hover {
     .sidebar.expanded .sidebar-menu {
         opacity: 1;
         pointer-events: all;
+    }
+
+    .sidebar.expanded .sidebar-icon {
+        transform: rotate(90deg);
     }
 
     .sidebar-link {
