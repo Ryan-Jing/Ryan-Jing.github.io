@@ -1545,22 +1545,33 @@ modalStyle.textContent = `
             flex-direction: column;
         }
 
-        /* In column direction, flex-basis: 100% means 100% height — override to auto */
+        /* In column direction, flex-basis: 100% = 100% height — force auto */
         .modal-text-block {
-            flex: 0 0 auto;
+            flex: 0 0 auto !important;
+            width: 100%;
         }
 
-        /* Media wrappers need auto height in column layout, not 100% of viewport */
-        .modal-content.layout-double .modal-media-wrapper {
-            flex: unset;
-            height: auto;
+        /* All media wrappers: auto height in column layout */
+        .modal-content.layout-double .modal-media-wrapper,
+        .modal-content.layout-triple .modal-media-wrapper {
+            flex: 0 0 auto !important;
+            width: 100%;
+            height: auto !important;
             min-height: 280px;
         }
 
-        .modal-content.layout-triple .modal-media-wrapper {
-            flex: 1;
+        /* item-wrapper must fill the media-wrapper so video gets a definite height */
+        .modal-content.layout-double .modal-item-wrapper,
+        .modal-content.layout-triple .modal-item-wrapper {
+            min-height: 250px;
+        }
+
+        /* Videos collapse to 0 when parent has no definite height — use auto instead */
+        .modal-content.layout-double video.modal-media,
+        .modal-content.layout-triple video.modal-media {
+            width: 100% !important;
             height: auto !important;
-            min-height: 220px;
+            max-height: 340px;
         }
 
         .modal-content.layout-grid .modal-media-wrapper {
