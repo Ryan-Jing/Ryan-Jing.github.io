@@ -4,7 +4,7 @@
   "description": "PDF export system for Ryan Jing's portfolio",
   "main": "update-pdf-content.js",
   "scripts": {
-    "update": "node update-pdf-content.js",
+    "status": "node update-pdf-content.js",
     "help": "cat README.md"
   },
   "keywords": ["pdf", "export", "portfolio"],

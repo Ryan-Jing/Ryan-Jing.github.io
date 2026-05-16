@@ -3,588 +3,538 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ryan Jing - Biomedical Engineering Student Portfolio - PDF Export">
-    <title>Ryan Jing | Portfolio (PDF Export)</title>
+    <meta name="description" content="Ryan Jing - Biomedical Engineering New Graduate Portfolio PDF">
+    <title>Ryan Jing | Technical Portfolio PDF</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- ========================================
-         HERO/LANDING SECTION
-    ========================================= -->
-    <section id="home" class="hero-section">
-        <div class="hero-content">
-            <h1 class="hero-title">Ryan Jing's Portfolio</h1>
-            <h2 class="hero-subtitle">Biomedical Engineering Student</h2>
-            <p class="hero-description">
-                Passionate about developing medical devices and embedded systems.
-                Specializing in firmware development, PCB design, and hardware integration.
-            </p>
-            <p style="margin-top: 1rem; font-size: 0.95rem; color: #0066cc;">
-                Full interactive website: <a href="https://ryan-jing.github.io" style="font-weight: 600;">ryan-jing.github.io</a>
+    <header class="document-header">
+        <div>
+            <p class="eyebrow">Technical Portfolio</p>
+            <h1>Ryan Jing</h1>
+            <p class="subtitle">Biomedical Engineering New Graduate</p>
+            <p class="summary">
+                Biomedical engineering new graduate focused on medical devices, embedded firmware,
+                PCB design, hardware validation, signal processing, and integrated hardware/software systems.
             </p>
         </div>
-    </section>
+        <address class="contact-card">
+            <a href="mailto:ryanjing23@gmail.com">ryanjing23@gmail.com</a>
+            <a href="https://www.linkedin.com/in/ryan-jing-577201216/">linkedin.com/in/ryan-jing-577201216</a>
+            <a href="https://github.com/Ryan-Jing">github.com/Ryan-Jing</a>
+            <a href="https://ryan-jing.github.io">ryan-jing.github.io</a>
+            <a href="../assets/files/Resume_Ryan_Jing_2026.pdf">Resume PDF</a>
+        </address>
+    </header>
 
-    <!-- ========================================
-         ABOUT SECTION
-    ========================================= -->
-    <section id="about" class="about-section section">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
+    <main>
+        <section class="section compact-section" aria-labelledby="focus-heading">
+            <h2 id="focus-heading">Technical Focus</h2>
+            <div class="focus-grid">
+                <div>
+                    <h3>Embedded Firmware</h3>
+                    <p>ESP32, ARM Cortex-M33, C/C++, FreeRTOS, Bluetooth, I2C, GPIO, interrupts, watchdogs, SDK samples, CI, unit testing.</p>
+                </div>
+                <div>
+                    <h3>Electrical Hardware</h3>
+                    <p>Altium, KiCad, PCB schematic/layout, USB-C power, buck conversion, eFuse protection, bring-up, OpenPNP, oscilloscopes, logic analyzers, DMMs.</p>
+                </div>
+                <div>
+                    <h3>Biomedical Systems</h3>
+                    <p>ERG electrodes, EMG acquisition, FES gait analysis, hearing-assistive audio devices, sensor validation, materials research, signal analysis.</p>
+                </div>
+                <div>
+                    <h3>Modeling &amp; Software</h3>
+                    <p>Python, MATLAB, Simulink, Stateflow, RTMaps, Flask, MongoDB, Google Cloud, signal processing, MFCCs, DTW, CAD and rapid prototyping.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="projects-heading">
+            <h2 id="projects-heading">Technical Projects</h2>
+
+            <article class="project project-with-gallery">
+                <div class="project-heading">
+                    <div>
+                        <h3>VocalPoint Capstone Project</h3>
+                        <p class="role">Electrical Lead | Hearing-assistive Bluetooth microphone array</p>
+                    </div>
+                    <p class="tag-list">Altium, PCB Design, Raspberry Pi CM5, Bluetooth, DSP, I2S, Firmware</p>
+                </div>
                 <p>
-                    I'm a Biomedical Engineering student at the University of Waterloo,
-                    specializing in Medical Devices. I'm constantly working on new projects
-                    and exploring different tools in embedded systems, firmware development,
-                    and hardware design.
+                    Leading electrical development and component integration for VocalPoint, a table-top microphone
+                    array Bluetooth device designed to assist hearing-aid users in noisy environments.
                 </p>
+                <ul>
+                    <li>Designing schematics and parts of the PCB layout in Altium for a Raspberry Pi CM5 carrier board.</li>
+                    <li>Integrating USB-C power delivery, a 3V3 buck converter, multi-microphone audio sources, and PCIe connectors for high-speed communication with a HAILO-8 accelerator.</li>
+                    <li>Prototyping Bluetooth audio streaming and DSP applications across hardware and microcontroller platforms.</li>
+                    <li>Targeting efficient speech isolation and enhancement from a microphone array before wireless streaming to hearing aids.</li>
+                </ul>
+                <figure class="figure-grid">
+                    <div class="image-tile">
+                        <img src="../assets/projects/VocalPoint/VP_PCB0.png" alt="VocalPoint assembled PCB">
+                        <p>Assembled VocalPoint PCB.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/VocalPoint/VP_PCB1.png" alt="VocalPoint PCB top view">
+                        <p>PCB top view.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/VocalPoint/VP_PCB2.png" alt="VocalPoint PCB layout detail">
+                        <p>PCB layout detail.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/VocalPoint/VP_SCH1.png" alt="VocalPoint USB-C power schematic">
+                        <p>USB-C connector, PD controller IC, and TPS25925 eFuse current control.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/VocalPoint/VP_SCH2.png" alt="VocalPoint Raspberry Pi CM5 connector schematic">
+                        <p>Raspberry Pi CM5 connector schematic.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/VocalPoint/VP_SCH3.png" alt="VocalPoint M.2 and HAILO-8 schematic">
+                        <p>M.2 connector, 3V3 control, and HAILO-8 connection.</p>
+                    </div>
+                    <!-- <figcaption>VocalPoint PCB and schematic excerpts.</figcaption> -->
+                </figure>
+            </article>
+
+            <article class="project project-with-gallery">
+                <div class="project-heading">
+                    <div>
+                        <h3>VAD Keyword Detector</h3>
+                        <p class="role">Classical speech-processing keyword detector without AI keyword models</p>
+                    </div>
+                    <p class="tag-list">Python, Signal Processing, Speech Processing, MFCC, DTW</p>
+                </div>
                 <p>
-                    This portfolio showcases some of my work and experience through various
-                    projects, highlighting my journey in developing innovative solutions for
-                    medical devices and embedded systems.
+                    Built a keyword detection application that compares live audio against a calibrated keyword template
+                    using signal-processing features instead of an AI classifier.
                 </p>
-                <div class="about-image-container">
-                    <img src="../assets/images/portrait_one.jpeg" alt="Ryan Jing Profile Picture" class="about-image">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================
-         PROJECTS SECTION - ALL EXPANDED
-    ========================================= -->
-    <section id="projects" class="projects-section section">
-        <div class="container">
-            <h2 class="section-title">Projects</h2>
-
-            <!-- PROJECT 1: EMG Hand Prosthetic -->
-            <div class="project-expanded">
-                <h3 class="project-title">EMG Hand Prosthetic</h3>
-                <div class="project-summary">
-                    <p>
-                        Developed a functional hand prosthetic prototype using EMG processing. Designed custom analog filter circuit to capture muscle signals from skin surface electrodes, outputting digital logic to an Arduino that processes these signals to actuate servo motors in a 3D-printed claw hand designed in SolidWorks.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Arduino</span>
-                        <span class="tag">Analog Circuits</span>
-                        <span class="tag">EMG Processing</span>
-                        <span class="tag">SolidWorks</span>
-                        <span class="tag">3D Printing</span>
-                    </div>
-                </div>
-                <div class="project-details">
-                    <h4>EMG-Controlled Hand Prosthetic</h4>
-                    <p>Developed with a partner a functional hand prosthetic prototype designed for upper-limb amputees, combining analog signal processing, and mechanical design to create a biometric control interface.</p>
-
-                    <p><strong>Analog Signal Processing:</strong> Designed and implemented a custom analog filter circuit to process electromyography (EMG) signals captured from skin surface electrodes placed on the forearm. The circuit filters muscle activation signals, amplifies them to a usable range, and passes the conditioned signal to a comparator that outputs a digital high/low signal corresponding to forearm flexion and extension.</p>
-
-                    <p>Programmed an Arduino microcontroller to interpret the comparator output and control servo motors that actuate the prosthetic fingers. The firmware implements threshold detection, and debouncing for stable operation.</p>
-
-                    <p>Partner designed the complete prosthetic hand mechanism in SolidWorks, optimizing for printability, weight, and range of motion. The claw design features articulating fingers driven by a tendon-based actuation system, all fabricated using 3D printing for rapid prototyping and iteration. The integration of electronics, motors, and mechanical linkages was carefully planned to fit within a compact, wearable form factor.</p>
-                </div>
-                <div class="project-media">
-                    <div class="media-item">
-                        <img src="../assets/projects/EMG/EMGClawCad.png" alt="EMG Claw CAD Model" class="project-image">
-                        <p class="media-caption">CAD Model of the prosthetic hand mechanism</p>
-                    </div>
-                    <div class="media-item">
-                        <div class="media-note">[Video demonstration available on full website: <a href="https://ryan-jing.github.io#projects">ryan-jing.github.io</a> - Claw function and EMG control]</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PROJECT 2: Electroretinography Research -->
-            <div class="project-expanded">
-                <h3 class="project-title">Electroretinography Electrode Research</h3>
-                <div class="project-summary">
-                    <p>
-                        Research at UWaterloo's Nanoengineering Department synthesizing
-                        ERG electrodes with Au-Ca and Au-Pt nanoparticles. Investigating
-                        materials to optimize retinal neural response capture and reduce
-                        electrical noise, with focus on adaptability for diverse patient needs.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Research</span>
-                        <span class="tag">Electroretinography</span>
-                        <span class="tag">Materials</span>
-                        <span class="tag">Signal Analysis</span>
-                    </div>
-                </div>
-                <div class="project-media">
-                    <div class="media-item">
-                        <img src="../assets/projects/ERG/ERG_Lab.jpeg" alt="ERG Lab" class="project-image">
-                    </div>
-                </div>
-            </div>
-
-            <!-- PROJECT 3: Mechanoreceptor Model -->
-            <div class="project-expanded">
-                <h3 class="project-title">Mechanoreceptor Model</h3>
-                <div class="project-summary">
-                    <p>
-                        Developed Python simulation for SA-1 and FA-1 mechanoreceptors in
-                        the finger. Simulates receptor array behavior scanning over
-                        topographical surfaces, converting physical pressure to current
-                        response with visual 3D output.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Mathematical Modeling</span>
-                        <span class="tag">Simulation</span>
-                    </div>
-                </div>
-                <div class="project-details">
-                    <h4>Mechanoreceptor Simulation Project</h4>
-                    <p>This project demonstrates a comprehensive Python-based simulation of SA-1 and FA-1 mechanoreceptors located in human fingertips. The simulation models how these receptors respond to different surface textures and pressures, converting mechanical stimuli into electrical signals that would be interpreted by the nervous system.</p>
-                    <p>The visualizations below show various scanning models and 3D plots that illustrate receptor activation patterns across different topographical surfaces.</p>
-                </div>
-                <div class="project-media">
-                    <div class="media-item">
-                        <img src="../assets/projects/Mechanoreceptor/COW_image.png" alt="Input surface texture" class="project-image">
-                        <p class="media-caption">Input surface texture</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/projects/Mechanoreceptor/COW_Scanning_Model_3D_Plot.png" alt="3D plot showing receptor response" class="project-image">
-                        <p class="media-caption">3D plot showing receptor response</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/projects/Mechanoreceptor/COW_Scanning_Model_Heatmap.png" alt="Heatmap visualization of activation patterns" class="project-image">
-                        <p class="media-caption">Heatmap visualization of activation patterns</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/projects/Mechanoreceptor/Scanning_Model_3D_Plot.png" alt="Model output scanning over keyboard topography" class="project-image">
-                        <p class="media-caption">Model output scanning over keyboard topography</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/projects/Mechanoreceptor/surface_texture_image.png" alt="Surface texture example" class="project-image">
-                        <p class="media-caption">Surface texture example</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/projects/Mechanoreceptor/SurfaceTexture_Scanning_Model_3D_Plot.png" alt="Scanning model output over surface texture example" class="project-image">
-                        <p class="media-caption">Scanning model output over surface texture example</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PROJECT 4: DJ Box -->
-            <div class="project-expanded">
-                <h3 class="project-title">Cardboard DJ Set</h3>
-                <div class="project-summary">
-                    <p>
-                        With a team of 3, we designed an interactive DJ set made from cardboard,
-                        equipped with actuators to mimic a professional DJ setup.
-                        This includes a turntable, mixer, and various effects, with
-                        hardware controls between microcontroller and SBC. Users can upload their song, and manipulate the cardboard components to create unique sounds and mixes.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">ESP32</span>
-                        <span class="tag">FreeRTOS</span>
-                        <span class="tag">Raspberry Pi 5</span>
-                        <span class="tag">I2C</span>
-                        <span class="tag">Audio Processing</span>
-                        <span class="tag">Web Development</span>
-                        <span class="tag">Spotify API</span>
-                    </div>
-                </div>
-                <div class="project-details">
-                    <h4>Portable DJ Mixing System</h4>
-                    <p>Developed a fully functional, portable DJ mixing system built from cardboard with integrated hardware controls and real-time audio processing capabilities. This project combined embedded systems engineering, audio signal processing, and full-stack web development to create a standalone music mixing solution that operates independently of network connectivity.</p>
-
-                    <p><strong>Hardware Architecture:</strong> The system is built around an ESP32 microcontroller running FreeRTOS, managing multiple hardware inputs including buttons, rotary encoders, and potentiometers. The firmware handles hardware interrupts for responsive button actions and implements I2C communication protocol to transmit control signals to a Raspberry Pi 5. The multi-threaded architecture ensures real-time performance without input lag.</p>
-
-                    <p><strong>Audio Processing:</strong> The Raspberry Pi 5 serves as the audio processing engine, receiving control inputs from the ESP32 via I2C and applying real-time audio effects including mixing, EQ adjustments, crossfading, and tempo modulation. The system outputs processed audio to Bluetooth devices such as wireless headphones, enabling completely portable operation without requiring Wi-Fi connectivity.</p>
-
-                    <p><strong>Web Interface & Spotify Integration:</strong> Developed a custom web application with a backend API that integrates with Spotify's API for playlist management. Users authenticate their Spotify account, browse their playlists through an intuitive interface, and select tracks for download. The backend handles secure authentication, playlist retrieval, and local audio file management on the Raspberry Pi 5, ensuring all music is available offline for mixing sessions in any location.</p>
-
-                    <p>This project demonstrates proficiency in embedded C/C++ development, real-time operating systems, hardware communication protocols, audio DSP, full-stack web development, and system integration across multiple platforms.</p>
-                </div>
-                <div class="project-media">
-                    <div class="media-item">
-                        <img src="../assets/projects/DJ/DJ_Box.jpeg" alt="Complete DJ box assembly" class="project-image">
-                        <p class="media-caption">Complete DJ box assembly showing cardboard construction and control layout</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/projects/DJ/DJ_Wire.jpeg" alt="Internal electronics" class="project-image">
-                        <p class="media-caption">Internal electronics - ESP32 wiring and hardware integration</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/projects/DJ/DJ_Group.jpeg" alt="Team presentation" class="project-image">
-                        <p class="media-caption">Team presentation showcasing the final working prototype</p>
-                    </div>
-                    <div class="media-item">
-                        <div class="media-note">[Video demonstration available on full website: <a href="https://ryan-jing.github.io#projects">ryan-jing.github.io</a> - DJ Box in operation]</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PROJECT 5: CAD Work -->
-            <div class="project-expanded">
-                <h3 class="project-title">CAD & Design Work</h3>
-                <div class="project-summary">
-                    <p>
-                        3D modeling and engineering design using SolidWorks and Onshape. Projects and work experience include device housing design, FEA analysis, aerodynamic modeling, and design for 3D printing and manufacturing.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">SolidWorks</span>
-                        <span class="tag">Onshape</span>
-                        <span class="tag">3D Printing</span>
-                        <span class="tag">FEA Analysis</span>
-                        <span class="tag">Manufacturing</span>
-                    </div>
-                </div>
-                <div class="project-details">
-                    <h4>Computer-Aided Design Portfolio</h4>
-                    <p>Extensive experience in 3D modeling and engineering design using both SolidWorks and Onshape. Projects range from creating custom device housings and enclosures to performing finite element analysis (FEA) for structural validation. Skilled in aerodynamic modeling, assembly design with bill of materials (BOM), technical drawings with GD&T tolerancing, and design for manufacturing (DFM) principles.</p>
-                    <p>The portfolio below showcases detailed assemblies with exploded views, engineering drawings, and rendered models optimized for 3D printing and rapid prototyping. Work includes complex multi-part assemblies, interference checking, and simulation-driven design modifications.</p>
-                    <p>While most of the images below are earlier projects, I have continued my CAD work in professional experiences, for prototype device housing, integrating aerodynamic designs for sports devices, and more.</p>
-                </div>
-                <div class="project-media">
-                    <div class="media-item">
-                        <img src="../assets/projects/CAD/SkateExplode.png" alt="Skateboard exploded view" class="project-image">
-                        <p class="media-caption">Skateboard assembly - Exploded view showing component relationships</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/projects/CAD/SkateDrawing.png" alt="Technical drawing" class="project-image">
-                        <p class="media-caption">Technical engineering drawing with dimensions and tolerances</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/projects/CAD/SkatePosed.png" alt="Skateboard render" class="project-image">
-                        <p class="media-caption">Skateboard assembly - Rendered final model</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/projects/CAD/LegoExplode.png" alt="LEGO exploded view" class="project-image">
-                        <p class="media-caption">LEGO-inspired mechanism - Exploded assembly view</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/projects/CAD/LegoPosed.png" alt="LEGO render" class="project-image">
-                        <p class="media-caption">LEGO mechanism - Fully assembled render</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/projects/CAD/OrcaExplode.png" alt="Orca exploded view" class="project-image">
-                        <p class="media-caption">Orca housing design - Component breakdown and assembly sequence</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/projects/CAD/OrcaDrawing.png" alt="Orca drawing" class="project-image">
-                        <p class="media-caption">Orca enclosure - Manufacturing drawing with specifications</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/projects/CAD/OrcaPosed.png" alt="Orca render" class="project-image">
-                        <p class="media-caption">Orca device housing - Final product visualization</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PROJECT 6: Deck Building -->
-            <div class="project-expanded">
-                <h3 class="project-title">Building a Deck in my Backyard</h3>
-                <div class="project-summary">
-                    <p>
-                        Built a backyard deck, hands-on construction project using hand saws, table saw, circular saw, and various power tools. Gained practical experience in wood cutting, joinery, and structural outdoor construction.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Woodworking</span>
-                        <span class="tag">Construction</span>
-                        <span class="tag">Power Tools</span>
-                        <span class="tag">Hand Tools</span>
-                        <span class="tag">Fabrication</span>
-                    </div>
-                </div>
-                <div class="project-details">
-                    <h4>Hands-On Deck Construction</h4>
-                    <p>I have always enjoyed working with my hands and building things from scratch. This backyard deck project allowed me to combine practical construction skills with creative problem-solving. From initial planning and measurements to the final finishing touches, I handled every aspect of the build.</p>
-                    <p>The project involved extensive use of woodworking tools including hand saws for precision cuts, a table saw for ripping boards to width, circular saws for cross-cuts, and various power tools for drilling and fastening. I learned proper wood cutting techniques, how to work with pressure-treated lumber, and the importance of structural integrity in outdoor construction. The experience reinforced my appreciation for hands-on fabrication and the satisfaction of creating something functional and lasting.</p>
-                </div>
-                <div class="project-media">
-                    <div class="media-item">
-                        <img src="../assets/projects/Deck/deck_full.jpeg" alt="Completed deck" class="project-image">
-                        <p class="media-caption">Completed deck - Full view of the finished construction</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/projects/Deck/deck_me.jpeg" alt="On-site construction" class="project-image">
-                        <p class="media-caption">On-site during construction with tools and materials</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ========================================
-         EXPERIENCE SECTION
-    ========================================= -->
-    <section id="experience" class="experience-section section">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-
-            <!-- EXPERIENCE 1: OtO -->
-            <div class="experience-item">
-                <div class="experience-header">
-                    <h3 class="experience-title">Embedded Engineer</h3>
-                    <span class="experience-date">Jan - Aug 2025</span>
-                </div>
-                <h4 class="experience-company">OtO | Toronto, ON</h4>
-                <ul class="experience-description">
-                    <li>Designed electrical schematics and PCBs in Altium; designed PCB bring-up testing suite for hardware debugging/validation</li>
-                    <li>Built prototype PCBs using OpenPNP; validated performance using oscilloscopes, spectral analyzers, logic analyzers, DMMs</li>
-                    <li>Reduced device sleep current by 34%, boosted charging speed by 47%, and implemented new battery-failure operation features</li>
-                    <li>Developed firmware features for ESP32; temperature-controlled charging, I2C motor controllers, integrating new ICs, bugfixes</li>
-                    <li>Implemented CI workflows with hardware emulation, unit tests, and static code analysis for improved code robustness</li>
+                <ul>
+                    <li>Calibration begins with a three-second ambient noise sample to estimate energy and spectral entropy thresholds.</li>
+                    <li>Preprocessing removes DC offset, applies an 80 Hz to 7 kHz Butterworth bandpass filter, and adds pre-emphasis.</li>
+                    <li>Keyword recordings are framed into 25 ms windows with 10 ms hops, cropped by a custom VAD, and converted into MFCC features.</li>
+                    <li>Feature extraction uses a Hamming window, 512-point FFT, 40 mel filters, log mel spectrum, type-II DCT, 13 MFCC coefficients, and first/second-order deltas for 39 features per frame.</li>
+                    <li>Live monitoring stores 16 kHz microphone audio in a three-second ring buffer and uses speech, hangover, and silence states to avoid choppy segmentation.</li>
+                    <li>Dynamic time warping compares live segments against the template with Euclidean frame distances and a Sakoe-Chiba band constrained to about 20 percent of sequence length.</li>
+                    <li>The normalized DTW score is compared against a threshold of 3.0; performance is strongest with clean calibration and consistent pitch, tone, and pacing.</li>
                 </ul>
-                <div class="experience-tags">
-                    <span class="tag">Altium</span>
-                    <span class="tag">PCB Design</span>
-                    <span class="tag">Hardware Testing</span>
-                    <span class="tag">ESP32</span>
-                    <span class="tag">C/C++</span>
-                </div>
-            </div>
+                <figure class="figure-grid">
+                    <div class="image-tile">
+                        <img src="../assets/projects/Keyword/Keyword_1.png" alt="Keyword detector audio pipeline">
+                        <p>Audio pipeline block diagram.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/Keyword/Keyword_2.png" alt="Uncropped VocalPoint keyword recording">
+                        <p>Uncropped recording of the VocalPoint keyword utterance.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/Keyword/Keyword_3.png" alt="Cropped and filtered VocalPoint keyword recording">
+                        <p>Cropped and filtered VocalPoint keyword utterance.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/Keyword/Keyword_4.png" alt="VocalPoint keyword template">
+                        <p>Keyword template for the VocalPoint utterance.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/Keyword/Keyword_5.png" alt="Euclidean distance comparison of detected VocalPoint utterance">
+                        <p>Euclidean distance frame comparison for a detected VocalPoint utterance.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/Keyword/Keyword_6.png" alt="DTW cost matrix for detected VocalPoint utterance">
+                        <p>Cost matrix and warp path for a detected VocalPoint utterance.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/Keyword/Keyword_7.png" alt="Euclidean distance comparison of rejected Pizza Time utterance">
+                        <p>Euclidean distance frame comparison for a rejected Pizza Time utterance.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/Keyword/Keyword_8.png" alt="DTW cost matrix for rejected Pizza Time utterance">
+                        <p>Cost matrix and warp path for a rejected Pizza Time utterance.</p>
+                    </div>
+                    <!-- <figcaption>Full VAD keyword detector pipeline, calibration, accepted detection, and rejected-utterance outputs.</figcaption> -->
+                </figure>
+            </article>
 
-            <!-- EXPERIENCE 2: Elev8 & Perform -->
-            <div class="experience-item">
-                <div class="experience-header">
-                    <h3 class="experience-title">Hardware and Software Developer</h3>
-                    <span class="experience-date">May - Aug 2024</span>
+            <article class="project">
+                <div class="project-heading">
+                    <div>
+                        <h3>Cadillac LYRIQ State Machine &amp; Feature Override</h3>
+                        <p class="role">University of Waterloo Alternate Fuels Team EcoCAR control logic</p>
+                    </div>
+                    <p class="tag-list">MATLAB, Simulink, RTMaps, State Machine, CAN Bus, ADAS</p>
                 </div>
-                <h4 class="experience-company">Elev8 & Perform | Toronto, ON</h4>
-                <ul class="experience-description">
-                    <li>Spearheaded device firmware development; BLE for data transmission, I2C for gas/flow sensors, handling tasks with FreeRTOS</li>
-                    <li>Designed PCB integrating ESP32 and sensors; modeled and 3D printed device housing for ergonomics and functionality</li>
-                    <li>Implemented Python-based data visualization solutions for comprehensive sensor data analysis, testing, and system validation</li>
-                    <li>Developed Python Flask API and web app on Google Cloud, visualizing live device data, and saving to MongoDB collection</li>
-                </ul>
-                <div class="experience-tags">
-                    <span class="tag">ESP32</span>
-                    <span class="tag">KiCad</span>
-                    <span class="tag">CAD</span>
-                    <span class="tag">FreeRTOS</span>
-                    <span class="tag">C/C++</span>
-                    <span class="tag">Sensors</span>
-                </div>
-            </div>
-
-            <!-- EXPERIENCE 3: Onsemi -->
-            <div class="experience-item">
-                <div class="experience-header">
-                    <h3 class="experience-title">Firmware Developer</h3>
-                    <span class="experience-date">Sep - Dec 2023</span>
-                </div>
-                <h4 class="experience-company">Onsemi | Waterloo, ON</h4>
-                <ul class="experience-description">
-                    <li>Developed embedded software for RSL15 MCU (ARM Cortex-M33), SDK sample applications, and fixing customer bugs</li>
-                    <li>Created GPIO drivers, HAL components, and firmware in C (AUTOSAR); implemented interrupts and watchdog timers</li>
-                    <li>Designed firmware architecture for SDK applications, from memory mapping to customer-facing code, using Jama</li>
-                    <li>Implemented unit testing (CppUTest); hardware testing with DMM, logic analyzers, STM32CubeMonPwr, and JTAG debuggers</li>
-                </ul>
-                <div class="experience-tags">
-                    <span class="tag">Cortex-M33</span>
-                    <span class="tag">C/C++</span>
-                    <span class="tag">Firmware Architecture</span>
-                    <span class="tag">Unit Testing</span>
-                    <span class="tag">AUTOSAR</span>
-                </div>
-            </div>
-
-            <!-- EXPERIENCE 4: UWaterloo Research -->
-            <div class="experience-item">
-                <div class="experience-header">
-                    <h3 class="experience-title">Undergraduate Research Assistant</h3>
-                    <span class="experience-date">Jan 2024 - Jan 2025</span>
-                </div>
-                <h4 class="experience-company">University of Waterloo - Nanotechnology Engineering | Waterloo, ON</h4>
-                <ul class="experience-description">
-                    <li>Synthesized electroretinography (ERG) electrodes with Au-Ca and Au-Pt nanoparticles for R&D of diagnostic sensor strips</li>
-                    <li>Validated in-lab electrodes using oscilloscope, DMM; analyzed signal data with Excel and Python, 10% improved performance</li>
-                </ul>
-                <div class="experience-tags">
-                    <span class="tag">Research</span>
-                    <span class="tag">Signal Analysis</span>
-                    <span class="tag">Python</span>
-                </div>
-            </div>
-
-            <!-- EXPERIENCE 5: WATOLINK -->
-            <div class="experience-item">
-                <div class="experience-header">
-                    <h3 class="experience-title">Integration Lead</h3>
-                    <span class="experience-date">Jan 2023 - Jan 2025</span>
-                </div>
-                <h4 class="experience-company">WATOLINK - AI/ML Research | Waterloo, ON</h4>
-                <ul class="experience-description">
-                    <li>Integrating hardware components (Motor, GUI, BCI) and Python scripts using Jetson Nano for BCI-controlled wheelchair</li>
-                    <li>Researching and training AI models (SSVEP) using internal EEG data, creating hands-free command system for paraplegics</li>
-                </ul>
-                <div class="experience-tags">
-                    <span class="tag">Jetson Nano</span>
-                    <span class="tag">Python</span>
-                    <span class="tag">AI/ML</span>
-                    <span class="tag">BCI</span>
-                </div>
-            </div>
-
-            <!-- EXPERIENCE 6: Ontario Health -->
-            <div class="experience-item">
-                <div class="experience-header">
-                    <h3 class="experience-title">Junior Systems Engineer</h3>
-                    <span class="experience-date">Jan - Apr 2023</span>
-                </div>
-                <h4 class="experience-company">Ontario Health | Toronto, ON</h4>
-                <ul class="experience-description">
-                    <li>Developed serverless Electronic Medical Record (EMR) web app on Azure using AngularJS, JavaScript, Node.js, and MongoDB</li>
-                    <li>Optimized RESTful API endpoints and backend, resulting in 94% development cost reduction and improved EMR accessibility</li>
-                </ul>
-                <div class="experience-tags">
-                    <span class="tag">Azure</span>
-                    <span class="tag">AngularJS</span>
-                    <span class="tag">Node.js</span>
-                    <span class="tag">MongoDB</span>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ========================================
-         ARTWORKS SECTION
-    ========================================= -->
-    <!-- <section id="artworks" class="artworks-section section">
-        <div class="container">
-            <h2 class="section-title">Artworks</h2>
-
-            <div class="project-expanded">
-                <h3 class="project-title">Digital Art</h3>
-                <div class="project-summary">
-                    <p>
-                        Digital art created using Procreate, featuring character illustrations, animations, and creative explorations.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Procreate</span>
-                        <span class="tag">Digital Art</span>
-                        <span class="tag">Animation</span>
-                    </div>
-                </div>
-                <div class="project-details">
-                    <h4>Digital Art Portfolio</h4>
-                    <p>I enjoy drawing both on paper and on digital platforms. I find interesting art online to use as reference and inspiration.</p>
-                </div>
-                <div class="project-media">
-                    <div class="media-item">
-                        <div class="media-note">[Animation videos available on full website: <a href="https://ryan-jing.github.io#artworks">ryan-jing.github.io</a> - Digital artwork created in Procreate]</div>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/artworks/art_one.jpeg" alt="Digital art" class="project-image">
-                        <p class="media-caption">Digital in Procreate</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/artworks/art_two.jpeg" alt="Digital art" class="project-image">
-                        <p class="media-caption">Digital in Procreate</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/artworks/art_three.jpeg" alt="Art" class="project-image">
-                        <p class="media-caption">Pencil and Sharpie</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/artworks/art_four.jpeg" alt="Art" class="project-image">
-                        <p class="media-caption">Pencil, Sharpie, and Marker</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/artworks/art_five.jpeg" alt="Art" class="project-image">
-                        <p class="media-caption">Pencil, Sharpie, and Marker</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/artworks/art_six.jpeg" alt="Art" class="project-image">
-                        <p class="media-caption">Pencil, Sharpie, and Marker</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/artworks/art_seven.jpeg" alt="Art" class="project-image">
-                        <p class="media-caption">Pencil and Sharpie</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/artworks/art_eight.jpeg" alt="Art" class="project-image">
-                        <p class="media-caption">Pencil and Sharpie</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/artworks/art_nine.jpeg" alt="Art" class="project-image">
-                        <p class="media-caption">Pencil and Copic Liner</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/artworks/art_ten.jpeg" alt="Art" class="project-image">
-                        <p class="media-caption">Pencil and Sharpie</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-expanded">
-                <h3 class="project-title">Logo Design</h3>
-                <div class="project-summary">
-                    <p>
-                        Logo design for various organizations and design teams using Procreate. Professional branding and identity work.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Logo Design</span>
-                        <span class="tag">Branding</span>
-                        <span class="tag">Procreate</span>
-                    </div>
-                </div>
-                <div class="project-details">
-                    <h4>Logo Design Portfolio</h4>
-                    <p>I use my skills in visual art and design to create logos for organizations and events.</p>
-                </div>
-                <div class="project-media">
-                    <div class="media-item">
-                        <img src="../assets/artworks/logos/logo_four.jpeg" alt="Logo" class="project-image">
-                        <p class="media-caption">Logo designed for UW Orbital Design Team</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/artworks/logos/logo_one.jpeg" alt="Logo" class="project-image">
-                        <p class="media-caption">Logo designed for BME 2026 Cohort Merchandise</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/artworks/logos/logo_two.jpeg" alt="Logo" class="project-image">
-                        <p class="media-caption">Logo submission for UW Engineering Orientation Event</p>
-                    </div>
-                    <div class="media-item">
-                        <img src="../assets/artworks/logos/logo_three.jpeg" alt="Logo" class="project-image">
-                        <p class="media-caption">Logo designed for BME 2026 Cohort</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section> -->
-
-    <!-- ========================================
-         CONTACT SECTION
-    ========================================= -->
-    <section id="contact" class="contact-section section">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <p class="contact-text">
-                    I'm always open to discussing new projects, opportunities,
-                    or collaborations. Feel free to reach out!
+                <p>
+                    Designed and implemented a hierarchical ADAS state machine in MATLAB/Simulink for the Cadillac LYRIQ
+                    as part of UWAFT's EcoCAR competition.
                 </p>
+                <ul>
+                    <li>Modeled AIN, LCC, AP, and CACC driving features as individual Stateflow state machines.</li>
+                    <li>Built a parent state machine to coordinate feature priority, conflict resolution, override logic, and system-level transitions.</li>
+                    <li>Converted the Simulink model into an RTMaps package for deployment on vehicle real-time middleware.</li>
+                    <li>Validated behavior by replaying real CAN bus data captured from the vehicle and checking expected activation sequences.</li>
+                </ul>
+                <figure class="figure-pair">
+                    <img src="../assets/projects/SM+FO/SM0.png" alt="Cadillac LYRIQ state machine overview">
+                    <img src="../assets/projects/SM+FO/SM3.png" alt="Parent state machine combining feature states">
+                    <figcaption>State-machine overview and parent Stateflow model for ADAS feature coordination.</figcaption>
+                </figure>
+            </article>
 
-                <div class="contact-info">
-                    <p><strong>Email:</strong> ryanjing23@gmail.com</p>
-                    <p><strong>LinkedIn:</strong> linkedin.com/in/ryan-jing-577201216/</p>
-                    <p><strong>GitHub:</strong> github.com/Ryan-Jing</p>
+            <article class="project">
+                <div class="project-heading">
+                    <div>
+                        <h3>Electroretinography Electrode Research</h3>
+                        <p class="role">Nanoparticle ERG electrode sensor research</p>
+                    </div>
+                    <p class="tag-list">Research, Electroretinography, Materials, Signal Analysis, Python</p>
                 </div>
-            </div>
-        </div>
-    </section>
+                <p>
+                    Researched and developed nanoparticle-based electrodes for electroretinography diagnostics, targeting
+                    improved accessibility, size, and customization for ERG patches.
+                </p>
+                <ul>
+                    <li>Investigated limitations of existing clinical ERG electrode materials and synthesized Au-Ca and Au-Pt nanoparticle electrode alternatives.</li>
+                    <li>Designed a specialized ERG sensor strip incorporating synthesized electrodes for early-stage diabetic retinopathy screening.</li>
+                    <li>Characterized electrode performance with an oscilloscope and DMM to verify signal quality and electrical properties.</li>
+                    <li>Developed a Python validation pipeline to analyze signal output against existing industry performance benchmarks.</li>
+                </ul>
+                <figure class="single-figure">
+                    <img src="../assets/projects/ERG/ERG_Lab.jpeg" alt="ERG sensor patch test">
+                    <figcaption>ERG sensor patch applied during in-lab testing.</figcaption>
+                </figure>
+            </article>
 
-    <!-- ========================================
-         FOOTER
-    ========================================= -->
-    <footer class="footer">
-        <div class="container">
-            <p>© 2025 Ryan Jing</p>
-        </div>
+            <article class="project">
+                <div class="project-heading">
+                    <div>
+                        <h3>EMG Hand Prosthetic</h3>
+                        <p class="role">Analog EMG control interface for a 3D-printed hand prototype</p>
+                    </div>
+                    <p class="tag-list">Arduino, Analog Circuits, EMG Processing, SolidWorks, 3D Printing</p>
+                </div>
+                <p>
+                    Developed a functional hand prosthetic prototype with a partner, combining analog signal processing,
+                    firmware, and mechanical design to create a biometric control interface.
+                </p>
+                <ul>
+                    <li>Designed and implemented a custom analog filter circuit to process EMG signals from skin-surface electrodes on the forearm.</li>
+                    <li>Filtered and amplified muscle activation signals, then passed the conditioned output into a comparator for digital flexion/extension logic.</li>
+                    <li>Programmed an Arduino to interpret comparator output and control servo motors for finger actuation with threshold detection and debouncing.</li>
+                    <li>Integrated electronics, motors, and mechanical linkages into a compact wearable form factor with a 3D-printed tendon-driven claw design.</li>
+                </ul>
+                <p class="video-note">
+                    Video of this project can be seen in Portfolio:
+                    <a href="https://ryan-jing.github.io/#projects">ryan-jing.github.io/#projects</a>
+                </p>
+                <figure class="single-figure">
+                    <img src="../assets/projects/EMG/EMGClawCad.png" alt="EMG prosthetic CAD model">
+                    <figcaption>CAD model of the prosthetic hand mechanism.</figcaption>
+                </figure>
+            </article>
+
+            <article class="project">
+                <div class="project-heading">
+                    <div>
+                        <h3>Foot Drop FES Model &amp; Gait Visualization</h3>
+                        <p class="role">MATLAB model and visualization for foot drop gait correction</p>
+                    </div>
+                    <p class="tag-list">MATLAB, FES, Gait Analysis</p>
+                </div>
+                <p>
+                    Optimized a functional electrical stimulation model in MATLAB for foot drop patients, using gait
+                    cycle data to improve stimulation timing and evaluate rehabilitative outcomes.
+                </p>
+                <ul>
+                    <li>Analyzed muscle activity and joint kinematic data across the gait cycle to refine stimulation parameters.</li>
+                    <li>Tuned the model to better replicate healthy gait patterns by targeting appropriate muscle groups during swing phase.</li>
+                    <li>Developed side-by-side MATLAB visualizations of normal gait, foot drop gait without stimulation, and FES-assisted gait.</li>
+                    <li>Focused visual outputs on joint kinematics, especially ankle dorsiflexion, to show the corrective effect of FES.</li>
+                </ul>
+                <p class="video-note">
+                    Video of this project can be seen in Portfolio:
+                    <a href="https://ryan-jing.github.io/#projects">ryan-jing.github.io/#projects</a>
+                </p>
+            </article>
+
+            <article class="project project-with-gallery">
+                <div class="project-heading">
+                    <div>
+                        <h3>Mechanoreceptor Model</h3>
+                        <p class="role">Python simulation of fingertip mechanoreceptor response</p>
+                    </div>
+                    <p class="tag-list">Python, Mathematical Modeling, Simulation</p>
+                </div>
+                <p>
+                    Developed a Python-based simulation of SA-1 and FA-1 mechanoreceptors in human fingertips,
+                    modeling how receptor arrays respond while scanning topographical surfaces.
+                </p>
+                <ul>
+                    <li>Converted physical surface pressure over time into simulated current responses for receptor arrays.</li>
+                    <li>Generated visual 3D plots and heatmaps to show receptor activation patterns over different textures.</li>
+                    <li>Compared scanning outputs across image-derived surfaces and representative topographical inputs.</li>
+                </ul>
+                <figure class="figure-grid">
+                    <div class="image-tile">
+                        <img src="../assets/projects/Mechanoreceptor/COW_image.png" alt="Input surface texture for mechanoreceptor simulation">
+                        <p>Input surface texture.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/Mechanoreceptor/COW_Scanning_Model_3D_Plot.png" alt="3D mechanoreceptor scanning response">
+                        <p>3D plot showing receptor response.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/Mechanoreceptor/COW_Scanning_Model_Heatmap.png" alt="Mechanoreceptor activation heatmap">
+                        <p>Heatmap visualization of activation patterns.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/Mechanoreceptor/Scanning_Model_3D_Plot.png" alt="Mechanoreceptor model output scanning over keyboard topography">
+                        <p>Model output scanning over keyboard topography.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/Mechanoreceptor/surface_texture_image.png" alt="Surface texture example for mechanoreceptor simulation">
+                        <p>Surface texture example.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/Mechanoreceptor/SurfaceTexture_Scanning_Model_3D_Plot.png" alt="Mechanoreceptor scanning model output over surface texture">
+                        <p>Scanning model output over the surface texture example.</p>
+                    </div>
+                    <!-- <figcaption>Mechanoreceptor model inputs, 3D response plots, and heatmap outputs.</figcaption> -->
+                </figure>
+            </article>
+
+            <article class="project">
+                <div class="project-heading">
+                    <div>
+                        <h3>Cardboard DJ Set</h3>
+                        <p class="role">Portable DJ mixing system with embedded controls and local audio processing</p>
+                    </div>
+                    <p class="tag-list">ESP32, FreeRTOS, Raspberry Pi 5, I2C, Audio Processing, Web Development, Spotify API</p>
+                </div>
+                <p>
+                    Built a portable DJ mixing system with a team of three, using cardboard mechanical components,
+                    embedded hardware controls, and real-time audio processing.
+                </p>
+                <ul>
+                    <li>Implemented ESP32 firmware on FreeRTOS to manage buttons, rotary encoders, potentiometers, and responsive hardware interrupts.</li>
+                    <li>Used I2C to transmit control signals from the ESP32 to a Raspberry Pi 5 audio processing engine.</li>
+                    <li>Applied real-time audio effects including mixing, EQ adjustment, crossfading, and tempo modulation.</li>
+                    <li>Output processed audio to Bluetooth devices, enabling portable operation without requiring Wi-Fi.</li>
+                    <li>Built a web application and backend API for Spotify authentication, playlist browsing, track download, and local file management on the Raspberry Pi.</li>
+                </ul>
+                <p class="video-note">
+                    Video of this project can be seen in Portfolio:
+                    <a href="https://ryan-jing.github.io/#projects">ryan-jing.github.io/#projects</a>
+                </p>
+                <figure class="figure-pair">
+                    <img src="../assets/projects/DJ/DJ_Box.jpeg" alt="Cardboard DJ box prototype">
+                    <img src="../assets/projects/DJ/DJ_Wire.jpeg" alt="Cardboard DJ set internal electronics">
+                    <figcaption>Finished cardboard DJ controller and ESP32/Raspberry Pi hardware integration.</figcaption>
+                </figure>
+            </article>
+
+            <article class="project project-with-gallery">
+                <div class="project-heading">
+                    <div>
+                        <h3>CAD &amp; Design Work</h3>
+                        <p class="role">3D modeling, enclosure design, manufacturing drawings, and rapid prototyping</p>
+                    </div>
+                    <p class="tag-list">SolidWorks, Onshape, 3D Printing, FEA Analysis, Manufacturing</p>
+                </div>
+                <p>
+                    Developed 3D modeling and engineering design experience through SolidWorks and Onshape projects,
+                    including device housings, FEA analysis, aerodynamic modeling, and design for 3D printing and manufacturing.
+                </p>
+                <ul>
+                    <li>Created multi-part assemblies with exploded views, engineering drawings, dimensions, and tolerances.</li>
+                    <li>Applied interference checking, BOM planning, simulation-driven design changes, and design-for-manufacturing principles.</li>
+                    <li>Continued CAD work professionally through prototype device housing and sports-device aerodynamic design.</li>
+                </ul>
+                <figure class="figure-grid">
+                    <div class="image-tile">
+                        <img src="../assets/projects/CAD/SkateExplode.png" alt="Skateboard exploded CAD assembly">
+                        <p>Skateboard assembly exploded view.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/CAD/SkateDrawing.png" alt="Skateboard technical drawing">
+                        <p>Skateboard technical engineering drawing.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/CAD/SkatePosed.png" alt="Rendered skateboard CAD assembly">
+                        <p>Skateboard final assembly render.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/CAD/LegoExplode.png" alt="LEGO-inspired mechanism exploded CAD view">
+                        <p>LEGO-inspired mechanism exploded assembly view.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/CAD/LegoPosed.png" alt="LEGO-inspired mechanism assembled CAD render">
+                        <p>LEGO-inspired mechanism assembled render.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/CAD/OrcaExplode.png" alt="Orca housing exploded CAD view">
+                        <p>Orca housing component breakdown and assembly sequence.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/CAD/OrcaDrawing.png" alt="Orca enclosure manufacturing drawing">
+                        <p>Orca enclosure manufacturing drawing.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/CAD/OrcaPosed.png" alt="Orca device housing render">
+                        <p>Orca device housing final visualization.</p>
+                    </div>
+                    <!-- <figcaption>CAD portfolio examples with exploded assemblies, drawings, and rendered models.</figcaption> -->
+                </figure>
+            </article>
+
+            <article class="project">
+                <div class="project-heading">
+                    <div>
+                        <h3>Building a Deck in My Backyard</h3>
+                        <p class="role">Hands-on fabrication and outdoor structural construction</p>
+                    </div>
+                    <p class="tag-list">Woodworking, Construction, Power Tools, Hand Tools, Fabrication</p>
+                </div>
+                <p>
+                    Built a backyard deck from planning and measurement through final construction, gaining hands-on
+                    experience with wood cutting, joinery, outdoor structural work, and tool use.
+                </p>
+                <ul>
+                    <li>Used hand saws, a table saw, circular saws, drills, and fastening tools for precision cuts and assembly.</li>
+                    <li>Worked with pressure-treated lumber and reinforced the importance of structural integrity in outdoor construction.</li>
+                </ul>
+                <figure class="figure-pair">
+                    <img src="../assets/projects/Deck/deck_full.jpeg" alt="Completed backyard deck">
+                    <img src="../assets/projects/Deck/deck_me.jpeg" alt="Deck construction worksite">
+                    <figcaption>Completed deck and construction work.</figcaption>
+                </figure>
+            </article>
+        </section>
+
+        <section class="section page-start" aria-labelledby="experience-heading">
+            <h2 id="experience-heading">Experience</h2>
+
+            <article class="experience">
+                <div class="experience-heading">
+                    <div>
+                        <h3>Electrical Engineer</h3>
+                        <p>OtO | Toronto, ON</p>
+                    </div>
+                    <p class="date">Jan - Aug 2025</p>
+                </div>
+                <ul>
+                    <li>Designed electrical schematics and PCBs in Altium; designed PCB bring-up testing suite for hardware debugging and validation.</li>
+                    <li>Built prototype PCBs using OpenPNP; validated performance using oscilloscopes, spectral analyzers, logic analyzers, and DMMs.</li>
+                    <li>Reduced device sleep current by 34%, boosted charging speed by 47%, and implemented new battery-failure operation features.</li>
+                    <li>Developed ESP32 firmware features for temperature-controlled charging, I2C motor controllers, new IC integrations, and bug fixes.</li>
+                    <li>Implemented CI workflows with hardware emulation, unit tests, and static code analysis for improved firmware robustness.</li>
+                </ul>
+                <p class="tag-list">Altium, PCB Design, Hardware Testing, ESP32, C/C++</p>
+            </article>
+
+            <article class="experience">
+                <div class="experience-heading">
+                    <div>
+                        <h3>Hardware and Software Developer</h3>
+                        <p>Elev8 &amp; Perform | Toronto, ON</p>
+                    </div>
+                    <p class="date">May - Aug 2024</p>
+                </div>
+                <ul>
+                    <li>Spearheaded device firmware development using BLE for data transmission, I2C for gas/flow sensors, and FreeRTOS for task handling.</li>
+                    <li>Designed PCB integrating ESP32 and sensors; modeled and 3D printed device housing for ergonomics and functionality.</li>
+                    <li>Implemented Python data visualization solutions for sensor analysis, testing, and system validation.</li>
+                    <li>Developed Python Flask API and web app on Google Cloud to visualize live device data and save results to MongoDB.</li>
+                </ul>
+                <p class="tag-list">ESP32, KiCad, CAD, FreeRTOS, C/C++, Sensors</p>
+            </article>
+
+            <article class="experience">
+                <div class="experience-heading">
+                    <div>
+                        <h3>Firmware Developer</h3>
+                        <p>Onsemi | Waterloo, ON</p>
+                    </div>
+                    <p class="date">Sep - Dec 2023</p>
+                </div>
+                <ul>
+                    <li>Developed embedded software for the RSL15 MCU, ARM Cortex-M33 SDK sample applications, and customer bug fixes.</li>
+                    <li>Created GPIO drivers, HAL components, and C firmware in an AUTOSAR environment; implemented interrupts and watchdog timers.</li>
+                    <li>Designed firmware architecture for SDK applications from memory mapping through customer-facing code using Jama.</li>
+                    <li>Implemented CppUTest unit testing and hardware testing with DMMs, logic analyzers, STM32CubeMonPwr, and JTAG debuggers.</li>
+                </ul>
+                <p class="tag-list">Cortex-M33, C/C++, Firmware Architecture, Unit Testing, AUTOSAR</p>
+            </article>
+
+            <article class="experience">
+                <div class="experience-heading">
+                    <div>
+                        <h3>Undergraduate Research Assistant</h3>
+                        <p>University of Waterloo - Nanotechnology Engineering | Waterloo, ON</p>
+                    </div>
+                    <p class="date">Jan 2024 - Jan 2025</p>
+                </div>
+                <ul>
+                    <li>Synthesized electroretinography electrodes with Au-Ca and Au-Pt nanoparticles for diagnostic sensor-strip R&amp;D.</li>
+                    <li>Validated in-lab electrodes using oscilloscope and DMM measurements; analyzed signal data with Excel and Python, improving performance by 10%.</li>
+                </ul>
+                <p class="tag-list">Research, Signal Analysis, Python</p>
+            </article>
+
+            <article class="experience">
+                <div class="experience-heading">
+                    <div>
+                        <h3>Electrical Lead</h3>
+                        <p>True North BME Competition | Waterloo, ON</p>
+                    </div>
+                    <p class="date">Sep 2024 - Present</p>
+                </div>
+                <ul>
+                    <li>Designing an EMG filtering circuit using bandpass filters and difference amplifiers for signal conditioning.</li>
+                    <li>Developing PCB layout and schematic for a multi-channel EMG acquisition system with integrated analog signal processing.</li>
+                    <li>Implementing firmware signal-processing algorithms to extract and interpret EMG features in real time.</li>
+                    <li>Architecting FreeRTOS-based firmware to handle 10+ simultaneous analog EMG data streams with zero data loss.</li>
+                    <li>Integrating Bluetooth communication to reliably transmit processed EMG data packets to a mobile application.</li>
+                </ul>
+                <p class="tag-list">EMG Processing, PCB Design, Analog Circuits, FreeRTOS, Bluetooth, Signal Processing</p>
+            </article>
+
+            <article class="experience">
+                <div class="experience-heading">
+                    <div>
+                        <h3>Integration Lead</h3>
+                        <p>WATOLINK - AI/ML Research | Waterloo, ON</p>
+                    </div>
+                    <p class="date">Jan 2023 - Jan 2025</p>
+                </div>
+                <ul>
+                    <li>Integrated hardware components including motor, GUI, and BCI modules with Python scripts using Jetson Nano for a BCI-controlled wheelchair.</li>
+                    <li>Researched and trained SSVEP AI models using internal EEG data to create a hands-free command system for paraplegic users.</li>
+                </ul>
+                <p class="tag-list">Jetson Nano, Python, AI/ML, BCI</p>
+            </article>
+
+            <article class="experience">
+                <div class="experience-heading">
+                    <div>
+                        <h3>Junior Systems Engineer</h3>
+                        <p>Ontario Health | Toronto, ON</p>
+                    </div>
+                    <p class="date">Jan - Apr 2023</p>
+                </div>
+                <ul>
+                    <li>Developed serverless Electronic Medical Record web app on Azure using AngularJS, JavaScript, Node.js, and MongoDB.</li>
+                    <li>Optimized RESTful API endpoints and backend implementation, resulting in 94% development cost reduction and improved EMR accessibility.</li>
+                </ul>
+                <p class="tag-list">Azure, AngularJS, Node.js, MongoDB</p>
+            </article>
+        </section>
+    </main>
+
+    <footer class="document-footer">
+        <p>2026 Ryan Jing | Portfolio PDF Version | <a href="https://ryan-jing.github.io">ryan-jing.github.io</a></p>
     </footer>
-
-    <!-- GoatCounter Analytics -->
-    <script data-goatcounter="https://ryan-jing.goatcounter.com/count"
-            async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

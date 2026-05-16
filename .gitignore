@@ -4,4 +4,5 @@ dist/
 GUIDE.md
 PDF_EXPORT_GUIDE.md
 exports/
+other/
 goatcounter_stats.py
