@@ -34,7 +34,11 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: rgba(0, 0, 0, 0.95);
+                background:
+                    linear-gradient(135deg, rgba(60, 56, 54, 0.94), rgba(50, 48, 47, 0.9)),
+                    rgba(50, 48, 47, 0.92);
+                backdrop-filter: blur(18px) saturate(120%);
+                -webkit-backdrop-filter: blur(18px) saturate(120%);
                 display: flex;
                 justify-content: center;
                 align-items: center;
