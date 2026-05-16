@@ -1067,6 +1067,22 @@ a:hover {
     color: var(--fg-secondary);
 }
 
+.footer-separator {
+    margin: 0 var(--spacing-xs);
+    color: var(--fg-tertiary);
+}
+
+.footer-pdf-link {
+    color: var(--fg-tertiary);
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.footer-pdf-link:hover {
+    color: var(--accent-bright);
+    text-decoration: underline;
+}
+
 /* ==========================================
    MODAL SCROLLBAR STYLING
    Dark scrollbar for expanded project cards
