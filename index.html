@@ -106,7 +106,7 @@
                     <div class="project-content">
                         <h3 class="project-title">VocalPoint – Capstone Project</h3>
                         <p class="project-description">
-                            Leading electrical development and system architecture for a table-top microphone array Bluetooth device for hearing-aids. Designing electrical schematic and aided in PCB layout using Altium for a RPi CM5 carrier board with USB-C power, 3V3 buck converter, and PCIe connectors. Prototyping Bluetooth and DSP applications optimized for power and computational efficiency.
+                            Leading electrical development and system architecture for a table-top microphone array Bluetooth device for hearing-aids. Designing electrical schematic and aided in PCB layout using Altium for a RPi CM5 carrier board with USB-C power, 3V3 buck converter, and PCIe connectors.
                         </p>
                         <div class="project-tags">
                             <span class="tag">Altium</span>
@@ -123,25 +123,23 @@
                     </div>
                 </div>
 
-                <!-- PROJECT 2: Electroretinography Research -->
-                <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>ERG Nanoparticle Electrode Sensor</h3><p>Researched and developed nanoparticle-based electrodes for electroretinography (ERG) diagnostics, targeting a present issue with accessibility in size and customization for ERG patches. I improved accessibility for early detection of diabetes-related retinal conditions compared to existing clinical products.</p><p><strong>Materials Research & Synthesis:</strong> Investigated limitations of current clinical ERG electrode materials and synthesized Au-Ca and Au-Pt nanoparticle electrodes as improved alternatives. Designed a specialized ERG sensor strip incorporating the synthesized electrodes, optimized for early-stage diabetic retinopathy screening.</p><p><strong>Validation & Testing:</strong> Characterized electrode performance using an oscilloscope and digital multimeter (DMM) to verify signal quality and electrical properties. Developed a Python-based validation pipeline to analyze signal output, confirming the electrodes met or exceeded the performance benchmarks of existing industry products while improving accessibility.</p>"}, {"src": "assets/projects/ERG/ERG_Lab.jpeg", "text": "ERG Sensor Patch Applied On Myself for Testing"}]'>
+                <!-- PROJECT 11: Desk Mixer -->
+                <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>Mini Desk DJ Mixer</h3><p>WIP standalone DJ mixer focused on a compact, hardware-first workflow. The design centers on a Teensy 4.1, SGTL5000 audio codec, and ESP32 Bluetooth output to handle SD-card playback, mixing, USB-C power and data, and a physical control surface without needing a display for v1.</p><p><strong>Architecture:</strong> Teensy 4.1 manages SDIO audio playback, I2S routing, USB MIDI/MTP, and the main controls. The codec provides the wired audio path, while the ESP32 handles a separate Bluetooth audience output over I2S for cleaner digital transmission.</p><p><strong>Controls and layout:</strong> The interface is planned around faders, EQ knobs, jog encoders, transport buttons, and cue pads, with separate power rails and a 4-layer PCB layout to keep digital, analog, and wireless sections isolated. Firmware is intended to use the Teensy Audio Library for playback, mixing, and control handling.</p><p><strong>Status:</strong> This is an active work in progress, so the final feature set may still change as the prototype is refined.</p>"}]'>
                     <div class="project-image">
-                        <!-- Image - properly formatted -->
-                        <img src="assets/projects/ERG/ERG_Lab.jpeg" alt="Electroretinography Electrode Research" class="project-image-img">
+                        <div class="image-placeholder">
+                            <img src="assets/projects/Mixer/Mixer_1.png" alt="Mini Desk DJ Mixer placeholder image" class="project-image-img">
+                        </div>
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Electroretinography Electrode Research</h3>
+                        <h3 class="project-title">Mini Desk Mixer</h3>
                         <p class="project-description">
-                            Research at UWaterloo's Nanoengineering Department synthesizing
-                            ERG electrodes with Au-Ca and Au-Pt nanoparticles. Investigating
-                            materials to optimize retinal neural response capture and reduce
-                            electrical noise, with focus on adaptability for diverse patient needs.
+                            WIP portable desk mixer built around a Teensy 4.1, SGTL5000 codec, and ESP32 Bluetooth output. Focused on SD-card playback, USB-C connectivity, and a hardware-only control surface for mixing and cueing. Additionally, focusing on exploring a clean and compact housing design for this standalone mixer.
                         </p>
                         <div class="project-tags">
-                            <span class="tag">Research</span>
-                            <span class="tag">Electroretinography</span>
-                            <span class="tag">Materials</span>
-                            <span class="tag">Signal Analysis</span>
+                            <span class="tag">Teensy 4.1</span>
+                            <span class="tag">Audio DSP</span>
+                            <span class="tag">PCB Design</span>
+                            <span class="tag">Bluetooth</span>
                         </div>
                         <div class="expand-button">
                             Click to expand <span class="expand-arrow">↓</span>
@@ -149,7 +147,7 @@
                     </div>
                 </div>
 
-                <!-- PROJECT 3: EMG Hand Prosthetic -->
+                <!-- PROJECT 2: EMG Hand Prosthetic -->
                 <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>EMG-Controlled Hand Prosthetic</h3><p>Developed with a partner a functional hand prosthetic prototype designed for upper-limb amputees, combining analog signal processing, and mechanical design to create a biometric control interface.</p><p><strong>Analog Signal Processing:</strong> Designed and implemented a custom analog filter circuit to process electromyography (EMG) signals captured from skin surface electrodes placed on the forearm. The circuit filters muscle activation signals, amplifies them to a usable range, and passes the conditioned signal to a comparator that outputs a digital high/low signal corresponding to forearm flexion and extension.</p><p> Programmed an Arduino microcontroller to interpret the comparator output and control servo motors that actuate the prosthetic fingers. The firmware implements threshold detection, and debouncing for stable operation.</p><p>Partner designed the complete prosthetic hand mechanism in SolidWorks, optimizing for printability, weight, and range of motion. The claw design features articulating fingers driven by a tendon-based actuation system, all fabricated using 3D printing for rapid prototyping and iteration. The integration of electronics, motors, and mechanical linkages was carefully planned to fit within a compact, wearable form factor.</p>"}, {"src": "assets/projects/EMG/Claw_Function_Demonstraton_Pt1.mov", "text": "Demonstration of EMG-controlled claw grasping motion"}, {"src": "assets/projects/EMG/EMGClawVideo.Mov", "text": "Additional demonstration video"}, {"src": "assets/projects/EMG/EMGClawCad.png", "text": "CAD Model"}]'>
                     <div class="project-image">
                         <!-- Video element - plays on hover -->
@@ -170,6 +168,32 @@
                             <span class="tag">EMG Processing</span>
                             <span class="tag">SolidWorks</span>
                             <span class="tag">3D Printing</span>
+                        </div>
+                        <div class="expand-button">
+                            Click to expand <span class="expand-arrow">↓</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 3: Electroretinography Research -->
+                <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>ERG Nanoparticle Electrode Sensor</h3><p>Researched and developed nanoparticle-based electrodes for electroretinography (ERG) diagnostics, targeting a present issue with accessibility in size and customization for ERG patches. I improved accessibility for early detection of diabetes-related retinal conditions compared to existing clinical products.</p><p><strong>Materials Research & Synthesis:</strong> Investigated limitations of current clinical ERG electrode materials and synthesized Au-Ca and Au-Pt nanoparticle electrodes as improved alternatives. Designed a specialized ERG sensor strip incorporating the synthesized electrodes, optimized for early-stage diabetic retinopathy screening.</p><p><strong>Validation & Testing:</strong> Characterized electrode performance using an oscilloscope and digital multimeter (DMM) to verify signal quality and electrical properties. Developed a Python-based validation pipeline to analyze signal output, confirming the electrodes met or exceeded the performance benchmarks of existing industry products while improving accessibility.</p>"}, {"src": "assets/projects/ERG/ERG_Lab.jpeg", "text": "ERG Sensor Patch Applied On Myself for Testing"}]'>
+                    <div class="project-image">
+                        <!-- Image - properly formatted -->
+                        <img src="assets/projects/ERG/ERG_Lab.jpeg" alt="Electroretinography Electrode Research" class="project-image-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Electroretinography Electrode Research</h3>
+                        <p class="project-description">
+                            Research at UWaterloo's Nanoengineering Department synthesizing
+                            ERG electrodes with Au-Ca and Au-Pt nanoparticles. Investigating
+                            materials to optimize retinal neural response capture and reduce
+                            electrical noise, with focus on adaptability for diverse patient needs.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Research</span>
+                            <span class="tag">Electroretinography</span>
+                            <span class="tag">Materials</span>
+                            <span class="tag">Signal Analysis</span>
                         </div>
                         <div class="expand-button">
                             Click to expand <span class="expand-arrow">↓</span>
@@ -204,9 +228,9 @@
 
 
                 <!-- PROJECT 5: Foot Drop FES Model -->
+                <!--
                 <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>Foot Drop FES Model & Gait Visualization</h3><p>Optimized a functional electrical stimulation (FES) model in MATLAB for foot drop patients, leveraging real gait cycle data to improve stimulation timing and evaluate rehabilitative outcomes.</p><p><strong>FES Model Optimization:</strong> Analyzed muscle activity and joint kinematic data across the gait cycle to refine stimulation parameters within an existing FES model. Tuned the model to better replicate healthy gait patterns by targeting the appropriate muscle groups during swing phase, where foot drop impairment is most pronounced.</p><p><strong>Comparative Gait Visualization:</strong> Developed visual models in MATLAB illustrating side-by-side comparisons of normal gait, foot drop gait without stimulation, and FES-assisted gait. Visualizations emphasized joint kinematics — particularly ankle dorsiflexion — to clearly demonstrate the corrective effect of FES on pathological gait patterns.</p>"}, {"src": "assets/projects/FES/Foot_Drop_Output_Video.mp4", "text": "Video showing gait visualizations comparing normal, foot drop, and FES-assisted gait patterns"}]'>
                     <div class="project-image">
-                        <!-- Video element - plays on hover -->
                         <video class="project-video" muted loop playsinline>
                             <source src="assets/projects/FES/Foot_Drop_Output_Video.mp4" type="video/mp4">
                             Your browser does not support the video tag.
@@ -228,6 +252,7 @@
                         </div>
                     </div>
                 </div>
+                -->
 
                 <!-- PROJECT 6: Mechanoreceptor Model -->
                 <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>Mechanoreceptor Simulation Project</h3><p>This project demonstrates a comprehensive Python-based simulation of SA-1 and FA-1 mechanoreceptors located in human fingertips. The simulation models how these receptors respond to different surface textures and pressures, converting mechanical stimuli into electrical signals that would be interpreted by the nervous system.</p><p>The visualizations below show various scanning models and 3D plots that illustrate receptor activation patterns across different topographical surfaces.</p>"}, {"src": "assets/projects/Mechanoreceptor/COW_image.png", "text": "Input surface texture"}, {"src": "assets/projects/Mechanoreceptor/COW_Scanning_Model_3D_Plot.png", "text": "3D plot showing receptor response"}, {"src": "assets/projects/Mechanoreceptor/COW_Scanning_Model_Heatmap.png", "text": "Heatmap visualization of activation patterns"}, {"src": "assets/projects/Mechanoreceptor/Scanning_Model_3D_Plot.png", "text": "Model output scanning over keyboard topography"}, {"src": "assets/projects/Mechanoreceptor/surface_texture_image.png", "text": "Surface texture example"}, {"src": "assets/projects/Mechanoreceptor/SurfaceTexture_Scanning_Model_3D_Plot.png", "text": "Scanning model output over surface texture example"}]'>
@@ -316,7 +341,10 @@
                 </div>
 
                 <!-- PROJECT 9: CAD Work -->
-                <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>Computer-Aided Design Portfolio</h3><p>Extensive experience in 3D modeling and engineering design using both SolidWorks and Onshape. Projects range from creating custom device housings and enclosures to performing finite element analysis (FEA) for structural validation. Skilled in aerodynamic modeling, assembly design with bill of materials (BOM), technical drawings with GD&T tolerancing, and design for manufacturing (DFM) principles.</p><p>The portfolio below showcases detailed assemblies with exploded views, engineering drawings, and rendered models optimized for 3D printing and rapid prototyping. Work includes complex multi-part assemblies, interference checking, and simulation-driven design modifications.</p><p>While most of the images below are earlier projects, I have continued my CAD work in professional experiences, for prototype device housing, integrating aerodynamic designs for sports devices, and more.</p>"}, {"src": "assets/projects/CAD/SkateExplode.png", "text": "Skateboard assembly - Exploded view showing component relationships"}, {"src": "assets/projects/CAD/SkateDrawing.png", "text": "Technical engineering drawing with dimensions and tolerances"}, {"src": "assets/projects/CAD/SkatePosed.png", "text": "Skateboard assembly - Rendered final model"}, {"src": "assets/projects/CAD/LegoExplode.png", "text": "LEGO-inspired mechanism - Exploded assembly view"}, {"src": "assets/projects/CAD/LegoPosed.png", "text": "LEGO mechanism - Fully assembled render"}, {"src": "assets/projects/CAD/OrcaExplode.png", "text": "Orca housing design - Component breakdown and assembly sequence"}, {"src": "assets/projects/CAD/OrcaDrawing.png", "text": "Orca enclosure - Manufacturing drawing with specifications"}, {"src": "assets/projects/CAD/OrcaPosed.png", "text": "Orca device housing - Final product visualization"}]'>
+                <div class="project-card" data-expand-content='[{"type": "text", "content": "<h3>Computer-Aided Design Portfolio</h3><p>Extensive experience in 3D modeling and engineering design using both SolidWorks and Onshape. Projects range from creating custom device housings and enclosures to performing finite element analysis (FEA) for structural validation. Skilled in aerodynamic modeling, assembly design with bill of materials (BOM), technical drawings with GD&T tolerancing, and design for manufacturing (DFM) principles.</p><p>The portfolio below showcases detailed assemblies with exploded views, engineering drawings, and rendered models optimized for 3D printing and rapid prototyping. Work includes complex multi-part assemblies, interference checking, and simulation-driven design modifications.</p><p>While most of the images below are earlier projects, I have continued my CAD work in professional experiences, for prototype device housing, integrating aerodynamic designs for sports devices, and more.</p>"}, {"src": "assets/projects/CAD/SkateExplode.png", "text": "Skateboard assembly - Exploded view showing component relationships"}, {"src": "assets/projects/CAD/SkateDrawing.png", "text": "Technical engineering drawing with dimensions and tolerances"}, {"src": "assets/projects/CAD/SkatePosed.png", "text": "Skateboard assembly - Rendered final model"}, {"src": "assets/projects/CAD/LegoExplode.png", "text": "LEGO-inspired mechanism - Exploded assembly view"}, {"src": "assets/projects/CAD/LegoPosed.png", "text": "LEGO mechanism - Fully assembled render"}]'>
+
+                <!-- {"src": "assets/projects/CAD/OrcaExplode.png", "text": "Orca housing design - Component breakdown and assembly sequence"}, {"src": "assets/projects/CAD/OrcaDrawing.png", "text": "Orca enclosure - Manufacturing drawing with specifications"}, {"src": "assets/projects/CAD/OrcaPosed.png", "text": "Orca device housing - Final product visualization"} -->
+
                     <div class="project-image">
                         <div class="image-placeholder">
                             <img src="assets/projects/CAD/SkateExplode.png" alt="CAD Design Work" class="project-image-img">

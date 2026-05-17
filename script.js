@@ -35,10 +35,10 @@
                 width: 100%;
                 height: 100%;
                 background:
-                    linear-gradient(135deg, rgba(60, 56, 54, 0.94), rgba(50, 48, 47, 0.9)),
-                    rgba(50, 48, 47, 0.92);
-                backdrop-filter: blur(18px) saturate(120%);
-                -webkit-backdrop-filter: blur(18px) saturate(120%);
+                    radial-gradient(circle at 20% 30%, rgba(131, 165, 152, 0.05) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 70%, rgba(211, 134, 155, 0.05) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 50%, rgba(184, 187, 38, 0.04) 0%, transparent 50%);
+                background-color: var(--bg-primary, #282828);
                 display: flex;
                 justify-content: center;
                 align-items: center;
