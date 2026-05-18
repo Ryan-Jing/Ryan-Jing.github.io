@@ -1187,6 +1187,15 @@ modalStyle.textContent = `
     }
 
     /* ===== EXPAND BUTTON ===== */
+    @keyframes colorPulse {
+        0%, 100% {
+            color: var(--gray);
+        }
+        50% {
+            color: var(--accent-bright);
+        }
+    }
+
     .expand-button {
         margin-top: auto;
         padding: 0.2rem;
@@ -1198,11 +1207,13 @@ modalStyle.textContent = `
         transition: all 0.3s ease;
         user-select: none;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
+        animation: colorPulse 2s ease-in-out infinite;
     }
 
     .expand-button:hover {
         opacity: 1;
         color: var(--accent-bright);
+        animation: none;
     }
 
     .expand-arrow {
