@@ -1558,6 +1558,9 @@ modalStyle.textContent = `
         .modal-content.layout-double,
         .modal-content.layout-triple {
             flex-direction: column;
+            /* nowrap: a column taller than the modal must not wrap media into a
+               hidden second column (off-screen due to overflow-x: hidden) */
+            flex-wrap: nowrap;
         }
 
         /* In column direction, flex-basis: 100% = 100% height — force auto */
