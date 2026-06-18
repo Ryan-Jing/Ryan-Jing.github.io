@@ -931,6 +931,29 @@ a:hover {
     font-weight: 500;
 }
 
+.experience-badge {
+    display: inline-block;
+    margin-bottom: var(--spacing-sm);
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.experience-badge.badge-internship {
+    background-color: var(--accent-glow);
+    color: var(--accent-bright);
+    border: 1px solid var(--accent-primary);
+}
+
+.experience-badge.badge-design-team {
+    background-color: var(--bg-elevated);
+    color: var(--fg-primary);
+    border: 1px solid var(--gray-dark);
+}
+
 .experience-description {
     list-style-position: inside;
     color: var(--fg-secondary);
