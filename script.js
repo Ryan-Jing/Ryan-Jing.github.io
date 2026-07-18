@@ -950,8 +950,22 @@ document.head.appendChild(videoStyle);
 /**
  * HOW TO USE FOR YOUR PROJECTS:
  *
- * 1. Add the data-expand-content attribute to your project card:
- *    <div class="project-card" data-expand-content='["path/to/media1.mp4", "path/to/image.jpg"]'>
+ * 1. Add the data-expand-content attribute to your project card.
+ *    It holds a JSON array; items render IN ORDER, so you can alternate
+ *    text sections and image groups freely:
+ *
+ *    data-expand-content='[
+ *        {"type": "text", "content": "<h3>Title</h3><p>Intro paragraphs...</p>"},
+ *        {"src": "assets/projects/X/img1.png", "text": "Caption under image 1"},
+ *        {"src": "assets/projects/X/img2.png", "text": "Caption under image 2"},
+ *        {"type": "text", "content": "<h4>Next Section</h4><p>More paragraphs...</p>"},
+ *        {"src": "assets/projects/X/img3.png", "text": "Another figure"}
+ *    ]'
+ *
+ *    - {"type": "text", "content": ...} = article text (supports HTML:
+ *      h3 for the title, h4 for subheadings, p, strong, ul/li)
+ *    - {"src": ..., "text": ...} = image/video figure with an optional
+ *      caption below it ("text" is plain text only)
  *
  * 2. Add the expand button inside the project-content div:
  *    <div class="expand-button">
@@ -959,14 +973,13 @@ document.head.appendChild(videoStyle);
  *    </div>
  *
  * 3. Supported file formats:
- *    - Videos: .mp4, .webm, .ogg
+ *    - Videos: .mp4, .webm, .ogg, .mov
  *    - Images: .jpg, .jpeg, .png, .gif, .webp
  *
  * 4. Layout system:
- *    - 1 item: Full screen
- *    - 2 items: Split screen (50/50)
- *    - 3 items: 2 on left (stacked), 1 on right
- *    - 4+ items: Grid layout
+ *    - Consecutive media items form a 2-column gallery grid (1 column on mobile)
+ *    - Videos, single figures, and the odd last figure span the full width
+ *    - A text item ends the current gallery; the next media item starts a new one
  *
  * 5. Controls:
  *    - Click X button to close
@@ -981,7 +994,7 @@ function isVideo(filename) {
     return videoExtensions.some(ext => filename.toLowerCase().endsWith(ext));
 }
 
-// Function to create media element (video or image)
+// Function to create a media figure (video or image with optional caption)
 function createMediaElement(item) {
     // Handle both old format (string) and new format (object)
     let src, text;
@@ -994,14 +1007,20 @@ function createMediaElement(item) {
         text = item.text || null;
     }
 
-    const wrapper = document.createElement('div');
-    wrapper.className = 'modal-item-wrapper';
+    const figure = document.createElement('figure');
+    figure.className = 'modal-figure';
+
+    const mediaFrame = document.createElement('div');
+    mediaFrame.className = 'modal-figure-media';
 
     if (isVideo(src)) {
+        figure.classList.add('modal-figure-wide');
+
         const video = document.createElement('video');
         video.controls = true;
         video.muted = false; // Allow audio in modal
         video.loop = true;
+        video.preload = 'metadata';
         video.className = 'modal-media';
 
         const source = document.createElement('source');
@@ -1009,24 +1028,27 @@ function createMediaElement(item) {
         source.type = 'video/mp4';
 
         video.appendChild(source);
-        wrapper.appendChild(video);
+        mediaFrame.appendChild(video);
     } else {
         const img = document.createElement('img');
         img.src = src;
-        img.alt = 'Project media';
+        img.alt = text || 'Project media';
+        img.loading = 'lazy';
         img.className = 'modal-media';
-        wrapper.appendChild(img);
+        mediaFrame.appendChild(img);
     }
+
+    figure.appendChild(mediaFrame);
 
     // Add optional text caption if provided
     if (text) {
-        const caption = document.createElement('div');
-        caption.className = 'modal-media-caption';
+        const caption = document.createElement('figcaption');
+        caption.className = 'modal-figure-caption';
         caption.textContent = text;
-        wrapper.appendChild(caption);
+        figure.appendChild(caption);
     }
 
-    return wrapper;
+    return figure;
 }
 
 // Function to create text block element
@@ -1037,24 +1059,41 @@ function createTextElement(content) {
     return textBlock;
 }
 
-// Function to get layout class based on number of items
-function getLayoutClass(itemCount) {
-    if (itemCount === 1) return 'layout-single';
-    if (itemCount === 2) return 'layout-double';
-    if (itemCount === 3) return 'layout-triple';
-    return 'layout-grid';
+// Body scroll lock — position:fixed works on iOS Safari where
+// overflow:hidden alone does not, and preserves the scroll position
+let savedScrollY = 0;
+
+function lockBodyScroll() {
+    savedScrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${savedScrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+}
+
+function unlockBodyScroll() {
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    // 'instant' bypasses the global scroll-behavior: smooth
+    window.scrollTo({ top: savedScrollY, behavior: 'instant' });
 }
 
 // Function to open modal
-function openModal(contentUrls) {
-    // Create modal overlay
+function openModal(contentItems) {
+    // Create modal overlay (blurred, dimmed view of the page behind)
     const modalOverlay = document.createElement('div');
     modalOverlay.className = 'modal-overlay';
     modalOverlay.id = 'project-modal';
 
-    // Create modal container
+    // Create floating modal card
     const modalContainer = document.createElement('div');
     modalContainer.className = 'modal-container';
+    modalContainer.setAttribute('role', 'dialog');
+    modalContainer.setAttribute('aria-modal', 'true');
 
     // Create close button
     const closeButton = document.createElement('button');
@@ -1062,23 +1101,25 @@ function openModal(contentUrls) {
     closeButton.innerHTML = '×';
     closeButton.setAttribute('aria-label', 'Close modal');
 
-    // Create content wrapper with appropriate layout
+    // Scrollable content area: text blocks first, then a media gallery
     const contentWrapper = document.createElement('div');
-    contentWrapper.className = `modal-content ${getLayoutClass(contentUrls.length)}`;
+    contentWrapper.className = 'modal-content';
 
-    // Add content elements (media or text)
-    contentUrls.forEach(item => {
-        // Check if it's a text-only block
+    // Items render in the order they appear in data-expand-content:
+    // text blocks become article sections, and each run of consecutive
+    // media items becomes a gallery grid — so text and figures can alternate
+    let currentGallery = null;
+    contentItems.forEach(item => {
         if (typeof item === 'object' && item.type === 'text') {
-            const textElement = createTextElement(item.content);
-            contentWrapper.appendChild(textElement);
+            currentGallery = null;
+            contentWrapper.appendChild(createTextElement(item.content));
         } else {
-            // It's media (image/video) - could be string or object with src
-            const mediaWrapper = document.createElement('div');
-            mediaWrapper.className = 'modal-media-wrapper';
-            const mediaElement = createMediaElement(item);
-            mediaWrapper.appendChild(mediaElement);
-            contentWrapper.appendChild(mediaWrapper);
+            if (!currentGallery) {
+                currentGallery = document.createElement('div');
+                currentGallery.className = 'modal-gallery';
+                contentWrapper.appendChild(currentGallery);
+            }
+            currentGallery.appendChild(createMediaElement(item));
         }
     });
 
@@ -1088,8 +1129,8 @@ function openModal(contentUrls) {
     modalOverlay.appendChild(modalContainer);
     document.body.appendChild(modalOverlay);
 
-    // Prevent body scrolling when modal is open
-    document.body.style.overflow = 'hidden';
+    // Prevent the main page from scrolling while the modal is open
+    lockBodyScroll();
 
     // Fade in animation
     setTimeout(() => {
@@ -1119,7 +1160,7 @@ function closeModal() {
         // Remove modal after animation
         setTimeout(() => {
             modal.remove();
-            document.body.style.overflow = ''; // Restore body scrolling
+            unlockBodyScroll(); // Restore body scrolling and position
         }, 300);
     }
 }
@@ -1274,44 +1315,47 @@ modalStyle.textContent = `
         opacity: 0;
     }
 
-    /* ===== MODAL OVERLAY ===== */
+    /* ===== MODAL OVERLAY =====
+       Dimmed + blurred view of the page behind, so the main site
+       stays visible around the floating card */
     .modal-overlay {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.95);
+        inset: 0;
+        background: rgba(29, 32, 33, 0.55);
+        -webkit-backdrop-filter: blur(12px) saturate(85%);
+        backdrop-filter: blur(12px) saturate(85%);
         z-index: 10000;
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: 3vh 2rem;
         opacity: 0;
         transition: opacity 0.3s ease;
-        backdrop-filter: blur(5px);
     }
 
     .modal-overlay.active {
         opacity: 1;
     }
 
-    /* ===== MODAL CONTAINER ===== */
+    /* ===== FLOATING MODAL CARD ===== */
     .modal-container {
         position: relative;
-        width: 90%;
-        height: 90vh;
-        max-width: 1400px;
-        background: var(--card-bg);
-        border-radius: 12px;
-        padding: 0;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        transform: scale(0.9);
+        width: min(1000px, 100%);
+        max-height: 90vh;
+        max-height: 90dvh;
+        display: flex;
+        flex-direction: column;
+        background: var(--bg-secondary);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55), 0 4px 16px rgba(0, 0, 0, 0.35);
+        transform: scale(0.96) translateY(14px);
         transition: transform 0.3s ease;
         overflow: hidden;
     }
 
     .modal-overlay.active .modal-container {
-        transform: scale(1);
+        transform: scale(1) translateY(0);
     }
 
     /* ===== CLOSE BUTTON ===== */
@@ -1319,206 +1363,163 @@ modalStyle.textContent = `
         position: absolute;
         top: 1rem;
         right: 1rem;
-        width: 40px;
-        height: 40px;
-        border: none;
-        background: transparent;
-        color: var(--white);
-        font-size: 2rem;
+        width: 38px;
+        height: 38px;
+        border: 1px solid var(--glass-border);
+        border-radius: 50%;
+        background: rgba(40, 40, 40, 0.85);
+        color: var(--fg-secondary);
+        font-size: 1.5rem;
         line-height: 1;
         cursor: pointer;
         transition: all 0.3s ease;
-        z-index: 10001;
+        z-index: 2;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
     .modal-close:hover {
-        color: var(--orange);
+        color: var(--accent-bright);
+        border-color: var(--accent-primary);
         transform: rotate(90deg);
     }
 
-    /* ===== MODAL CONTENT LAYOUTS ===== */
+    /* ===== SCROLLABLE CONTENT AREA =====
+       Scrolling stays inside the card; overscroll-behavior stops
+       the scroll from chaining to the page behind */
     .modal-content {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        gap: 1rem;
         overflow-y: auto;
         overflow-x: hidden;
-        padding: 2rem;
-        box-sizing: border-box;
-
-        /* Scrollbar styling for Firefox */
-        scrollbar-width: thin !important;
-        scrollbar-color: #4a4a4a #1a1a1a !important;
-    }
-
-    /* ===== CUSTOM SCROLLBAR FOR WEBKIT BROWSERS (Chrome, Safari, Edge) ===== */
-    .modal-content::-webkit-scrollbar {
-        width: 12px !important;
-    }
-
-    .modal-content::-webkit-scrollbar-track {
-        background: #1a1a1a !important;
-        border-radius: 10px;
-    }
-
-    .modal-content::-webkit-scrollbar-thumb {
-        background: #4a4a4a !important;
-        border-radius: 10px;
-        border: 2px solid #1a1a1a;
-    }
-
-    .modal-content::-webkit-scrollbar-thumb:hover {
-        background: #5a5a5a !important;
-    }
-
-    /* Single item - full screen */
-    .modal-content.layout-single {
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    .modal-content.layout-single .modal-media-wrapper {
-        width: 100%;
-        height: 100%;
-    }
-
-    /* Two items - split screen */
-    .modal-content.layout-double {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    .modal-content.layout-double .modal-media-wrapper {
-        flex: 1;
-        height: 100%;
-    }
-
-    /* Three items - 2 left, 1 right */
-    .modal-content.layout-triple {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    .modal-content.layout-triple .modal-media-wrapper:first-child,
-    .modal-content.layout-triple .modal-media-wrapper:nth-child(2) {
-        flex: 1;
-        height: calc(50% - 0.5rem);
-    }
-
-    .modal-content.layout-triple .modal-media-wrapper:nth-child(3) {
-        flex: 1;
-        height: 100%;
-    }
-
-    /* Four+ items - grid */
-    .modal-content.layout-grid {
-        flex-wrap: wrap;
-        align-content: flex-start;
-    }
-
-    .modal-content.layout-grid .modal-media-wrapper {
-        flex: 1 1 calc(50% - 0.5rem);
-        min-height: 400px;
-        height: auto;
-        min-width: 300px;
-    }
-
-    /* ===== MEDIA WRAPPER ===== */
-    .modal-media-wrapper {
-        position: relative;
-        display: flex;
-        align-items: stretch;
-        justify-content: center;
-        background: rgba(0, 0, 0, 0.3);
-        border-radius: 8px;
-        overflow: visible;
-    }
-
-    /* ===== MEDIA ELEMENTS ===== */
-    .modal-media {
-        max-width: 100%;
-        max-height: 100%;
-        width: auto;
-        height: auto;
-        object-fit: contain;
-        border-radius: 8px;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-
-    video.modal-media {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
-
-    /* ===== MEDIA ITEM WRAPPER (for captions) ===== */
-    .modal-item-wrapper {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: auto;
-    }
-
-    .modal-item-wrapper .modal-media {
-        flex-shrink: 0;
-        max-height: 400px;
-    }
-
-    /* ===== MEDIA CAPTIONS ===== */
-    .modal-media-caption {
-        padding: 0.75rem 1rem;
-        background: rgba(0, 0, 0, 0.7);
-        color: var(--fg-primary);
-        font-size: 0.9rem;
-        line-height: 1.5;
-        text-align: center;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-        flex-shrink: 0;
+        overscroll-behavior: contain;
+        padding: 2.5rem clamp(1.5rem, 4vw, 3rem);
     }
 
     /* ===== TEXT BLOCKS ===== */
     .modal-text-block {
-        width: 100%;
-        flex: 0 0 100%;
-        padding: 1.5rem;
-        background: rgba(0, 0, 0, 0.2);
-        color: var(--fg-primary);
-        font-size: 1rem;
+        max-width: 72ch;
+        margin: 0 auto;
+        color: var(--fg-secondary);
+        font-size: 0.98rem;
         line-height: 1.8;
-        border-radius: 8px;
-        margin: 0.5rem 0;
-        order: -1;
+    }
+
+    .modal-text-block h3 {
+        color: var(--accent-bright);
+        font-size: 1.45rem;
+        line-height: 1.3;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+        padding-right: 3rem; /* keep clear of the close button */
+        border-bottom: 1px solid var(--glass-border);
+    }
+
+    .modal-text-block h4 {
+        color: var(--fg-primary);
+        font-size: 1.05rem;
+        margin: 1.75rem 0 0.6rem;
+        padding-left: 0.6rem;
+        border-left: 3px solid var(--accent-primary);
     }
 
     .modal-text-block p {
-        margin-bottom: 1rem;
+        margin-bottom: 1.1rem;
     }
 
     .modal-text-block p:last-child {
         margin-bottom: 0;
     }
 
-    .modal-text-block h3 {
-        color: var(--accent-bright);
-        margin-bottom: 0.75rem;
-        font-size: 1.3rem;
+    .modal-text-block strong {
+        color: var(--fg-primary);
+        font-weight: 700;
     }
 
     .modal-text-block ul,
     .modal-text-block ol {
         margin-left: 1.5rem;
-        margin-bottom: 1rem;
+        margin-bottom: 1.1rem;
     }
 
     .modal-text-block li {
         margin-bottom: 0.5rem;
+    }
+
+    /* ===== MEDIA GALLERY =====
+       Grid of figure cards, separated from the text by a divider */
+    .modal-gallery {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.25rem;
+        margin-top: 2.25rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--glass-border);
+    }
+
+    .modal-gallery:first-child {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+    }
+
+    /* Text sections that continue after a gallery */
+    .modal-gallery + .modal-text-block {
+        margin-top: 2.25rem;
+    }
+
+    .modal-text-block + .modal-text-block {
+        margin-top: 1.5rem;
+    }
+
+    /* ===== FIGURE CARDS ===== */
+    .modal-figure {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        background: var(--bg-primary);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    /* Videos and lone items get the full row */
+    .modal-figure-wide,
+    .modal-figure:only-child,
+    .modal-figure:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+    }
+
+    .modal-figure-media {
+        flex: 1; /* fill the card so shorter media centers in its grid row */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--black);
+    }
+
+    .modal-media {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: 440px;
+        object-fit: contain;
+    }
+
+    video.modal-media {
+        max-height: 480px;
+        background: var(--black);
+    }
+
+    /* ===== FIGURE CAPTIONS ===== */
+    .modal-figure-caption {
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        text-align: center;
+        color: var(--fg-tertiary);
+        background: var(--bg-primary);
+        border-top: 1px solid var(--glass-border);
+        margin-top: auto;
     }
 
     /* ===== IMAGE STYLING ===== */
@@ -1546,56 +1547,40 @@ modalStyle.textContent = `
 
     /* ===== RESPONSIVE DESIGN ===== */
     @media (max-width: 768px) {
+        .modal-overlay {
+            padding: 0.75rem;
+        }
+
         .modal-container {
-            width: 95%;
-            height: 95vh;
+            max-height: calc(100vh - 1.5rem);
+            max-height: calc(100dvh - 1.5rem);
+            border-radius: 12px;
+        }
+
+        .modal-close {
+            top: 0.75rem;
+            right: 0.75rem;
         }
 
         .modal-content {
-            padding: 1rem;
+            padding: 1.5rem 1rem;
         }
 
-        .modal-content.layout-double,
-        .modal-content.layout-triple {
-            flex-direction: column;
-            /* nowrap: a column taller than the modal must not wrap media into a
-               hidden second column (off-screen due to overflow-x: hidden) */
-            flex-wrap: nowrap;
-        }
-
-        /* In column direction, flex-basis: 100% = 100% height — force auto */
         .modal-text-block {
-            flex: 0 0 auto !important;
-            width: 100%;
+            font-size: 0.95rem;
         }
 
-        /* All media wrappers: auto height in column layout */
-        .modal-content.layout-double .modal-media-wrapper,
-        .modal-content.layout-triple .modal-media-wrapper {
-            flex: 0 0 auto !important;
-            width: 100%;
-            height: auto !important;
-            min-height: 280px;
+        /* Single column gallery on small screens */
+        .modal-gallery {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-top: 1.75rem;
+            padding-top: 1.5rem;
         }
 
-        /* item-wrapper must fill the media-wrapper so video gets a definite height */
-        .modal-content.layout-double .modal-item-wrapper,
-        .modal-content.layout-triple .modal-item-wrapper {
-            min-height: 250px;
-        }
-
-        /* Videos collapse to 0 when parent has no definite height — use auto instead */
-        .modal-content.layout-double video.modal-media,
-        .modal-content.layout-triple video.modal-media {
-            width: 100% !important;
-            height: auto !important;
-            max-height: 340px;
-        }
-
-        .modal-content.layout-grid .modal-media-wrapper {
-            flex: 1 1 100%;
-            height: auto;
-            min-height: 200px;
+        .modal-media,
+        video.modal-media {
+            max-height: 60vh;
         }
     }
 `;

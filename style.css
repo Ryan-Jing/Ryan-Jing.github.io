@@ -893,29 +893,19 @@ a:hover {
     border: 1px solid var(--accent-bright);
 }
 
+/* Visually flat (no card): experience items aren't clickable, so no card
+   outline. The transparent border keeps the box the same size as before. */
 .experience-content {
     flex: 1;
-    background: var(--bg-glass);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
     padding: var(--spacing-md);
-    border-radius: 12px;
-    border: 1px solid var(--glass-border);
-    transition: var(--transition-normal);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-    margin-left: 4rem;  /* Push cards away from center on left side */
+    border: 1px solid transparent;
+    margin-left: 4rem;  /* Push content away from center on left side */
     margin-right: 0;
 }
 
 .experience-item:nth-child(even) .experience-content {
     margin-left: 0;
-    margin-right: 4rem;  /* Push cards away from center on right side */
-}
-
-.experience-content:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 24px var(--accent-glow), 0 4px 16px rgba(0, 0, 0, 0.3);
-    border-color: var(--accent-primary);
+    margin-right: 4rem;  /* Push content away from center on right side */
 }
 
 .experience-title {
@@ -1113,27 +1103,27 @@ a:hover {
 .modal-content {
     /* Firefox */
     scrollbar-width: thin;
-    scrollbar-color: #4a4a4a #1a1a1a !important;
+    scrollbar-color: var(--bg-elevated) var(--bg-secondary) !important;
 }
 
 /* Webkit browsers (Chrome, Safari, Edge) */
 .modal-content::-webkit-scrollbar {
-    width: 12px !important;
+    width: 10px !important;
 }
 
 .modal-content::-webkit-scrollbar-track {
-    background: #1a1a1a !important;
+    background: var(--bg-secondary) !important;
     border-radius: 10px;
 }
 
 .modal-content::-webkit-scrollbar-thumb {
-    background: #4a4a4a !important;
+    background: var(--bg-elevated) !important;
     border-radius: 10px;
-    border: 2px solid #1a1a1a;
+    border: 2px solid var(--bg-secondary);
 }
 
 .modal-content::-webkit-scrollbar-thumb:hover {
-    background: #5a5a5a !important;
+    background: var(--gray-dark) !important;
 }
 
 /* ==========================================
