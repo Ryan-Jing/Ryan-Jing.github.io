@@ -985,6 +985,9 @@ document.head.appendChild(videoStyle);
  *    - Click X button to close
  *    - Press ESC key to close
  *    - Click outside modal to close
+ *    - Click any image, or a video outside its control bar, to expand it
+ *      into its own lightbox above the modal (X / ESC / click outside
+ *      closes just the lightbox, not the modal underneath)
  */
 
 // Function to determine if file is a video
@@ -1021,20 +1024,59 @@ function createMediaElement(item) {
         video.muted = false; // Allow audio in modal
         video.loop = true;
         video.preload = 'metadata';
-        video.className = 'modal-media';
+        video.className = 'modal-media modal-media-expandable';
 
         const source = document.createElement('source');
         source.src = src;
         source.type = 'video/mp4';
 
         video.appendChild(source);
+
+        // Show a preview frame instead of a black box before the user hits
+        // play: nudge the play head forward once metadata is available so
+        // the browser decodes and paints a frame, then reset to the start
+        // so playback still begins from 0:00
+        function primePreviewFrame() {
+            video.currentTime = Math.min(0.1, video.duration || 0.1);
+        }
+        if (video.readyState >= 1) {
+            primePreviewFrame();
+        } else {
+            video.addEventListener('loadedmetadata', primePreviewFrame, { once: true });
+        }
+        video.addEventListener('seeked', function resetToStart() {
+            video.removeEventListener('seeked', resetToStart);
+            video.currentTime = 0;
+        });
+
+        // Clicking the video frame expands it into the lightbox; clicking
+        // the native control bar strip at the bottom (play/pause, seek,
+        // volume, etc.) is left alone so playback controls keep working
+        video.addEventListener('click', (e) => {
+            const rect = video.getBoundingClientRect();
+            const clickY = e.clientY - rect.top;
+            const controlBarHeight = 44; // approx. native control bar height
+            if (clickY >= rect.height - controlBarHeight) {
+                return; // let the native controls handle play/pause etc.
+            }
+            e.preventDefault();
+            e.stopPropagation();
+            openLightbox(video);
+        });
+
         mediaFrame.appendChild(video);
     } else {
         const img = document.createElement('img');
         img.src = src;
         img.alt = text || 'Project media';
         img.loading = 'lazy';
-        img.className = 'modal-media';
+        img.className = 'modal-media modal-media-expandable';
+        // Click an image to open it large in its own lightbox, layered
+        // above the project modal (see openLightbox/closeLightbox below)
+        img.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openLightbox(img);
+        });
         mediaFrame.appendChild(img);
     }
 
@@ -1148,6 +1190,12 @@ function openModal(contentItems) {
 
 // Function to close modal
 function closeModal() {
+    // A lightbox floats above the modal, so closing the modal first tidies
+    // up any expanded image/video rather than leaving it stranded
+    if (activeLightboxCloser) {
+        activeLightboxCloser();
+    }
+
     const modal = document.getElementById('project-modal');
     if (modal) {
         modal.classList.remove('active');
@@ -1165,10 +1213,88 @@ function closeModal() {
     }
 }
 
-// ESC key handler
+// ==========================================
+// IMAGE/VIDEO LIGHTBOX
+// Expands a single image or video from inside the project modal into a
+// large view of its own, with its own blurred backdrop layered above the
+// modal. Reuses the actual <img>/<video> node (rather than cloning it) so
+// video playback position/state carries over with no extra bookkeeping,
+// then moves it back to its original spot when the lightbox closes.
+// ==========================================
+let activeLightboxCloser = null;
+
+function openLightbox(mediaEl) {
+    // Close any lightbox that's already open before opening another
+    if (activeLightboxCloser) {
+        activeLightboxCloser();
+    }
+
+    const originalParent = mediaEl.parentNode;
+    const placeholder = document.createComment('lightbox-placeholder');
+    originalParent.replaceChild(placeholder, mediaEl);
+
+    const lightboxOverlay = document.createElement('div');
+    lightboxOverlay.className = 'lightbox-overlay';
+    lightboxOverlay.id = 'media-lightbox';
+
+    const closeButton = document.createElement('button');
+    closeButton.className = 'lightbox-close';
+    closeButton.innerHTML = '×';
+    closeButton.setAttribute('aria-label', 'Close expanded view');
+
+    mediaEl.classList.add('lightbox-media');
+
+    lightboxOverlay.appendChild(closeButton);
+    lightboxOverlay.appendChild(mediaEl);
+    document.body.appendChild(lightboxOverlay);
+
+    setTimeout(() => {
+        lightboxOverlay.classList.add('active');
+    }, 10);
+
+    function handleClose() {
+        lightboxOverlay.classList.remove('active');
+        setTimeout(() => {
+            // Restore the media element to its original spot in the modal
+            mediaEl.classList.remove('lightbox-media');
+            if (placeholder.parentNode) {
+                placeholder.parentNode.replaceChild(mediaEl, placeholder);
+            }
+            lightboxOverlay.remove();
+            if (activeLightboxCloser === handleClose) {
+                activeLightboxCloser = null;
+            }
+        }, 300);
+    }
+
+    closeButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        handleClose();
+    });
+
+    // Clicking the backdrop closes only the lightbox. Since the lightbox
+    // overlay is a sibling of the project modal (not nested inside it),
+    // this click never bubbles through the modal's own overlay, so the
+    // project/artwork expand underneath stays open.
+    lightboxOverlay.addEventListener('click', (e) => {
+        if (e.target === lightboxOverlay) {
+            e.stopPropagation();
+            handleClose();
+        }
+    });
+
+    activeLightboxCloser = handleClose;
+}
+
+// ESC key handler — closes the topmost layer first: an open lightbox
+// before the project modal underneath it
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' || e.key === 'Esc') {
-        closeModal();
+        if (activeLightboxCloser) {
+            activeLightboxCloser();
+        } else {
+            closeModal();
+        }
     }
 });
 
@@ -1510,6 +1636,84 @@ modalStyle.textContent = `
         background: var(--black);
     }
 
+    /* ===== EXPANDABLE MEDIA HINT =====
+       Images/videos inside the modal open a full-size lightbox on click */
+    .modal-media-expandable {
+        cursor: zoom-in;
+        transition: opacity 0.2s ease;
+    }
+
+    .modal-media-expandable:hover {
+        opacity: 0.9;
+    }
+
+    /* ===== IMAGE/VIDEO LIGHTBOX =====
+       Full-viewport expanded view of a single figure, layered above the
+       project modal (higher z-index) so it can be closed independently
+       without dismissing the modal underneath */
+    .lightbox-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(20, 20, 20, 0.75);
+        -webkit-backdrop-filter: blur(16px) saturate(85%);
+        backdrop-filter: blur(16px) saturate(85%);
+        z-index: 10100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4vh 4vw;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        cursor: zoom-out;
+    }
+
+    .lightbox-overlay.active {
+        opacity: 1;
+    }
+
+    .lightbox-overlay .lightbox-media {
+        max-width: 92vw;
+        max-height: 92vh;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55), 0 4px 16px rgba(0, 0, 0, 0.35);
+        cursor: default;
+        transform: scale(0.96);
+        transition: transform 0.3s ease;
+    }
+
+    .lightbox-overlay.active .lightbox-media {
+        transform: scale(1);
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: 1.25rem;
+        right: 1.25rem;
+        width: 42px;
+        height: 42px;
+        border: 1px solid var(--glass-border);
+        border-radius: 50%;
+        background: rgba(40, 40, 40, 0.85);
+        color: var(--fg-secondary);
+        font-size: 1.6rem;
+        line-height: 1;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .lightbox-close:hover {
+        color: var(--accent-bright);
+        border-color: var(--accent-primary);
+        transform: rotate(90deg);
+    }
+
     /* ===== FIGURE CAPTIONS ===== */
     .modal-figure-caption {
         padding: 0.75rem 1rem;
@@ -1581,6 +1785,15 @@ modalStyle.textContent = `
         .modal-media,
         video.modal-media {
             max-height: 60vh;
+        }
+
+        .lightbox-overlay {
+            padding: 1.5vh 1rem;
+        }
+
+        .lightbox-close {
+            top: 0.75rem;
+            right: 0.75rem;
         }
     }
 `;
