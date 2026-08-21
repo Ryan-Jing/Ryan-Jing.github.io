@@ -1586,6 +1586,11 @@ modalStyle.textContent = `
     }
 
     /* ===== CLOSE BUTTON ===== */
+    /* The × is drawn as two bars rather than typeset. A text glyph's ink
+       lands a fraction of a pixel off the button's centre, and because the
+       shape maps onto itself every 90 degrees, that offset is the only
+       thing the hover rotation reveals — it reads as a wobble instead of a
+       spin. Two bars crossing at 50%/50% turn about their true centre. */
     .modal-close {
         position: absolute;
         top: 1rem;
@@ -1596,14 +1601,38 @@ modalStyle.textContent = `
         border-radius: 50%;
         background: rgba(40, 40, 40, 0.85);
         color: var(--fg-secondary);
-        font-size: 1.5rem;
+        font-size: 0; /* hides the "×" text node; the aria-label carries the name */
         line-height: 1;
         cursor: pointer;
         transition: all 0.3s ease;
         z-index: 2;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        --close-arm: 15px;
+        --close-stroke: 1.5px;
+    }
+
+    .modal-close::before,
+    .modal-close::after,
+    .lightbox-close::before,
+    .lightbox-close::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: var(--close-arm);
+        height: var(--close-stroke);
+        border-radius: var(--close-stroke);
+        background: currentColor;
+        transition: background-color 0.3s ease;
+    }
+
+    .modal-close::before,
+    .lightbox-close::before {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .modal-close::after,
+    .lightbox-close::after {
+        transform: translate(-50%, -50%) rotate(-45deg);
     }
 
     .modal-close:hover {
@@ -1883,14 +1912,13 @@ modalStyle.textContent = `
         border-radius: 50%;
         background: rgba(40, 40, 40, 0.85);
         color: var(--fg-secondary);
-        font-size: 1.6rem;
+        font-size: 0; /* see .modal-close: the × is drawn, not typeset */
         line-height: 1;
         cursor: pointer;
         transition: all 0.3s ease;
         z-index: 2;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        --close-arm: 17px;
+        --close-stroke: 1.5px;
     }
 
     .lightbox-close:hover {
