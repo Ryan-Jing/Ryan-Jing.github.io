@@ -1011,9 +1011,11 @@ document.head.appendChild(videoStyle);
  *    - Click X button to close
  *    - Press ESC key to close
  *    - Click outside modal to close
- *    - Click any image, or a video outside its control bar, to expand it
- *      into its own lightbox above the modal (X / ESC / click outside
- *      closes just the lightbox, not the modal underneath)
+ *    - Click any image to expand it into its own lightbox above the modal
+ *      (X / ESC / click outside closes just the lightbox, not the modal
+ *      underneath)
+ *    - Videos play in place; use the control bar's fullscreen button for a
+ *      bigger view
  */
 
 // Function to determine if file is a video
@@ -1103,7 +1105,7 @@ function createMediaElement(item) {
         video.muted = false; // Allow audio in modal
         video.loop = true;
         video.preload = 'metadata';
-        video.className = 'modal-media modal-media-expandable';
+        video.className = 'modal-media';
 
         const source = document.createElement('source');
         source.src = src;
@@ -1128,21 +1130,9 @@ function createMediaElement(item) {
             video.currentTime = 0;
         });
 
-        // Clicking the video frame expands it into the lightbox; clicking
-        // the native control bar strip at the bottom (play/pause, seek,
-        // volume, etc.) is left alone so playback controls keep working
-        video.addEventListener('click', (e) => {
-            const rect = video.getBoundingClientRect();
-            const clickY = e.clientY - rect.top;
-            const controlBarHeight = 44; // approx. native control bar height
-            if (clickY >= rect.height - controlBarHeight) {
-                return; // let the native controls handle play/pause etc.
-            }
-            e.preventDefault();
-            e.stopPropagation();
-            openLightbox(video);
-        });
-
+        // Unlike images, a video is not click-to-expand: the native controls
+        // own every click, so hitting play just plays it in place and only
+        // the controls' own fullscreen button goes fullscreen
         mediaFrame.appendChild(video);
     } else {
         const img = document.createElement('img');
@@ -1831,7 +1821,8 @@ modalStyle.textContent = `
     }
 
     /* ===== EXPANDABLE MEDIA HINT =====
-       Images/videos inside the modal open a full-size lightbox on click */
+       Images inside the modal open a full-size lightbox on click; videos
+       are left to their own controls */
     .modal-media-expandable {
         cursor: zoom-in;
         transition: opacity 0.2s ease;
