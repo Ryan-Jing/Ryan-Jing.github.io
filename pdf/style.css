@@ -187,6 +187,8 @@ main {
 
 .project-heading,
 .experience-heading {
+    break-inside: avoid;
+    break-after: avoid;
     display: grid;
     grid-template-columns: minmax(0, 1fr) 2.25in;
     gap: 0.18in;
@@ -362,7 +364,7 @@ figcaption {
     }
 }
 
-@media (max-width: 760px) {
+@media screen and (max-width: 760px) {
     body {
         max-width: none;
     }

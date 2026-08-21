@@ -590,7 +590,7 @@ a:hover {
     backdrop-filter: blur(var(--glass-blur));
     -webkit-backdrop-filter: blur(var(--glass-blur));
     border-radius: 16px;
-    min-height: 900px;
+    min-height: 550px;
     overflow: hidden;
     border: 2px solid var(--glass-border);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);

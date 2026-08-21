@@ -33,7 +33,7 @@
             <div class="focus-grid">
                 <div>
                     <h3>Embedded Firmware</h3>
-                    <p>ESP32, ARM Cortex-M33, C/C++, FreeRTOS, Bluetooth, I2C, GPIO, interrupts, watchdogs, SDK samples, CI, unit testing.</p>
+                    <p>ESP32 and ESP32-C3, ARM Cortex-M33, Teensy, C/C++, FreeRTOS, PlatformIO, BLE and Wi-Fi provisioning, I2C, I2S, GPIO, interrupts, watchdogs, SDK samples, CI, unit testing.</p>
                 </div>
                 <div>
                     <h3>Electrical Hardware</h3>
@@ -45,7 +45,7 @@
                 </div>
                 <div>
                     <h3>Modeling &amp; Software</h3>
-                    <p>Python, MATLAB, Simulink, Stateflow, RTMaps, Flask, MongoDB, Google Cloud, signal processing, MFCCs, DTW, CAD and rapid prototyping.</p>
+                    <p>Python, MATLAB, Simulink, Stateflow, RTMaps, Flask, FastAPI, SQLite, MongoDB, Google Cloud, signal processing, MFCCs, DTW, CAD and rapid prototyping.</p>
                 </div>
             </div>
         </section>
@@ -66,10 +66,10 @@
                     array Bluetooth device designed to assist hearing-aid users in noisy environments.
                 </p>
                 <ul>
-                    <li>Designing schematics and parts of the PCB layout in Altium for a Raspberry Pi CM5 carrier board.</li>
+                    <li>Owned full electrical schematic design and component selection for a Raspberry Pi CM5 carrier board, with schematic and PCB layout work done in Altium.</li>
                     <li>Integrating USB-C power delivery, a 3V3 buck converter, multi-microphone audio sources, and PCIe connectors for high-speed communication with a HAILO-8 accelerator.</li>
                     <li>Prototyping Bluetooth audio streaming and DSP applications across hardware and microcontroller platforms.</li>
-                    <li>Targeting efficient speech isolation and enhancement from a microphone array before wireless streaming to hearing aids.</li>
+                    <li>Targeting efficient speech isolation and enhancement from the microphone array before streaming the processed audio to hearing aids over Bluetooth A2DP.</li>
                 </ul>
                 <figure class="figure-grid">
                     <div class="image-tile">
@@ -97,6 +97,53 @@
                         <p>M.2 connector, 3V3 control, and HAILO-8 connection.</p>
                     </div>
                     <!-- <figcaption>VocalPoint PCB and schematic excerpts.</figcaption> -->
+                </figure>
+            </article>
+
+            <article class="project project-with-gallery">
+                <div class="project-heading">
+                    <div>
+                        <h3>Mood Lamp</h3>
+                        <p class="role">Paired connected desk lamps that share a mood between two people</p>
+                    </div>
+                    <p class="tag-list">ESP32-C3, FreeRTOS, BLE, Wi-Fi, FastAPI, KiCad, 3D Printing</p>
+                </div>
+                <p>
+                    Built a pair of connected desk lamps that let two people share how they are feeling. Each lamp shows
+                    the mood currently selected on the other lamp as an animated RGB pattern, and a single button on top
+                    cycles through moods and publishes a new one to its pair.
+                </p>
+                <ul>
+                    <li>Built around a Seeed XIAO ESP32-C3 with onboard Wi-Fi and BLE, driving a WS2812B addressable RGB LED with a single tactile pushbutton as the only input; schematic drawn in KiCad.</li>
+                    <li>Designed the enclosure in Onshape and 3D printed it as a main housing, top cover, and separate button board, iterating through several revisions to tune user feel and button usage.</li>
+                    <li>Structured the C++ and PlatformIO firmware as FreeRTOS tasks: a lamp task samples the button every 10 ms and renders animations, while a comms task owns BLE, Wi-Fi, time sync, and HTTPS; the two share state through mutex-protected accessors and queues so blocking network work never stalls LED rendering.</li>
+                    <li>Encoded press-length gestures for mood select, scrolling through moods, BLE provisioning mode, and wiping stored Wi-Fi credentials from NVS.</li>
+                    <li>Defined every mood in a single YAML source of truth of colours, animation pattern, and period, compiled into a C header by a Python generator so retuning a mood never touches firmware.</li>
+                    <li>Provisioned Wi-Fi over a BLE GATT service from a companion Python utility, then polled a self-hosted FastAPI and SQLite service on a Raspberry Pi CM5 over HTTPS about every 10 seconds, sending the last known state version so an unchanged mood returns a lightweight 304.</li>
+                    <li>Authenticated each device with its own bearer token stored only as a hash, deriving device identity server-side so one pair of lamps can never read or write another pair's state.</li>
+                    <li>Gated merges with GitHub Actions: firmware compiled against the real target board, host-side Unity unit tests over the portable animation logic, and cppcheck static analysis, with Doxygen documentation for the firmware modules.</li>
+                </ul>
+                <p class="video-note">
+                    Video of this project can be seen in Portfolio:
+                    <a href="https://ryan-jing.github.io/#projects">ryan-jing.github.io/#projects</a>
+                </p>
+                <figure class="figure-grid">
+                    <div class="image-tile">
+                        <img src="../assets/projects/Mood/Mood_1.png" alt="Paired mood lamps in 3D printed enclosures">
+                        <p>Paired lamps in their 3D printed enclosures.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/Mood/Mood_2.png" alt="Mood lamps lit with an animated LED colour pattern">
+                        <p>Lamps lit up with an animated LED colour pattern.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/Mood/Mood_4.png" alt="Mood lamp schematic">
+                        <p>XIAO ESP32-C3, WS2812B RGB LED, and pushbutton input.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/Mood/Mood_3.png" alt="CAD exploded view of the mood lamp assembly">
+                        <p>CAD exploded view of the lamp assembly.</p>
+                    </div>
                 </figure>
             </article>
 
@@ -158,6 +205,48 @@
                 </figure>
             </article>
 
+            <article class="project project-with-gallery">
+                <div class="project-heading">
+                    <div>
+                        <h3>Mini Desk Mixer</h3>
+                        <p class="role">Work in progress | Compact desk DJ mixer with a physical control surface</p>
+                    </div>
+                    <p class="tag-list">Teensy 4.1, KiCad, Audio DSP, PCB Design, Bluetooth</p>
+                </div>
+                <p>
+                    Designing a compact, aesthetic desk DJ mixer around a Teensy 4.1, SGTL5000 audio codec, and BM83
+                    Bluetooth module, covering SD-card playback, mixing, USB-C power and data, a physical control
+                    surface, and wireless audio transfer to Bluetooth headphones and speakers. This is an active work in
+                    progress, so the final feature set may still change as the prototype is developed.
+                </p>
+                <ul>
+                    <li>Teensy 4.1 manages SDIO audio playback, I2S routing, USB MIDI/MTP, and the main controls.</li>
+                    <li>SGTL5000 codec provides the analog jack audio path, while the BM83 handles a separate Bluetooth output over I2S for clean digital transmission.</li>
+                    <li>Three independent audio outputs: Bluetooth A2DP streaming through the BM83, digital USB audio through a dedicated audio USB-C port, and a traditional analog jack.</li>
+                    <li>Control surface planned around faders, EQ knobs, jog encoders, transport buttons, and cue pads.</li>
+                    <li>Four-layer PCB layout with separate power rails to keep digital, analog, and wireless sections isolated.</li>
+                    <li>Firmware planned on the Teensy Audio Library for playback, mixing, and control handling.</li>
+                </ul>
+                <figure class="figure-grid">
+                    <div class="image-tile">
+                        <img src="../assets/projects/Mixer/Mixer_1.png" alt="Mini desk mixer USB-C power and data schematic">
+                        <p>USB-C power and data input.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/Mixer/Mixer_2.png" alt="Mini desk mixer power rail schematic">
+                        <p>5V power control and 3.3V buck converter.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/Mixer/Mixer_3.png" alt="Mini desk mixer compute and Bluetooth schematic">
+                        <p>Teensy 4.1 as main compute with the BM83 Bluetooth module.</p>
+                    </div>
+                    <div class="image-tile">
+                        <img src="../assets/projects/Mixer/Mixer_4.png" alt="Mini desk mixer audio output schematic">
+                        <p>SGTL5000 codec audio output for the USB-C and analog jack paths.</p>
+                    </div>
+                </figure>
+            </article>
+
             <article class="project">
                 <div class="project-heading">
                     <div>
@@ -192,13 +281,15 @@
                     <p class="tag-list">Research, Electroretinography, Materials, Signal Analysis, Python</p>
                 </div>
                 <p>
-                    Researched and developed nanoparticle-based electrodes for electroretinography diagnostics, targeting
-                    improved accessibility, size, and customization for ERG patches.
+                    Researched nanoparticle-based electrodes and designed custom electroretinography patches for medical
+                    diagnostics, targeting the accessibility, size, and customization limits of existing ERG patches.
+                    The designs fit patients of all ages and sizes for more effective detection of diabetes-related
+                    retinal conditions than existing clinical products.
                 </p>
                 <ul>
                     <li>Investigated limitations of existing clinical ERG electrode materials and synthesized Au-Ca and Au-Pt nanoparticle electrode alternatives.</li>
-                    <li>Designed a specialized ERG sensor strip incorporating synthesized electrodes for early-stage diabetic retinopathy screening.</li>
-                    <li>Characterized electrode performance with an oscilloscope and DMM to verify signal quality and electrical properties.</li>
+                    <li>Designed a specialized ERG sensor strip around the synthesized electrodes, optimized for adaptive sizing across cheek surfaces of different area and shape, for more accessible early-stage diabetic retinopathy screening.</li>
+                    <li>Characterized electrode performance with an oscilloscope and DMM to verify signal quality and electrical properties, and validated compatibility against the industry retinal probing device used alongside existing ERG patches.</li>
                     <li>Developed a Python validation pipeline to analyze signal output against existing industry performance benchmarks.</li>
                 </ul>
                 <figure class="single-figure">
@@ -216,8 +307,8 @@
                     <p class="tag-list">Arduino, Analog Circuits, EMG Processing, SolidWorks, 3D Printing</p>
                 </div>
                 <p>
-                    Developed a functional hand prosthetic prototype with a partner, combining analog signal processing,
-                    firmware, and mechanical design to create a biometric control interface.
+                    Developed a functional hand prosthetic prototype with a partner for hand amputees, combining analog
+                    EMG signal processing, firmware, and mechanical design into a biometric control interface.
                 </p>
                 <ul>
                     <li>Designed and implemented a custom analog filter circuit to process EMG signals from skin-surface electrodes on the forearm.</li>
@@ -308,14 +399,15 @@
             <article class="project">
                 <div class="project-heading">
                     <div>
-                        <h3>Cardboard DJ Set</h3>
+                        <h3>Cardboard DJ Box</h3>
                         <p class="role">Portable DJ mixing system with embedded controls and local audio processing</p>
                     </div>
                     <p class="tag-list">ESP32, FreeRTOS, Raspberry Pi 5, I2C, Audio Processing, Web Development, Spotify API</p>
                 </div>
                 <p>
-                    Built a portable DJ mixing system with a team of three, using cardboard mechanical components,
-                    embedded hardware controls, and real-time audio processing.
+                    Built a portable DJ mixing box out of cardboard with a team of three for a hackathon, combining
+                    embedded hardware controls, real-time audio processing, and full-stack web development into a
+                    standalone mixer that works without network connectivity.
                 </p>
                 <ul>
                     <li>Implemented ESP32 firmware on FreeRTOS to manage buttons, rotary encoders, potentiometers, and responsive hardware interrupts.</li>
@@ -398,12 +490,14 @@
                     <p class="tag-list">Woodworking, Construction, Power Tools, Hand Tools, Fabrication</p>
                 </div>
                 <p>
-                    Built a backyard deck from planning and measurement through final construction, gaining hands-on
-                    experience with wood cutting, joinery, outdoor structural work, and tool use.
+                    Built a backyard deck with family, helping with initial planning, measurement, laying the foundation,
+                    and laying out the planks, and gaining hands-on experience with wood cutting, outdoor structural
+                    work, and tool use.
                 </p>
                 <ul>
                     <li>Used hand saws, a table saw, circular saws, drills, and fastening tools for precision cuts and assembly.</li>
                     <li>Worked with pressure-treated lumber and reinforced the importance of structural integrity in outdoor construction.</li>
+                    <li>Re-stained the deck in summer 2026: stripped the old stain, washed it off with a low-pressure washer, hand sanded the remaining areas, and applied two coats of new stain and sealant.</li>
                 </ul>
                 <figure class="figure-pair">
                     <img src="../assets/projects/Deck/deck_full.jpeg" alt="Completed backyard deck">
@@ -437,7 +531,7 @@
             <article class="experience">
                 <div class="experience-heading">
                     <div>
-                        <h3>Hardware and Software Developer</h3>
+                        <h3>Product Hardware and Software Developer</h3>
                         <p>Elev8 &amp; Perform | Toronto, ON</p>
                     </div>
                     <p class="date">May - Aug 2024</p>
@@ -489,7 +583,7 @@
                         <h3>Electrical Lead</h3>
                         <p>True North BME Competition | Waterloo, ON</p>
                     </div>
-                    <p class="date">Sep 2024 - Present</p>
+                    <p class="date">Sep 2025 - April 2026</p>
                 </div>
                 <ul>
                     <li>Designing an EMG filtering circuit using bandpass filters and difference amplifiers for signal conditioning.</li>
@@ -507,7 +601,7 @@
                         <h3>Integration Lead</h3>
                         <p>WATOLINK - AI/ML Research | Waterloo, ON</p>
                     </div>
-                    <p class="date">Jan 2023 - Jan 2025</p>
+                    <p class="date">Jan 2023 - April 2024</p>
                 </div>
                 <ul>
                     <li>Integrated hardware components including motor, GUI, and BCI modules with Python scripts using Jetson Nano for a BCI-controlled wheelchair.</li>
