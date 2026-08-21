@@ -1606,8 +1606,9 @@ modalStyle.textContent = `
         cursor: pointer;
         transition: all 0.3s ease;
         z-index: 2;
-        --close-arm: 15px;
-        --close-stroke: 1.5px;
+        --close-arm: 13px;
+        --close-stroke: 2px;
+        --close-cap: 1px;
     }
 
     .modal-close::before,
@@ -1620,7 +1621,7 @@ modalStyle.textContent = `
         left: 50%;
         width: var(--close-arm);
         height: var(--close-stroke);
-        border-radius: var(--close-stroke);
+        border-radius: var(--close-cap);
         background: currentColor;
         transition: background-color 0.3s ease;
     }
@@ -1917,8 +1918,9 @@ modalStyle.textContent = `
         cursor: pointer;
         transition: all 0.3s ease;
         z-index: 2;
-        --close-arm: 17px;
-        --close-stroke: 1.5px;
+        --close-arm: 15px;
+        --close-stroke: 2px;
+        --close-cap: 1px;
     }
 
     .lightbox-close:hover {
