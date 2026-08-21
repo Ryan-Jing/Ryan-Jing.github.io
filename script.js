@@ -967,6 +967,27 @@ document.head.appendChild(videoStyle);
  *    - {"src": ..., "text": ...} = image/video figure with an optional
  *      caption below it ("text" is plain text only)
  *
+ *    A figure can also carry optional sizing keys — handy for portrait
+ *    media, which the shared height cap otherwise shrinks:
+ *        {"src": "...", "text": "...", "height": 620}
+ *        {"src": "...", "text": "...", "ratio": "auto", "height": 620}
+ *        {"src": "...", "text": "...", "ratio": "3/4", "fit": "cover"}
+ *        {"src": "...", "text": "...", "wide": true, "fill": true}
+ *        {"src": "...", "text": "...", "columns": 3}
+ *        {"src": "...", "text": "...", "wide": true}
+ *      "height" = max height, number for px or a CSS length like "70vh"
+ *      "ratio"  = "auto" shrinks the frame to the image's own proportions
+ *                 (no bars beside a portrait shot); or a fixed width/height
+ *                 shape such as "3/4" or "3:4"
+ *      "fit"    = "cover" crops to that shape; default "contain" letterboxes
+ *      "wide"   = take the full row instead of one grid column
+ *      "half"   = stay in one column even when a rule would stretch it
+ *      "columns"= figures per row for the whole gallery (set it on the
+ *                 first figure of the run; applies on phones too)
+ *      "fill"   = scale out to the full width of the slot, no height cap
+ *                 ("wide" + "fill" = edge-to-edge; tall images get tall)
+ *      (tall figures are still clamped to 70vh so they fit on phones)
+ *
  * 2. Add the expand button inside the project-content div:
  *    <div class="expand-button">
  *        Click to expand <span class="expand-arrow">↓</span>
@@ -978,8 +999,13 @@ document.head.appendChild(videoStyle);
  *
  * 4. Layout system:
  *    - Consecutive media items form a 2-column gallery grid (1 column on mobile)
- *    - Videos, single figures, and the odd last figure span the full width
+ *    - Videos and a lone trailing figure span the full width; only figures
+ *      that take a column are counted, so a "wide" hero in the same gallery
+ *      does not push the images below it out of their row
  *    - A text item ends the current gallery; the next media item starts a new one
+ *    - A gallery normally sits below a divider, but if the text item right
+ *      before it ends on a heading (a {"type": "text", "content": "<h4>X</h4>"}
+ *      item on its own), the figures tuck in under that heading instead
  *
  * 5. Controls:
  *    - Click X button to close
@@ -997,21 +1023,74 @@ function isVideo(filename) {
     return videoExtensions.some(ext => filename.toLowerCase().endsWith(ext));
 }
 
+// Optional per-item sizing knobs from data-expand-content. Useful for
+// portrait media, which otherwise gets squeezed by the shared height cap
+// and leaves wide empty bars beside it:
+//   "height": 620      cap this figure's media height (number = px, or any
+//                      CSS length such as "70vh"); it still shrinks to fit
+//                      small screens
+//   "ratio": "auto"    shrink the frame to the media's own proportions, so a
+//                      portrait image gets no empty bars beside it at all
+//   "ratio": "3/4"     pin the frame to a fixed width/height shape, so
+//                      mismatched figures line up in the grid ("3:4" works too)
+//   "fit": "cover"     fill that shape by cropping instead of letterboxing
+//                      (default is "contain", i.e. the whole image is shown)
+//   "wide": true       give the figure the full row instead of half of it
+//   "half": true       keep the figure in a single grid column even when a
+//                      rule below would otherwise stretch it across the row
+//                      (a lone figure, an odd trailing figure, or a video)
+//   "columns": 3       set how many figures share the row for this whole
+//                      gallery — read from the first figure of the run, and
+//                      honoured on phones too, unlike the automatic 2-up grid
+//   "fill": true       scale the media out to the full width of its slot and
+//                      let the height land wherever the image's own shape puts
+//                      it, ignoring every height cap — pair with "wide": true
+//                      for an edge-to-edge figure. A tall image gets tall, so
+//                      this suits landscape media (schematics, screenshots)
+function applyFigureSizing(figure, opts) {
+    if (opts.wide) {
+        figure.classList.add('modal-figure-wide');
+    }
+    if (opts.fill) {
+        figure.classList.add('modal-figure-fill');
+    }
+    if (opts.half) {
+        figure.classList.add('modal-figure-half');
+    }
+    if (opts.height) {
+        figure.classList.add('modal-figure-sized');
+        figure.style.setProperty('--figure-height',
+            typeof opts.height === 'number' ? opts.height + 'px' : opts.height);
+    }
+    if (opts.ratio === 'auto') {
+        figure.classList.add('modal-figure-natural');
+    } else if (opts.ratio) {
+        figure.classList.add('modal-figure-ratio');
+        figure.style.setProperty('--figure-ratio', String(opts.ratio).replace(':', '/'));
+    }
+    if (opts.fit === 'cover') {
+        figure.classList.add('modal-figure-cover');
+    }
+}
+
 // Function to create a media figure (video or image with optional caption)
 function createMediaElement(item) {
     // Handle both old format (string) and new format (object)
-    let src, text;
+    let src, text, opts;
 
     if (typeof item === 'string') {
         src = item;
         text = null;
+        opts = {};
     } else {
         src = item.src;
         text = item.text || null;
+        opts = item;
     }
 
     const figure = document.createElement('figure');
     figure.className = 'modal-figure';
+    applyFigureSizing(figure, opts);
 
     const mediaFrame = document.createElement('div');
     mediaFrame.className = 'modal-figure-media';
@@ -1101,6 +1180,14 @@ function createTextElement(content) {
     return textBlock;
 }
 
+// True when a text block's last element is a heading, i.e. the block is a
+// section title with no body text of its own
+function endsWithHeading(el) {
+    if (!el || !el.classList.contains('modal-text-block')) return false;
+    const last = el.lastElementChild;
+    return !!last && /^H[1-6]$/.test(last.tagName);
+}
+
 // Body scroll lock — position:fixed works on iOS Safari where
 // overflow:hidden alone does not, and preserves the scroll position
 let savedScrollY = 0;
@@ -1159,9 +1246,33 @@ function openModal(contentItems) {
             if (!currentGallery) {
                 currentGallery = document.createElement('div');
                 currentGallery.className = 'modal-gallery';
+                // "columns": N on the first figure of a run fixes how many
+                // figures share the row, instead of the automatic 2-up grid
+                if (typeof item === 'object' && item.columns) {
+                    currentGallery.classList.add('modal-gallery-fixed');
+                    currentGallery.style.setProperty('--gallery-columns', item.columns);
+                }
+                // A text block ending on a heading is introducing these
+                // figures, so keep them tucked under it instead of pushing
+                // them away behind the usual section divider
+                if (endsWithHeading(contentWrapper.lastElementChild)) {
+                    currentGallery.classList.add('modal-gallery-tight');
+                }
                 contentWrapper.appendChild(currentGallery);
             }
             currentGallery.appendChild(createMediaElement(item));
+        }
+    });
+
+    // A trailing figure alone on the last row looks better spanning it, but
+    // only figures that actually take a column count towards that — a "wide"
+    // hero in the same gallery must not flip the parity of the ones below it
+    contentWrapper.querySelectorAll('.modal-gallery:not(.modal-gallery-fixed)').forEach(gallery => {
+        const inColumns = [...gallery.children].filter(
+            figure => !figure.classList.contains('modal-figure-wide'));
+        const last = inColumns[inColumns.length - 1];
+        if (inColumns.length % 2 === 1 && last && !last.classList.contains('modal-figure-half')) {
+            last.classList.add('modal-figure-orphan');
         }
     });
 
@@ -1548,6 +1659,12 @@ modalStyle.textContent = `
         border-left: 3px solid var(--accent-primary);
     }
 
+    /* A section that resumes after a gallery already has the gallery's
+       own spacing above it */
+    .modal-text-block > h4:first-child {
+        margin-top: 0;
+    }
+
     .modal-text-block p {
         margin-bottom: 1.1rem;
     }
@@ -1588,6 +1705,22 @@ modalStyle.textContent = `
         border-top: none;
     }
 
+    /* "columns": N — the author is placing figures by hand, so the count is
+       kept at every width and the automatic full-row rules stand down
+       (an explicit "wide" still spans) */
+    .modal-gallery.modal-gallery-fixed {
+        grid-template-columns: repeat(var(--gallery-columns), minmax(0, 1fr));
+    }
+
+
+    /* Figures introduced directly by a heading belong to that section,
+       so they sit close under it with no divider */
+    .modal-gallery-tight {
+        margin-top: 1rem;
+        padding-top: 0;
+        border-top: none;
+    }
+
     /* Text sections that continue after a gallery */
     .modal-gallery + .modal-text-block {
         margin-top: 2.25rem;
@@ -1608,10 +1741,11 @@ modalStyle.textContent = `
         overflow: hidden;
     }
 
-    /* Videos and lone items get the full row */
-    .modal-figure-wide,
-    .modal-figure:only-child,
-    .modal-figure:last-child:nth-child(odd) {
+    /* Videos take the full row, as does a lone trailing figure — see the
+       pass in openModal that tags it .modal-figure-orphan. "half": true on
+       an item keeps it in its column instead */
+    .modal-figure-wide:not(.modal-figure-half),
+    .modal-figure-orphan {
         grid-column: 1 / -1;
     }
 
@@ -1634,6 +1768,66 @@ modalStyle.textContent = `
     video.modal-media {
         max-height: 480px;
         background: var(--black);
+    }
+
+    /* ===== PER-FIGURE SIZING =====
+       Driven by "height" / "ratio" / "fit" on an item in data-expand-content.
+       min(..., 70vh) keeps a tall figure from running off a phone screen */
+    .modal-figure-sized .modal-media {
+        max-height: min(var(--figure-height), 70vh);
+    }
+
+    /* "ratio": "auto" — the card shrinks to the media's own shape, so
+       nothing is boxed in by bars; the height cap still decides how big
+       it gets */
+    .modal-figure-natural {
+        width: fit-content;
+        max-width: 100%;
+        justify-self: center;
+    }
+
+    .modal-figure-natural .modal-figure-media,
+    .modal-figure-natural .modal-media {
+        width: auto;
+        max-width: 100%;
+    }
+
+    .modal-figure-ratio .modal-figure-media {
+        aspect-ratio: var(--figure-ratio);
+    }
+
+    .modal-figure-ratio .modal-media {
+        width: 100%;
+        height: 100%;
+        max-height: none;
+    }
+
+    /* A ratio sets the shape; a height alongside it caps how big that
+       shape is allowed to get, narrowing the frame to keep the shape */
+    .modal-figure-ratio.modal-figure-sized .modal-figure-media {
+        max-height: min(var(--figure-height), 70vh);
+        max-width: calc(min(var(--figure-height), 70vh) * (var(--figure-ratio)));
+        margin: 0 auto;
+    }
+
+    .modal-figure-cover .modal-media {
+        object-fit: cover;
+    }
+
+    /* "fill": true — width drives the size, height follows the image's own
+       shape with no cap at all. Last in this block so it wins over the
+       height/ratio rules above when an item sets several keys */
+    .modal-figure-fill,
+    .modal-figure-fill .modal-figure-media,
+    .modal-figure-fill .modal-media {
+        width: 100%;
+        max-width: 100%;
+        max-height: none;
+        aspect-ratio: auto;
+    }
+
+    .modal-figure-fill .modal-media {
+        height: auto;
     }
 
     /* ===== EXPANDABLE MEDIA HINT =====
@@ -1780,6 +1974,11 @@ modalStyle.textContent = `
             gap: 1rem;
             margin-top: 1.75rem;
             padding-top: 1.5rem;
+        }
+
+        .modal-gallery-tight {
+            margin-top: 0.85rem;
+            padding-top: 0;
         }
 
         .modal-media,
