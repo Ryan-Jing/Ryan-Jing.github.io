@@ -1325,6 +1325,18 @@ function closeModal() {
 let activeLightboxCloser = null;
 
 function openLightbox(mediaEl) {
+    // The media keeps its own click handler when it moves in here, so a
+    // click on the expanded image lands back in this function. Treat that
+    // as "collapse me": re-entering with the same node would hand a second
+    // overlay an element the first teardown is still scheduled to move,
+    // which strands the image and leaves an empty figure in the modal.
+    if (mediaEl.classList.contains('lightbox-media')) {
+        if (activeLightboxCloser) {
+            activeLightboxCloser();
+        }
+        return;
+    }
+
     // Close any lightbox that's already open before opening another
     if (activeLightboxCloser) {
         activeLightboxCloser();
@@ -1356,9 +1368,12 @@ function openLightbox(mediaEl) {
     function handleClose() {
         lightboxOverlay.classList.remove('active');
         setTimeout(() => {
-            // Restore the media element to its original spot in the modal
+            // Restore the media element to its original spot in the modal,
+            // but only while it is still sitting in this overlay — if
+            // something else has taken the node, moving it now would pull
+            // it out from under whoever owns it
             mediaEl.classList.remove('lightbox-media');
-            if (placeholder.parentNode) {
+            if (placeholder.parentNode && mediaEl.parentNode === lightboxOverlay) {
                 placeholder.parentNode.replaceChild(mediaEl, placeholder);
             }
             lightboxOverlay.remove();
